@@ -3,6 +3,9 @@ import { Global_Css } from "./GlobalStyles"
 
 //pages
 import Splash from "./pages/splashpage/Splash"
+import Login from "./pages/loginpage/Login"
+import SignUP from "./pages/signUp/Sign"
+import Home from "./pages/homepage/Home"
 
 
 function App() {
@@ -11,6 +14,21 @@ function App() {
   {
     path:"/",
     element:<Splash />
+  },
+
+  {
+    path:"/loginpage",
+    element:<Login />
+  },
+
+  {
+    path:"/signUp",
+    element:<SignUP />
+  },
+
+  {
+    path:"/homepage",
+    element:<Home />
   }
  ])
 
