@@ -75,7 +75,7 @@ useEffect(()=>{
  {/* Hero        */}
         <Hero_section>
           <Slider_Container>
-            <img src="/src/assets/black-panther-pics.jpg" alt="photo" />
+            <img src="/black-panther-pics.jpg" alt="photo" />
             <Slider_Text>
               <p>Popularity : <span>100</span></p>
               <p>Rating : <span>5</span></p>

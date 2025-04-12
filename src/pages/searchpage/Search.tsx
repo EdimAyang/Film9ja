@@ -11,13 +11,13 @@ const navigate = useNavigate()
   return (
     <Search_styles>
       <Input_container>
-        <img src="/public/icon/bars-staggered-solid (1).svg" alt="" onClick={handleNav}/>
+        <img src="/icon/bars-staggered-solid (1).svg" alt="" onClick={handleNav}/>
         <input type="text" placeholder="Search Movie"/>
       </Input_container>
       <Movie_container>
         <Cards1>
             <Movie_pics>
-                <img src="/src/assets/Spiderman-pics.jpeg" alt="" />
+                <img src="/Spiderman-pics.jpeg" alt="" />
             </Movie_pics>
             <Info>
                 <h4>spiderman</h4>
@@ -28,7 +28,7 @@ const navigate = useNavigate()
         </Cards1>
         <Cards1>
             <Movie_pics>
-                <img src="/src/assets/batman-pics.jpeg" alt="" />
+                <img src="/batman-pics.jpeg" alt="" />
             </Movie_pics>
             <Info>
                 <h4>Batman</h4>
@@ -38,7 +38,7 @@ const navigate = useNavigate()
         </Cards1>
         <Cards1>
             <Movie_pics>
-                <img src="/src/assets/AlienRomulus-pics.avif" alt="" />
+                <img src="/AlienRomulus-pics.avif" alt="" />
             </Movie_pics>
             <Info>
                 <h4>Alien</h4>
@@ -48,7 +48,7 @@ const navigate = useNavigate()
         </Cards1>
         <Cards1>
             <Movie_pics>
-                <img src="/src/assets/Abigal-pics.jpg" alt="" />
+                <img src="/Abigal-pics.jpg" alt="" />
             </Movie_pics>
             <Info>
                 <h4>Abigail</h4>
@@ -58,7 +58,7 @@ const navigate = useNavigate()
         </Cards1>
         <Cards1>
             <Movie_pics>
-                <img src="/src/assets/Titanic-pics.jpg" alt="" />
+                <img src="/Titanic-pics.jpg" alt="" />
             </Movie_pics>
             <Info>
                 <h4>Titanic</h4>
@@ -68,7 +68,7 @@ const navigate = useNavigate()
         </Cards1>
         <Cards1>
             <Movie_pics>
-                <img src="/src/assets/black-panther-pics.jpg" alt="" />
+                <img src="/black-panther-pics.jpg" alt="" />
             </Movie_pics>
             <Info>
                 <h4>Black Panther</h4>

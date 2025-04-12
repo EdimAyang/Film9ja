@@ -4,7 +4,7 @@ import { Iprops } from "../../interface";
 export const Side_bar = styled.nav<Iprops>`
     width:200px;
     height:100%;
-    background-color:#50c878e6;
+    background-color:#50c878;
     position:fixed;
     z-index:20;
     left:50%;

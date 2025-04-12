@@ -6,7 +6,7 @@ export const Splash_Styles = styled.div`
     display:flex;
     justify-content:center;
     align-items:center;
-    background-image:url("/src/assets/justice-league-bg.jpg");
+    background-image:url("/justice-league-bg.jpg");
     background-position:center;
     background-size:cover;
     background-repeat:no-repeat;
