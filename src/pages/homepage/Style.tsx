@@ -8,7 +8,7 @@ export const Home_Styles=styled.div`
 `
 export const Hero_section = styled.header`
     width:100%;
-    height:380px;
+    height:400px;
     margin-bottom:40px;
     position:fixed;
     top:0;
