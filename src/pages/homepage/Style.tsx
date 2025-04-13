@@ -60,7 +60,7 @@ export const Catergories = styled.div`
     flex-direction:column;
     margin-top:40px;
     position: relative;
-    top:60%;
+    top:55%;
     section{
         width:100%;
         display:flex;
