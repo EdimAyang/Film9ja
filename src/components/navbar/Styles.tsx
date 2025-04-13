@@ -10,11 +10,11 @@ export const Nav_bar = styled.div`
     justify-content:space-between;
     align-items:center;
     padding:10px;
-    background:transparent;
+    background-color:#221E22;
     z-index:5;
     position:fixed;
     top:0;
-    left:0;
+   
     img{
         width:25px;
         background:transparent;

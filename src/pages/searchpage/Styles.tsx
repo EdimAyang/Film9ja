@@ -39,6 +39,7 @@ export const Movie_container = styled.section`
     gap:30px;
     position:relative;
     top:100px;
+    padding:10px;
 `
 
 export const Cards1 = styled.div`

@@ -4,10 +4,10 @@ import { Iprops } from "../../interface";
 export const Side_bar = styled.nav<Iprops>`
     width:200px;
     height:100%;
-    background-color:#50c878;
+    background-color:#221E22;
     position:fixed;
     z-index:20;
-    left:50%;
+    left:54%;
     top:0;
     padding:10px;
     display:flex;
@@ -20,6 +20,7 @@ export const Side_bar = styled.nav<Iprops>`
         background:transparent;
         margin-bottom:30px;
         margin-left:80%;
+        margin-top:10px;
     }
 `
 export const Navigations = styled.div`

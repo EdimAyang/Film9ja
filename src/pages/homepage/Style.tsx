@@ -1,23 +1,30 @@
 import styled from "styled-components";
 
+
+
 export const Home_Styles=styled.div`
     width:100%;
     height:100vh;
     
-    
 `
 export const Hero_section = styled.header`
+@media screen and (max-width:650px){
     width:100%;
-    height:400px;
-    margin-bottom:40px;
-    position:fixed;
-    top:0;
-    z-index:2;
+    height:420px;
+    position: relative;
+    top:6%;
+    margin-top:10px;
+    
+    
+    
     img{
         width:100%;
         height:100%;
+        object-fit:cover;
         opacity:.8;
+        display:block
     }
+}
 `
 export const Slider_Container = styled.div`
      width:100%;
@@ -60,7 +67,7 @@ export const Catergories = styled.div`
     flex-direction:column;
     margin-top:40px;
     position: relative;
-    top:55%;
+    top:5%;
     section{
         width:100%;
         display:flex;

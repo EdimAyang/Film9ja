@@ -36,3 +36,21 @@ export  interface Ibars  {
 export interface Iprops {
     active?:boolean | null
 }
+
+//Search
+export interface MultiSearch {
+    id:number
+    media_type:string
+    name:string
+    overview:string
+    popularity:number
+    poster_path:string
+    vote_count:number
+    first_air_date:string
+    backdrop_path:string
+    adult:Boolean
+    original_name:string
+    original_title:string
+    origin_country:string
+    title:string
+}
