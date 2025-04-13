@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
-export const Nav_bar = styled.nav`
+
+
+export const Nav_bar = styled.div`
     width:100%;
     height:60px;
     display:flex;
@@ -9,8 +11,8 @@ export const Nav_bar = styled.nav`
     align-items:center;
     padding:10px;
     background:transparent;
-    z-index:2;
-    position:absolute;
+    z-index:5;
+    position:fixed;
     top:0;
     left:0;
     img{
@@ -38,10 +40,12 @@ export const Logo_2 = styled.div`
 
 //mobile 
 export const Navigation = styled.div`
-    width:80%;
+    width:100%;
     height:100%;
     display:flex;
     justify-content:flex-end;
     gap:20px;
     background:transparent;
+    
+    
 `

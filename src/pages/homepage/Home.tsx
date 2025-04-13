@@ -4,11 +4,12 @@ import Nav from "../../components/navbar/Nav"
 import { Card, Cards_Wrapper, Catergories, Hero_section, Home_Styles,Slider_Container, Slider_Text,  } from "./Style"
 import { useEffect, useState } from "react";
 import { ICategories } from "../../interface";
+import SideBar from "../../components/sideBar/SideBar";
 
 
 
 
-const Home = () => {
+const Home:React.FC = () => {
 
   //Endpoints
   const PopularURL = "https://api.themoviedb.org/3/movie/popular"
@@ -68,8 +69,9 @@ useEffect(()=>{
 
   return (
     <Home_Styles>
-        <Nav />
-
+      <SideBar/>
+        <Nav/>
+        
  {/* Hero        */}
         <Hero_section>
           <Slider_Container>

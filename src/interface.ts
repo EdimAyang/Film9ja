@@ -25,3 +25,14 @@ export interface ICategories {
         popularity:number
         name:string
 }[]
+
+//Bars props
+export  interface Ibars  {
+    Bar?:boolean
+    toggler?:() => void
+}
+
+//sideBar
+export interface Iprops {
+    active?:boolean | null
+}

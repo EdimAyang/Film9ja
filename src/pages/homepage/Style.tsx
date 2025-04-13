@@ -10,6 +10,9 @@ export const Hero_section = styled.header`
     width:100%;
     height:380px;
     margin-bottom:40px;
+    position:fixed;
+    top:0;
+    z-index:2;
     img{
         width:100%;
         height:100%;
@@ -55,7 +58,9 @@ export const Catergories = styled.div`
     gap:15px;
     display:flex;
     flex-direction:column;
-    margin-top:20px;
+    margin-top:40px;
+    position: relative;
+    top:60%;
     section{
         width:100%;
         display:flex;
