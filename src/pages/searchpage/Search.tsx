@@ -9,7 +9,7 @@ const Search = () => {
 const navigate = useNavigate()
 const [SearchValue, setSearchValue] = useState<string>("")
 const [SearchRes, setSearchRes] = useState<MultiSearch[]>([])
-const [totalPage, setTotalPage] = useState<number>(1)
+// const [totalPage, setTotalPage] = useState<number>(1)
 const handleNav = ()=>{
         navigate("/homepage")
 }
@@ -22,14 +22,14 @@ const handleSearch  = async (e:React.ChangeEvent<HTMLInputElement>)=>{
         )
         
         setSearchRes(response.data.results)
-        setTotalPage(response.data.total_pages)
+        // setTotalPage(response.data.total_pages)
     } catch (error) {
         console.log(error)
     }
 }
 
 
-      console.log(SearchRes)
+      // console.log(SearchRes)
   return (
     <Search_styles>
       <Input_container>
