@@ -7,6 +7,15 @@ import { ICategories } from "../../interface";
 import SideBar from "../../components/sideBar/SideBar";
 
 
+//options
+export  const options = {
+  method: 'GET',
+  headers: {
+    accept: 'application/json',
+    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2MWVkYzA1OTdiOGVkNjU5NGU3MDM0M2YwMmRiZDcwYyIsIm5iZiI6MTc0NDMxMTAzOS4zOTM5OTk4LCJzdWIiOiI2N2Y4MTJmZmQzYWI3ZDdhOGJhZDYyNWIiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.3D-u27IuH3HJXjvj-ovnjz_xN1G7BBo88_LvCtH2Dgk'
+  }
+};
+
 
 
 const Home:React.FC = () => {
@@ -15,13 +24,6 @@ const Home:React.FC = () => {
   const PopularURL = "https://api.themoviedb.org/3/movie/popular"
   const MoviesURL = "https://api.themoviedb.org/3/trending/movie/day"
   const TVSeriesURL = "https://api.themoviedb.org/3/trending/tv/day"
-  const options = {
-    method: 'GET',
-    headers: {
-      accept: 'application/json',
-          Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2MWVkYzA1OTdiOGVkNjU5NGU3MDM0M2YwMmRiZDcwYyIsIm5iZiI6MTc0NDMxMTAzOS4zOTM5OTk4LCJzdWIiOiI2N2Y4MTJmZmQzYWI3ZDdhOGJhZDYyNWIiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.3D-u27IuH3HJXjvj-ovnjz_xN1G7BBo88_LvCtH2Dgk'
-    }
-  };
 
   const[PopularMovies, setPopularMovies] = useState<ICategories[]>([])
   const[TV, setTV] = useState<ICategories[]>([])
@@ -82,9 +84,8 @@ useEffect(()=>{
               <p>Votes : <span>5</span></p>
             </Slider_Text>
           </Slider_Container>
+          
         </Hero_section>
-
-
 
 {/* Popular */}
 
