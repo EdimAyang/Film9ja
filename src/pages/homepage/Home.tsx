@@ -1,7 +1,7 @@
 
 import axios from "axios";
 import Nav from "../../components/navbar/Nav"
-import { Card, Cards_Wrapper, Catergories, Hero_section, Home_Styles,Slider_Container, Slider_Text,  } from "./Style"
+import { Card, Card_Hero, Cards_Wrapper, Catergories, Hero_section, Home_Styles, Slider_Container, Slider_Text,  } from "./Style"
 import { useEffect, useState } from "react";
 import { ICategories } from "../../interface";
 import SideBar from "../../components/sideBar/SideBar";
@@ -28,6 +28,7 @@ const Home:React.FC = () => {
   const[PopularMovies, setPopularMovies] = useState<ICategories[]>([])
   const[TV, setTV] = useState<ICategories[]>([])
   const[Movies, setMovies] = useState<ICategories[]>([])
+
 
   //fetch popular movies
   const getPopularMovies = async ()=>{
@@ -69,6 +70,8 @@ useEffect(()=>{
 },[])
 
 
+
+
   return (
     <Home_Styles>
       <SideBar/>
@@ -77,14 +80,20 @@ useEffect(()=>{
  {/* Hero        */}
         <Hero_section>
           <Slider_Container>
-            <img src="/black-panther-pics.jpg" alt="photo" />
-            <Slider_Text>
-              <p>Popularity : <span>100</span></p>
-              <p>Rating : <span>5</span></p>
-              <p>Votes : <span>5</span></p>
-            </Slider_Text>
-          </Slider_Container>
-          
+            <div>
+            {PopularMovies.map((m, i)=>(
+              <Card_Hero key={m.id}>
+                <img src={`https://image.tmdb.org/t/p/w500${PopularMovies[i].backdrop_path}`} alt="photo" 
+                
+                />
+                <Slider_Text>
+                  <h4>{PopularMovies[i].name || PopularMovies[i].original_name || PopularMovies[i].original_title || PopularMovies[i].title}</h4>
+                </Slider_Text>
+              </Card_Hero>
+            
+            ))}
+            </div>
+            </Slider_Container>
         </Hero_section>
 
 {/* Popular */}

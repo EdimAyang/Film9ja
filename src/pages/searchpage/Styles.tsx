@@ -17,11 +17,11 @@ export const Input_container = styled.div`
     top:0;
     z-index:10;
     img{
-        width:25px;
+        width:20px;
         background:transparent;
     }
     input{
-        padding:15px;
+        padding:10px;
         width:75%;
         background-color:#ffff;
         opacity:.8;

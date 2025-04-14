@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 export const Nav_bar = styled.div`
     width:100%;
-    height:60px;
+    height:50px;
     display:flex;
     justify-content:center;
     justify-content:space-between;
@@ -16,7 +16,7 @@ export const Nav_bar = styled.div`
     top:0;
    
     img{
-        width:25px;
+        width:20px;
         background:transparent;
     }
 `
@@ -28,7 +28,7 @@ export const Logo_2 = styled.div`
     text-align:center;
     background:transparent;
 
-    h1{
+    h3{
         color:#fff;
         background:transparent;
     }
@@ -40,7 +40,7 @@ export const Logo_2 = styled.div`
 
 //mobile 
 export const Navigation = styled.div`
-    width:100%;
+    width:80%;
     height:100%;
     display:flex;
     justify-content:flex-end;

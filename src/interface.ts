@@ -24,6 +24,10 @@ export interface ICategories {
         title:string;
         popularity:number
         name:string
+        original_name:string
+        original_title:string
+        origin_country:string
+
 }[]
 
 //Bars props

@@ -16,7 +16,7 @@ export const Side_bar = styled.nav<Iprops>`
     gap:40px;
     display:${({active})=>active? `${"block"}` : "none"};
     img{
-        width:25px;
+        width:20px;
         background:transparent;
         margin-bottom:30px;
         margin-left:80%;
