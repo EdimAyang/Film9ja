@@ -19,7 +19,7 @@ const active = useContext(BooleanContext)
   return (
     <Nav_bar>
      <Logo_2 >
-        <h1>Film<span>9ja</span></h1>
+        <h3>Film<span>9ja</span></h3>
     </Logo_2>
     <Navigation>
       <img src="/icon/magnifying-glass-solid (3).svg" alt="" onClick={handleNav}/>

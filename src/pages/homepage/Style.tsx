@@ -9,21 +9,14 @@ export const Home_Styles=styled.div`
 `
 export const Hero_section = styled.header`
 @media screen and (max-width:650px){
+    max-width:1200px;
     width:100%;
     height:420px;
     position: relative;
-    top:6%;
+    top:4%;
     margin-top:10px;
+
     
-    
-    
-    img{
-        width:100%;
-        height:100%;
-        object-fit:cover;
-        opacity:.8;
-        display:block
-    }
 }
 `
 export const Slider_Container = styled.div`
@@ -31,6 +24,28 @@ export const Slider_Container = styled.div`
      height:100%;
      background-color:rgba(0,0,0, 0.1);
      position: relative;
+     overflow-x:scroll;
+
+     &>div{
+        display:flex;
+        height:100%;
+        
+        img{
+        width:100%;
+        height:100%;
+        object-fit:cover;
+        opacity:.4;
+        display:block
+        }
+     }
+   
+     
+`
+export const Card_Hero = styled.div`
+    min-width:100%;
+    height:100%;
+
+     
 `
 
 export const Slider_Text = styled.div`
@@ -45,16 +60,11 @@ export const Slider_Text = styled.div`
     flex-direction:column;
     gap:5px;
     padding:10px;
-    p{
-        background:transparent;
+    h4{
         color:#ffff;
-        opacity:.8;
-        span{
-            color:#50C878;
-            background:transparent;
-            opacity:1;
-        }
+        background:transparent;
     }
+   
 `
 
 export const Catergories = styled.div`
@@ -94,7 +104,6 @@ export const Cards_Wrapper = styled.div`
     max-height:220px;
     display:flex;
     overflow-x:scroll;
- 
     gap:15px;
 `
 export const Card = styled.div`
