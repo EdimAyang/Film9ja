@@ -50,6 +50,7 @@ export const SignUPInputWrapper = styled.div<ILogIn>`
         outline:none;
         background-color:#ffffffe8;
         color:#000;
+        inset:none;
     }
 
     span{

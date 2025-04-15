@@ -7,20 +7,21 @@ export const Side_bar = styled.nav<Iprops>`
     background-color:#221E22;
     position:fixed;
     z-index:20;
-    left:54%;
+    left:${({active})=>active? `${"100%"}` : "54%"};
     top:0;
     padding:10px;
     display:flex;
     flex-direction:column;
     align-items:end;
     gap:40px;
-    display:${({active})=>active? `${"block"}` : "none"};
+    /* display:${({active})=>active? `${"block"}` : "none"}; */
+    transition: 1s ease-out;
     img{
         width:20px;
         background:transparent;
         margin-bottom:30px;
-        margin-left:80%;
-        margin-top:10px;
+        margin-left:75%;
+        margin-top:3px;
     }
 `
 export const Navigations = styled.div`

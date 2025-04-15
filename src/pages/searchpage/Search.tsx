@@ -33,7 +33,7 @@ const handleSearch  = async (e:React.ChangeEvent<HTMLInputElement>)=>{
   return (
     <Search_styles>
       <Input_container>
-        <img src="/icon/bars-staggered-solid (1).svg" alt="" onClick={handleNav}/>
+        <img src="/icon/arrow-left-solid.svg" alt="" onClick={handleNav}/>
         <input type="text" placeholder="Search Movie" value={SearchValue} onChange={e=>handleSearch(e)}/>
       </Input_container>
 

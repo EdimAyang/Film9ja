@@ -2,6 +2,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import { Global_Css } from "./GlobalStyles"
 import { createContext } from "react"
 import { Ibars } from "./interface";
+import { useState } from "react"
 
 export const BooleanContext = createContext<Ibars | null>(null);
 //pages
@@ -10,11 +11,12 @@ import Login from "./pages/loginpage/Login"
 import SignUP from "./pages/signUp/Sign"
 import Home from "./pages/homepage/Home"
 import Search from "./pages/searchpage/Search"
-import { useState } from "react"
+import Movies from "./pages/moviespage/Movies";
+import TV from "./pages/tvSeriespage/TV";
 
 
 function App() {
-const[Bar, setBar] = useState<boolean>(false)
+const[Bar, setBar] = useState<boolean>(true)
 
 const toggler = ()=>{
   setBar(!Bar)
@@ -45,6 +47,16 @@ const toggler = ()=>{
   {
     path:"/searchpage",
     element:<Search />
+  },
+
+  {
+    path:"/moviespage",
+    element:<Movies />
+  },
+
+  {
+    path:"/tvSeriespage",
+    element:<TV />
   }
 
  ])

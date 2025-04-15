@@ -34,7 +34,7 @@ export const Slider_Container = styled.div`
         width:100%;
         height:100%;
         object-fit:cover;
-        opacity:.4;
+        opacity:.9;
         display:block
         }
      }
@@ -90,6 +90,10 @@ export const Catergories = styled.div`
             color:#50C878;
             cursor: pointer;
         }
+
+        a{
+            text-decoration:none;
+        }
     }
 
     div{
@@ -118,7 +122,7 @@ export const Card = styled.div`
         height:100%;
         width:100%;
         overflow:hidden;
-        
+        border-radius:10px;
         img{
             width:100%;
             height:100%;

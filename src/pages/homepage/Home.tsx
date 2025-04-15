@@ -5,6 +5,7 @@ import { Card, Card_Hero, Cards_Wrapper, Catergories, Hero_section, Home_Styles,
 import { useEffect, useState } from "react";
 import { ICategories } from "../../interface";
 import SideBar from "../../components/sideBar/SideBar";
+import { Link } from "react-router-dom";
 
 
 //options
@@ -22,12 +23,13 @@ const Home:React.FC = () => {
 
   //Endpoints
   const PopularURL = "https://api.themoviedb.org/3/movie/popular"
-  const MoviesURL = "https://api.themoviedb.org/3/trending/movie/day"
-  const TVSeriesURL = "https://api.themoviedb.org/3/trending/tv/day"
+  const MoviesURL = "https://api.themoviedb.org/3/trending/movie/week"
+  const TVSeriesURL = "https://api.themoviedb.org/3/trending/tv/week"
 
   const[PopularMovies, setPopularMovies] = useState<ICategories[]>([])
   const[TV, setTV] = useState<ICategories[]>([])
   const[Movies, setMovies] = useState<ICategories[]>([])
+  
 
 
   //fetch popular movies
@@ -71,13 +73,11 @@ useEffect(()=>{
 
 
 
-
   return (
     <Home_Styles>
       <SideBar/>
         <Nav/>
-        
- {/* Hero        */}
+ {/* Hero */}
         <Hero_section>
           <Slider_Container>
             <div>
@@ -119,15 +119,14 @@ useEffect(()=>{
 
       <Catergories>
         <section>
-          <h4>Latest Movies</h4>
-          <span>View all</span>
+          <h4>Trending Movies</h4>
+          <Link to ="/moviespage"><span>View all</span></Link>
         </section>
         <Cards_Wrapper>
         {Movies.map((p )=>(
     <Card key={p.id}>
     <div>
-      <img src={`https://image.tmdb.org/t/p/w500${p.poster_path}`}
-alt="picture" />
+      <img src={`https://image.tmdb.org/t/p/w500${p.poster_path}`}alt="picture" />
     </div>
     <p>{p.title}</p>
   </Card>
@@ -139,8 +138,8 @@ alt="picture" />
 
       <Catergories>
         <section>
-          <h4>Latest TV Series</h4>
-          <span>View all</span>
+          <h4>Trending TV Series</h4>
+          <Link to ="/tvSeriespage"><span>View all</span></Link>
         </section>
         <Cards_Wrapper>
           {TV.map((m )=>(
