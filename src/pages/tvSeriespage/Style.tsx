@@ -7,6 +7,10 @@ export const TV_styled = styled.div`
     height:100vh;
     display:flex;
     flex-direction:column;
+
+    button{
+        padding:10px;
+    }
 `
 export const TV_header = styled.header`
     width:100%;
@@ -35,7 +39,7 @@ export const TV_Container = styled.div`
     flex-wrap:wrap;
     justify-content:center;
     align-items:center;
-    gap:15px;
+    gap:10px;
     overflow-y:scroll;
     padding:10px;
     margin-top:20%;
@@ -44,11 +48,11 @@ export const TV_Container = styled.div`
 
 export const TV_Card1 = styled.div`
     height:160px;
-    width:120px;
-    border-radius:10px;
+    width:110px;
+    flex-grow:1;
     img{
         width:100%;
         height:100%;
-        display:block;
+        border-radius:10px;
     }
 `

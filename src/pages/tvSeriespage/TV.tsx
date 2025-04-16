@@ -12,17 +12,25 @@ import axios from "axios";
 const TV = () => {
     const active = useContext(BooleanContext)
      const[TV, setTV] = useState<ICategories[]>([])
-    let[page] = useState<number>(1)
+     const[totalPages, setTotalPages] = useState<number>()
     
+    let[page] = useState<number>(3)
+
+    for (let i = 0; i < Number(totalPages); i++){
+        
+        
+    }
+   
 
         //fetch Latest movies
-
-  page = 15
+  
   useEffect(()=>{
     const getMovies = async (page:number)=>{
         try {
              const response = await axios.get(`https://api.themoviedb.org/3/trending/tv/week?language=en-US&page=${page}`,options)
              setTV(response.data.results)
+             setTotalPages(response.data.total_pages)
+             console.log(response.data)
             } catch (error) {
               console.log(error)
             }

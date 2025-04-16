@@ -8,7 +8,6 @@ import { BooleanContext } from "../../App"
 const SideBar:React.FC = () => {
 const active = useContext(BooleanContext)
 
-  console.log(active?.Bar)
   
   return (
     <Side_bar active={active?.Bar}>
