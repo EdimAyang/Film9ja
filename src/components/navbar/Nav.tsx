@@ -23,7 +23,7 @@ const active = useContext(BooleanContext)
     </Logo_2>
     <Navigation>
       <img src="/icon/magnifying-glass-solid (3).svg" alt="" onClick={handleNav}/>
-      <img src="/public/icon/bars-staggered-solid (1).svg" alt="" onClick={active?.toggler}/>
+      <img src="/icon/bars-staggered-solid (1).svg" alt="" onClick={active?.toggler}/>
     </Navigation>
     </Nav_bar>
   )

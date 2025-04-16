@@ -12,11 +12,11 @@ const active = useContext(BooleanContext)
   
   return (
     <Side_bar active={active?.Bar}>
-      <img src="/icon/bars-staggered-solid (1).svg" alt="Photos" onClick={active?.toggler}/>
+      <img src="/icon/xmark-solid (1).svg" alt="Photos" onClick={active?.toggler}/>
       <Navigations>
-        <Link to="">Home</Link>
-        <Link to="">Movies</Link>
-        <Link to="">TV Series</Link>
+        <Link to="/homepage" onClick={active?.toggler}>Home</Link>
+        <Link to="/moviespage" onClick={active?.toggler}>Movies</Link>
+        <Link to="/tvSeriespage" onClick={active?.toggler}>TV Series</Link>
         <Link to="">Profile</Link>
       </Navigations>
     </Side_bar>
