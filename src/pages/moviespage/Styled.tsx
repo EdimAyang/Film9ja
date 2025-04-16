@@ -33,7 +33,7 @@ export const Movie_Container = styled.div`
     flex-wrap:wrap;
     justify-content:center;
     align-items:center;
-    gap:15px;
+    gap:10px;
     overflow-y:scroll;
     padding:10px;
     margin-top:20%;
@@ -42,11 +42,12 @@ export const Movie_Container = styled.div`
 
 export const Movie_Card1 = styled.div`
     height:160px;
-    width:120px;
-    border-radius:10px;
+    width:110px;
+    flex-grow:1;
     img{
         width:100%;
         height:100%;
         display:block;
+        border-radius:10px;
     }
 `

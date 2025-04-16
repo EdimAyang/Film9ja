@@ -19,9 +19,9 @@ export const Side_bar = styled.nav<Iprops>`
     img{
         width:20px;
         background:transparent;
-        margin-bottom:30px;
-        margin-left:75%;
-        margin-top:3px;
+        position:absolute;
+        top:10px;
+        left:5%;
     }
 `
 export const Navigations = styled.div`
@@ -31,6 +31,7 @@ export const Navigations = styled.div`
     flex-direction:column;
     gap:30px;
     background:transparent;
+    margin-top:40%;
     a{
         text-decoration:none;
         color:#ffff;
