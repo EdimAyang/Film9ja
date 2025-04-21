@@ -16,7 +16,6 @@ const Login:React.FC = () => {
 
       // get user name
       let data = JSON.parse(localStorage.getItem("user2") as string)
-    console.log(data)
 
     //handle inputChange validation
     const handleInputChange = (e:React.FormEvent<HTMLDivElement>)=>{

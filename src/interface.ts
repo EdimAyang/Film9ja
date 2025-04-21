@@ -1,3 +1,5 @@
+import { ReactNode } from "react"
+
 //Button interface
 export interface Ibtn {
     children:string,
@@ -57,4 +59,11 @@ export interface MultiSearch {
     original_title:string
     origin_country:string
     title:string
+}
+
+//Loader 
+
+export interface ILoader {
+    children?:ReactNode
+    ref?:  (node?: Element | null) => void
 }
