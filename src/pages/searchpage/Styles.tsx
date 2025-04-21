@@ -3,7 +3,11 @@ import styled from "styled-components";
 export const Search_styles = styled.div`
     height:100%;
     width:100%;
-
+    button{
+        color:#ffff;
+        position:absolute;
+        margin:10px;
+    }
 `
 export const Input_container = styled.div`
     display:flex;
@@ -16,13 +20,30 @@ export const Input_container = styled.div`
     position:fixed;
     top:0;
     z-index:10;
+    div{
+        width:75%; 
+        position:relative;
+        .imgAnimate{
+            position:absolute;
+            left:90%;
+            top:8px;
+            animation:move 1s ease-in-out infinite;
+            transition:all 4s ease-in-out;
+        }
+
+        @keyframes move {
+            0%{transform:scale(.6)}
+            50%{transform:scale(.8)}
+            100%{transform:scale(1)}
+        }
+    }
     img{
         width:20px;
         background:transparent;
     }
     input{
         padding:10px;
-        width:75%;
+        width:100%;
         background-color:#ffff;
         opacity:.8;
         border-radius:10px;

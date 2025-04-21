@@ -6,30 +6,48 @@ import { options } from "../homepage/Home";
 import { ICategories } from "../../interface";
 import { useState } from "react";
 import axios from "axios";
+import { useInView } from "react-intersection-observer";
+import Loader from "../../components/loader/Loader";
 
-//Endpoint
- const MoviesURL = "https://api.themoviedb.org/3/trending/movie/week"
 
 
-const Movies = () => {
+const Movies = () => { 
     const active = useContext(BooleanContext)
       const[Movies, setMovies] = useState<ICategories[]>([])
-
+      const[totalPage, setTotalPage] = useState<number>(1)
+      let[page, setPage] = useState<number>(1)
+      const[hasMore, sethasMore] = useState<boolean>(false)
     
 
         //fetch Latest movies
- const getMovies = async ()=>{
+ const getMovies = async (page:number)=>{
     try {
-     const response = await axios.get(MoviesURL,options)
-     setMovies(response.data.results)
+     const response = await axios.get(`https://api.themoviedb.org/3/trending/movie/week?language=en-US&page=${page}`,options)
+     setMovies((prev) =>([...prev,...response.data.results]))
+     setTotalPage(response.data.total_pages)
     } catch (error) {
       console.log(error)
     }
   }
 
   useEffect(()=>{
-    getMovies()
+    getMovies(page)
   },[])
+
+
+  //Infinit Scrolling
+const [ref, inView] = useInView();
+
+useEffect(()=>{
+  if(Movies.length < totalPage ){
+    sethasMore(true)
+    if(Movies && page <= totalPage - 1){
+      setPage(page = page + 1)
+      getMovies(page)
+    }
+  }else{sethasMore(false)}
+},[inView])
+
   return (
     <>
      <Movie_styled>
@@ -44,6 +62,7 @@ const Movies = () => {
                  <img src={`https://image.tmdb.org/t/p/w500${m.poster_path}`}alt="picture" />
              </Movie_Card1>
            ))}
+           {hasMore && <Loader children="Loading more ...." ref={ref}/>}
         </Movie_Container>
         </Movie_styled> 
     </>
