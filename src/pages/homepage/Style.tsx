@@ -111,8 +111,8 @@ export const Cards_Wrapper = styled.div`
     gap:15px;
 `
 export const Card = styled.div`
-    min-width:150px;
-    height:220px;
+    min-width:130px;
+    height:190px;
     
     display:flex;
     flex-direction:column;
