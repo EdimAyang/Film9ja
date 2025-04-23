@@ -23,7 +23,7 @@ const handleSearch  = async ( page:number )=>{
         const response = await axios.get(
             `https://api.themoviedb.org/3/search/multi?query=${SearchValue}&include_adult=false&language=en-US&page=${page}` ,options
         )
-      setSearchRes(() =>([...response.data.results].reverse()))
+      setSearchRes((prev) =>([...prev, ...response.data.results].reverse()))
         console.log(response.data)
         setTotalPage(response.data.total_pages)
     } catch (error) {
@@ -37,25 +37,40 @@ const handleSearch  = async ( page:number )=>{
   const [ref, inView] = useInView();
 
   useEffect(()=>{
-    handleSearch(page)
-    if(SearchRes.length == 0 && SearchRes.length < totalPage){
+    if(SearchValue === ""){
+      setSearchRes([])
       sethasMore(false)
-      if( page <= totalPage - 1){
-        console.log("fuck u")
-        setPage(page = page + 1)
-        handleSearch(page)
-      }
-    }else{
-      sethasMore(true)
     }
-  },[inView, SearchValue])
+    handleSearch(page)
+    if( SearchRes.length < totalPage ){
+      sethasMore(true)
+    }else{
+      sethasMore(false)
+    }
 
+  },[SearchValue])
+
+useEffect(()=>{
+  if(page === totalPage){
+    sethasMore(false)
+  }
+  if( page <= totalPage - 1){
+    console.log("fuck u")
+    setPage(page = page + 1)
+    Search(page)
+  }
+},[inView])
+
+
+useEffect(()=>{
+  setSearchRes([])
+  sethasMore(false)
+},[SearchValue === ""])
 console.log(inView)
 
   // handle Search button
   const Search = (page: number)=>{
     handleSearch(page)
-    setSearchValue("")
   }
 
   return (
