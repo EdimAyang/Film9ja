@@ -7,8 +7,6 @@ import { useState } from "react"
 export const BooleanContext = createContext<Ibars | null>(null);
 //pages
 import Splash from "./pages/splashpage/Splash"
-// import Login from "./pages/loginpage/Login"
-// import SignUP from "./pages/signUp/Sign"
 import Home from "./pages/homepage/Home"
 import Search from "./pages/searchpage/Search"
 import Movies from "./pages/moviespage/Movies";
@@ -28,16 +26,6 @@ const toggler = ()=>{
     path:"/",
     element:<Splash />
   },
-
-  // {
-    // path:"/loginpage",
-    // element:<Login />
-  // },
-
-  // {
-    // path:"/signUp",
-    // element:<SignUP />
-  // },
 
   {
     path:"/homepage",

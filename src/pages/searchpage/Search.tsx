@@ -23,7 +23,7 @@ const handleSearch  = async ( page:number )=>{
         const response = await axios.get(
             `https://api.themoviedb.org/3/search/multi?query=${SearchValue}&include_adult=false&language=en-US&page=${page}` ,options
         )
-      setSearchRes((prev) =>([...response.data.results].reverse()))
+      setSearchRes(() =>([...response.data.results].reverse()))
         console.log(response.data)
         setTotalPage(response.data.total_pages)
     } catch (error) {
