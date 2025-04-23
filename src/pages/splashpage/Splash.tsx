@@ -7,7 +7,7 @@ const Splash = () => {
     const navigate = useNavigate()
 
     const handleNavigate = ()=>{
-        navigate("/loginpage")
+        navigate("/homepage")
     }
   return (
     <Splash_Styles>
