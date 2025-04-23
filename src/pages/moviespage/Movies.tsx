@@ -25,16 +25,20 @@ const Movies = () => {
      const response = await axios.get(`https://api.themoviedb.org/3/trending/movie/week?language=en-US&page=${page}`,options)
      setMovies((prev) =>([...prev,...response.data.results]))
      setTotalPage(response.data.total_pages)
+     console.log(response.data)
     } catch (error) {
       console.log(error)
     }
   }
 
 
-  //initial fetch
+  // initial fetch
   useEffect(()=>{
-    getMovies(page)
-  },[])
+    if(Movies.length === 0){
+      sethasMore(false)
+      getMovies(page)
+    }else{sethasMore(true)}
+  },[Movies.length === 0])
 
 
   //Infinit Scrolling
@@ -42,14 +46,12 @@ const [ref, inView] = useInView();
 
 useEffect(()=>{
   if(Movies.length < totalPage  ){
-    sethasMore(true)
     if(Movies && page <= totalPage - 1){
       setPage(page = page + 1)
       getMovies(page)
     }
   }else{sethasMore(false)}
 },[inView])
-
 
   return (
     <>

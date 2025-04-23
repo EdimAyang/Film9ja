@@ -31,11 +31,15 @@ const TV = () => {
         }
 
 //initial Fetch
+// initial fetch
 useEffect(()=>{
-  getMovies(page)
-},[])
+  if(TV.length === 0){
+    sethasMore(false)
+    getMovies(page)
+  }else{sethasMore(true)}
+},[TV.length === 0])
 
-
+console.log(TV)
 //Infinit Scrolling
 const [ref, inView] = useInView();
 useEffect(()=>{
