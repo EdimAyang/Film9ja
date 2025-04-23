@@ -23,7 +23,7 @@ const handleSearch  = async ( page:number )=>{
         const response = await axios.get(
             `https://api.themoviedb.org/3/search/multi?query=${SearchValue}&include_adult=false&language=en-US&page=${page}` ,options
         )
-      setSearchRes((prev) =>([...prev,...response.data.results].reverse()))
+      setSearchRes((prev) =>([...response.data.results].reverse()))
         console.log(response.data)
         setTotalPage(response.data.total_pages)
     } catch (error) {
@@ -31,34 +31,32 @@ const handleSearch  = async ( page:number )=>{
     }
 }
 
-//empty array
-useEffect(()=>{
-  if(SearchValue === ""){
-    setSearchRes([])
-  }
-},[SearchValue])
+
 
   //Infinit Scrollingn
   const [ref, inView] = useInView();
-  useEffect(()=>{
 
-    if(SearchRes.length < totalPage){
+  useEffect(()=>{
+    handleSearch(page)
+    if(SearchRes.length == 0 && SearchRes.length < totalPage){
       sethasMore(false)
-      if(SearchRes && page <= totalPage - 1){
+      if( page <= totalPage - 1){
+        console.log("fuck u")
         setPage(page = page + 1)
         handleSearch(page)
       }
-    }else{sethasMore(false)}
-  },[inView])
+    }else{
+      sethasMore(true)
+    }
+  },[inView, SearchValue])
 
-console.log(totalPage ,page)
-console.log(hasMore)
+console.log(inView)
 
-  //handle Search button
-  const Search = ()=>{
+  // handle Search button
+  const Search = (page: number)=>{
     handleSearch(page)
-}
-console.log(SearchRes.length)
+    setSearchValue("")
+  }
 
   return (
     <Search_styles>
@@ -66,7 +64,7 @@ console.log(SearchRes.length)
         <img src="/icon/arrow-left-solid.svg" alt="" onClick={handleNav}/>
         <div>
         <input type="text" placeholder="Search Movie" value={SearchValue} onChange={e=>setSearchValue(e.target.value.toLowerCase())} />
-        <img src="/icon/magnifying-glass-solid (4).svg" alt="" onClick={Search} className="imgAnimate"/>
+        <img src="/icon/magnifying-glass-solid (4).svg" alt="" className="imgAnimate" onClick={()=>Search(page)}/>
         </div>
       </Input_container>
 

@@ -30,6 +30,8 @@ const Movies = () => {
     }
   }
 
+
+  //initial fetch
   useEffect(()=>{
     getMovies(page)
   },[])
@@ -39,7 +41,7 @@ const Movies = () => {
 const [ref, inView] = useInView();
 
 useEffect(()=>{
-  if(Movies.length < totalPage ){
+  if(Movies.length < totalPage  ){
     sethasMore(true)
     if(Movies && page <= totalPage - 1){
       setPage(page = page + 1)
@@ -47,6 +49,7 @@ useEffect(()=>{
     }
   }else{sethasMore(false)}
 },[inView])
+
 
   return (
     <>
