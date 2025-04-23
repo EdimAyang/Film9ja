@@ -14,6 +14,9 @@ const [SearchRes, setSearchRes] = useState<MultiSearch[]>([])
 let[page, setPage] = useState<number>(1)
 const[hasMore, sethasMore] = useState<boolean>(false)
 const[totalPage, setTotalPage] = useState<number>(1)
+const [ref, inView] = useInView();
+
+
 const handleNav = ()=>{
         navigate("/homepage")
 }
@@ -23,8 +26,7 @@ const handleSearch  = async ( page:number )=>{
         const response = await axios.get(
             `https://api.themoviedb.org/3/search/multi?query=${SearchValue}&include_adult=false&language=en-US&page=${page}` ,options
         )
-      setSearchRes((prev) =>([...prev, ...response.data.results].reverse()))
-        console.log(response.data)
+      setSearchRes((prev) =>([...prev, ...response.data.results]))
         setTotalPage(response.data.total_pages)
     } catch (error) {
         console.log(error)
@@ -32,41 +34,36 @@ const handleSearch  = async ( page:number )=>{
 }
 
 
-
-  //Infinit Scrollingn
-  const [ref, inView] = useInView();
-
+//logic for hasMore if page is < totalpage when there is movies 
   useEffect(()=>{
-    if(SearchValue === ""){
-      setSearchRes([])
-      sethasMore(false)
-    }
-    handleSearch(page)
-    if( SearchRes.length < totalPage ){
+    if(page < totalPage){
       sethasMore(true)
     }else{
       sethasMore(false)
     }
 
-  },[SearchValue])
+  },[SearchRes])
 
+// infinit scrolling
 useEffect(()=>{
   if(page === totalPage){
     sethasMore(false)
   }
-  if( page <= totalPage - 1){
-    console.log("fuck u")
+  if(page <= totalPage -1){
+    sethasMore(true)
     setPage(page = page + 1)
     Search(page)
   }
 },[inView])
 
 
+
+//logic for clearing Search results if input is empty
 useEffect(()=>{
   setSearchRes([])
   sethasMore(false)
 },[SearchValue === ""])
-console.log(inView)
+
 
   // handle Search button
   const Search = (page: number)=>{
