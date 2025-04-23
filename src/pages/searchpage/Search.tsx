@@ -35,6 +35,7 @@ const handleSearch  = async ( page:number )=>{
 
 
 //logic for hasMore if page is < totalpage when there is movies 
+
   useEffect(()=>{
     if(page < totalPage){
       sethasMore(true)
