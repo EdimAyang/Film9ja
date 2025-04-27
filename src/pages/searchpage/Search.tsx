@@ -26,13 +26,18 @@ const handleSearch  = async ( page:number )=>{
         const response = await axios.get(
             `https://api.themoviedb.org/3/search/multi?query=${SearchValue}&include_adult=false&language=en-US&page=${page}` ,options
         )
-      setSearchRes((prev) =>([...prev, ...response.data.results]))
+        console.log(response.data.results)
+      setSearchRes((prev) =>([...prev, ...response.data.results].filter((obj)=>{
+        if(obj.media_type != "person" && obj.poster_path != null){
+          return obj
+        }
+      })))
         setTotalPage(response.data.total_pages)
     } catch (error) {
         console.log(error)
     }
 }
-
+console.log(page, totalPage)
 
 //logic for hasMore if page is < totalpage when there is movies 
 

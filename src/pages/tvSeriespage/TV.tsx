@@ -30,7 +30,6 @@ const TV = () => {
             }
         }
 
-//initial Fetch
 // initial fetch
 useEffect(()=>{
   if(TV.length === 0){
@@ -53,7 +52,7 @@ useEffect(()=>{
 
 },[inView])
 
-
+console.log(page, totalPage)
   
   return (
     <>

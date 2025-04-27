@@ -67,3 +67,18 @@ export interface ILoader {
     children?:ReactNode
     ref?:  (node?: Element | null) => void
 }
+
+export interface IMovieTv {
+    backdrop_path:string
+    id:number
+    overview:string
+    poster_path:string
+    releaseDate:string
+    title:string
+    popularity:number
+    name:string
+    original_name:string
+    original_title:string
+    origin_country:string
+
+}

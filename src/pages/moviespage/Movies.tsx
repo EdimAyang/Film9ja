@@ -19,8 +19,8 @@ const Movies = () => {
       const[hasMore, sethasMore] = useState<boolean>(false)
     
 
-        //fetch Latest movies
- const getMovies = async (page:number)=>{
+  //fetch Latest movies
+  const getMovies = async (page:number)=>{
     try {
      const response = await axios.get(`https://api.themoviedb.org/3/trending/movie/week?language=en-US&page=${page}`,options)
      setMovies((prev) =>([...prev,...response.data.results]))

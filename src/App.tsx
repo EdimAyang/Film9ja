@@ -1,4 +1,4 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom"
+import { createBrowserRouter, createRoutesFromElements, RouterProvider, Route } from "react-router-dom"
 import { Global_Css } from "./GlobalStyles"
 import { createContext } from "react"
 import { Ibars } from "./interface";
@@ -11,6 +11,8 @@ import Home from "./pages/homepage/Home"
 import Search from "./pages/searchpage/Search"
 import Movies from "./pages/moviespage/Movies";
 import TV from "./pages/tvSeriespage/TV";
+import Info from "./pages/movieInfo/Info";
+import Overview from "./pages/overviewpage/Overview";
 
 
 function App() {
@@ -21,33 +23,18 @@ const toggler = ()=>{
 }
 
  //Router
- const Router = createBrowserRouter([
-  {
-    path:"/",
-    element:<Splash />
-  },
-
-  {
-    path:"/homepage",
-    element:<Home/>
-  }, 
-
-  {
-    path:"/searchpage",
-    element:<Search />
-  },
-
-  {
-    path:"/moviespage",
-    element:<Movies />
-  },
-
-  {
-    path:"/tvSeriespage",
-    element:<TV />
-  }
-
- ])
+ const Router = createBrowserRouter(createRoutesFromElements(
+  <Route>
+    <Route path = "/" element= {<Splash />} />
+    <Route path="/homepage" element= {<Home />} />
+    <Route path="/searchpage" element= {<Search />} />
+    <Route path="/moviespage" element= {<Movies />} />
+    <Route path="/tvSeriespage" element= {<TV />} />
+    <Route path="/movieInfo" element={<Info />}>
+      <Route path="overviewpage" element={<Overview />}/> 
+    </Route>
+  </Route>
+ ))
 
   return (
     <>
