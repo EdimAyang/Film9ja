@@ -1,5 +1,5 @@
 
-import { Hero, Info_Nav, Info_Wrapper, Movies_Info, Poster_img, Trailer_Wrapper } from "./Style"
+import { Hero, Info_Nav, Info_Wrapper, Movies_Info, Outlet_wrapper, Poster_img, Trailer_Wrapper } from "./Style"
 import { options } from "../homepage/Home"
 import axios from "axios"
 import { useEffect, useState } from "react"
@@ -33,13 +33,13 @@ const getMoviesByID = async (id:number)=>{
   },[])
 
 
-
+console.log(movie)
 
   return (
     <Movies_Info>
       <Hero>
         <Link to="/homepage">
-          <img src="icon/arrow-left-solid.svg" alt="picture" />
+          <img src="/public/icon/arrow-left-solid.svg" alt="picture" />
         </Link>
         <img src={`https://image.tmdb.org/t/p/w500${movie?.backdrop_path}`} alt="picture" />
         <Poster_img>
@@ -51,14 +51,26 @@ const getMoviesByID = async (id:number)=>{
           <h4>Trailer</h4>
           <img src="/icon/youtube-brands.svg" alt="" />
         </div>
+        <div>
+          <h4>Rating</h4>
+          <span>{movie?.vote_average}</span>
+        </div>
+
+        <div>
+          <h4>Date</h4>
+          <span>{movie?.release_date}</span>
+        </div>
+        
       </Trailer_Wrapper>
       <Info_Wrapper>
         <Info_Nav>
           <h4><Link to ="overviewpage">Overview</Link></h4>
-          {/* <h4><Link to ="">Casts</Link></h4> */}
-          {/* <h4><Link to ="">Similar movies</Link></h4> */}
+          <h4><Link to ="similarpage">Similar</Link></h4>
+          <h4><Link to ="company">Company</Link></h4>
         </Info_Nav>
-        <Outlet />
+          <Outlet_wrapper>
+            <Outlet />
+          </Outlet_wrapper>
       </Info_Wrapper>
     </Movies_Info>
   )

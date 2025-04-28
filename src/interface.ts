@@ -80,5 +80,14 @@ export interface IMovieTv {
     original_name:string
     original_title:string
     origin_country:string
+    vote_average:number
+    release_date:string
+    production_companies:[]
+}
 
+export interface ICom {
+    logo_path: string;
+    name:string;
+    country_origin:string;
+    id:number
 }

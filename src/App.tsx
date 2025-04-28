@@ -13,6 +13,8 @@ import Movies from "./pages/moviespage/Movies";
 import TV from "./pages/tvSeriespage/TV";
 import Info from "./pages/movieInfo/Info";
 import Overview from "./pages/overviewpage/Overview";
+import Similar from "./pages/similarpage/Similar";
+import Company from "./pages/company/Company";
 
 
 function App() {
@@ -32,6 +34,8 @@ const toggler = ()=>{
     <Route path="/tvSeriespage" element= {<TV />} />
     <Route path="/movieInfo" element={<Info />}>
       <Route path="overviewpage" element={<Overview />}/> 
+      <Route path="similarpage" element={<Similar />}/> 
+      <Route path="company" element={<Company />} />
     </Route>
   </Route>
  ))
