@@ -5,7 +5,7 @@ import { Card, Card_Hero, Cards_Wrapper, Catergories, Hero_section, Home_Styles,
 import { useEffect, useState } from "react";
 import { ICategories } from "../../interface";
 import SideBar from "../../components/sideBar/SideBar";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
 //options
@@ -29,6 +29,7 @@ const Home:React.FC = () => {
   const[PopularMovies, setPopularMovies] = useState<ICategories[]>([])
   const[TV, setTV] = useState<ICategories[]>([])
   const[Movies, setMovies] = useState<ICategories[]>([])
+  const navigate = useNavigate()
   
 
 
@@ -42,7 +43,11 @@ const Home:React.FC = () => {
     }
   }
 
-
+  //local storage to store movie id function
+  const StoreMovieId = (id:number) =>{
+    localStorage.setItem("movieID", JSON.stringify(id))
+    navigate("/movieInfo")
+  }
   //fetch Tv series
   const getTvSeries = async ()=>{
     try {
@@ -104,7 +109,7 @@ useEffect(()=>{
         </section>
         <Cards_Wrapper>
             {PopularMovies.map((p )=>(
-                <Card key={p.id}>
+                <Card key={p.id} onClick={()=>StoreMovieId(p.id)}>
                 <div>
                   <img src={`https://image.tmdb.org/t/p/w500${p.poster_path}`} alt="picture" />
                 </div>
@@ -124,13 +129,13 @@ useEffect(()=>{
         </section>
         <Cards_Wrapper>
         {Movies.map((p )=>(
-    <Card key={p.id}>
-    <div>
-      <img src={`https://image.tmdb.org/t/p/w500${p.poster_path}`}alt="picture" />
-    </div>
-    <p>{p.title}</p>
-  </Card>
-))}
+                <Card key={p.id}  onClick={()=>StoreMovieId(p.id)}>
+                  <div>
+                    <img src={`https://image.tmdb.org/t/p/w500${p.poster_path}`}alt="picture" />
+                  </div>
+                  <p>{p.title}</p>
+                </Card>
+          ))}
         </Cards_Wrapper>
       </Catergories>
 
@@ -143,7 +148,7 @@ useEffect(()=>{
         </section>
         <Cards_Wrapper>
           {TV.map((m )=>(
-            <Card key={m.id}>
+            <Card key={m.id}  onClick={()=>StoreMovieId(m.id)}>
               <div>
                 <img src={`https://image.tmdb.org/t/p/w500${m.poster_path}`} alt="picture" />
               </div>
