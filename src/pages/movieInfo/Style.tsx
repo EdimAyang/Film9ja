@@ -10,7 +10,10 @@ export const Hero = styled.header`
     width:100%;
     height:300px;
     position: relative;
-   
+   img{
+    width:100%;
+    height:100%;
+   }
 
     a{
         text-decoration:none;
@@ -33,6 +36,8 @@ export const Poster_img = styled.div`
      width:140px;
      top:50%;
      left:30px;
+     border-radius:10px;
+     border:none;
      img{
         width:100%;
         height:100%;
@@ -44,17 +49,24 @@ export const Trailer_Wrapper = styled.section`
     width:100%;
     height:70px;
     position: relative;
+    display:flex;
+    gap:10px;
     top:8%;
     div{
         width:20%;
         height:100%;
         text-align:center;
+        display:flex;
+        flex-direction:column;
+        justify-content:space-between;
+        align-items:center;
         color:#50C878;
-        h4{
-            margin-bottom:10px;
+        span{
+            color:#ffff;
         }
+
         img{
-            width:40px;
+            width:30px;
             cursor: pointer;
         }
     }
@@ -62,11 +74,12 @@ export const Trailer_Wrapper = styled.section`
 
 export const Info_Wrapper = styled.section`
     width:100%;
-    height:auto;
+    height:350px;
     position: relative;
+    display:flex;
+    flex-direction:column;
     top:9%;
     padding:10px;
-    overflow-x:scroll;
 `
 
 export const Info_Nav = styled.div`
@@ -80,4 +93,11 @@ export const Info_Nav = styled.div`
         text-decoration:none;
         color:#50C878;
     }
+`
+
+export const Outlet_wrapper = styled.section`
+    width:100%;
+    height: 100%;
+    flex:1;
+    overflow-x:scroll;
 `
