@@ -42,7 +42,7 @@ let[Res] = useState<Ivideo[]>([])
  
  const getFirstTrailer = (Res:Ivideo[])=>{
  for(let i = 0; i < Res.length; i++){
-  let Fkey = Res.at(-1)?.key
+  let Fkey = Res[0].key
   return Fkey
  }
  
