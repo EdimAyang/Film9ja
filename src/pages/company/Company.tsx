@@ -22,7 +22,7 @@ const[Com, setCom] = useState<ICom[]>([])
             getMoviesOV(ID)
           },[])
 
-          console.log(Com)
+          
   return (
     <Company_styles>
       {Com.map((C)=>(

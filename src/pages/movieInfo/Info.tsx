@@ -4,7 +4,7 @@ import { options } from "../homepage/Home"
 import axios from "axios"
 import { useEffect, useState } from "react"
 import { IMovieTv } from "../../interface";
-import { Link, Outlet } from "react-router-dom";
+import { Link,  Outlet } from "react-router-dom";
 
 
 //Trailer Endpoint
@@ -33,7 +33,7 @@ const getMoviesByID = async (id:number)=>{
   },[])
 
 
-console.log(movie)
+
 
   return (
     <Movies_Info>
@@ -49,7 +49,9 @@ console.log(movie)
       <Trailer_Wrapper>
         <div>
           <h4>Trailer</h4>
-          <img src="/icon/youtube-brands.svg" alt="" />
+          <Link to="/videoplayer">
+            <img src="/icon/youtube-brands.svg" alt="" />
+          </Link>
         </div>
         <div>
           <h4>Rating</h4>
