@@ -91,3 +91,10 @@ export interface ICom {
     country_origin:string;
     id:number
 }
+
+export interface Ivideo {
+    id:string
+    type:string
+    key:string
+    site:string
+}[]

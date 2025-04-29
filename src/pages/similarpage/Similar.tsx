@@ -27,7 +27,7 @@ const Similar = () => {
                 getMoviesOV(ID)
               },[])
 
-              console.log(Similar)
+              
             
   return (
     <Similar_styles>
