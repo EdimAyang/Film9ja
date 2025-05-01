@@ -8,7 +8,7 @@ import { ICategories } from "../../interface"
 
 const Similar = () => {
      //get movies id
-    const ID = JSON.parse(localStorage.getItem("movieID") as string)
+    const ID = JSON.parse(localStorage.getItem("ID") as string)
     const[Similar, setSimilar] = useState<ICategories[]>([])
 
 

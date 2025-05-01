@@ -29,7 +29,7 @@ export interface ICategories {
         original_name:string
         original_title:string
         origin_country:string
-
+        media_type:string
 }[]
 
 //Bars props
@@ -83,6 +83,7 @@ export interface IMovieTv {
     vote_average:number
     release_date:string
     production_companies:[]
+    media_type:string
 }
 
 export interface ICom {
@@ -97,4 +98,5 @@ export interface Ivideo {
     type:string
     key:string
     site:string
+    media_type:string
 }[]

@@ -1,5 +1,4 @@
-
-import { Hero, Info_Nav, Info_Wrapper, Movies_Info, Outlet_wrapper, Poster_img, Trailer_Wrapper } from "./Style"
+import { Hero, Info_Nav, Info_Wrapper, TV_Info, Outlet_wrapper, Poster_img, Trailer_Wrapper } from "./Style"
 import { options } from "../homepage/Home"
 import axios from "axios"
 import { useEffect, useState } from "react"
@@ -7,22 +6,17 @@ import { IMovieTv } from "../../interface";
 import { Link,  Outlet } from "react-router-dom";
 
 
-//Trailer Endpoint
-//https://api.themoviedb.org/3/movie/{movie_id}/videos
-//end point for movies by id
-//https://api.themoviedb.org/3/movie/343611
-const Info = () => {
-    const [movie, setMovie] = useState<IMovieTv>()
+const TvInfo = () => {
+    const [TV, setTV] = useState<IMovieTv>()
     
 
-    //get movies id
+    //get TV id and type
         const ID = JSON.parse(localStorage.getItem("ID") as string)
 
-        //fetch Latest movies
 const getMoviesByID = async (id:number)=>{
     try {
-     const response = await axios.get(`https://api.themoviedb.org/3/movie/${id}`,options)
-     setMovie(response.data)
+     const response = await axios.get(`https://api.themoviedb.org/3/tv/${id}`,options)
+     setTV(response.data)
     } catch (error) {
       console.log(error)
     }
@@ -32,18 +26,18 @@ const getMoviesByID = async (id:number)=>{
     getMoviesByID(ID)
   },[])
 
-console.log(movie)
+console.log(TV)
 
 
   return (
-    <Movies_Info>
+    <TV_Info>
       <Hero>
         <Link to="/homepage">
           <img src="icon/arrow-left-solid.svg" alt="picture" />
         </Link>
-        <img src={`https://image.tmdb.org/t/p/w500${movie?.backdrop_path}`} alt="picture" />
+        <img src={`https://image.tmdb.org/t/p/w500${TV?.backdrop_path}`} alt="picture" />
         <Poster_img>
-        <img src={`https://image.tmdb.org/t/p/w500${movie?.poster_path}`} alt="picture" />
+        <img src={`https://image.tmdb.org/t/p/w500${TV?.poster_path}`} alt="picture" />
         </Poster_img>
       </Hero>
       <Trailer_Wrapper>
@@ -55,12 +49,12 @@ console.log(movie)
         </div>
         <div>
           <h4>Rating</h4>
-          <span>{movie?.vote_average}</span>
+          <span>{TV?.vote_average}</span>
         </div>
 
         <div>
           <h4>Date</h4>
-          <span>{movie?.release_date}</span>
+          <span>{TV?.release_date}</span>
         </div>
         
       </Trailer_Wrapper>
@@ -74,8 +68,8 @@ console.log(movie)
             <Outlet />
           </Outlet_wrapper>
       </Info_Wrapper>
-    </Movies_Info>
+    </TV_Info>
   )
 }
 
-export default Info
+export default TvInfo

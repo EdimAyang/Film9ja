@@ -8,16 +8,21 @@ import { Link } from "react-router-dom"
 
 const Vplayer = () => {
      //get movies id
-const ID = JSON.parse(localStorage.getItem("movieID") as string)
+const ID = JSON.parse(localStorage.getItem("ID") as string)
+
+const T = JSON.parse(localStorage.getItem("media_type") as string)
+console.log(T)
+
+//fetch TV details
 const[Video_url, setVideo_url] = useState<Ivideo[]>([])
 let[Res] = useState<Ivideo[]>([])
 
 
   //fetch Latest movies
-  const getVideo = async (id:number)=>{
+  const getVideo = async (id:number, type:string)=>{
     try {
-     const response = await axios.get(`https://api.themoviedb.org/3/movie/${id}/videos`,options)
-     setVideo_url(response.data.results)
+        const response = await axios.get(`${type? `https://api.themoviedb.org/3/${type}/${id}/videos` : null}`,options)
+        setVideo_url(response.data.results)
     } catch (error) {
       console.log(error)
     }
@@ -34,7 +39,7 @@ let[Res] = useState<Ivideo[]>([])
   }
 
   useEffect(()=>{
-    getVideo(ID)
+    getVideo(ID ,T)
   },[])
 
 
