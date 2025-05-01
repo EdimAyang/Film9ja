@@ -38,16 +38,26 @@ const Home:React.FC = () => {
     try {
      const response = await axios.get(PopularURL,options)
      setPopularMovies(response.data.results)
+     console.log(response.data.results[0])
     } catch (error) {
       console.log(error)
     }
   }
 
-  //local storage to store movie id function
-  const StoreMovieId = (id:number) =>{
-    localStorage.setItem("movieID", JSON.stringify(id))
+  //local storage to store movie id and media type function
+  const StoreMovieId = (id:number , type:string) =>{
+    localStorage.setItem("ID", JSON.stringify(id))
+    localStorage.setItem("media_type", JSON.stringify(type))
     navigate("/movieInfo")
   }
+
+  
+  //local storage to store TV id function
+const StoreTVId = (id:number, type:string) =>{
+  localStorage.setItem("ID", JSON.stringify(id))
+  localStorage.setItem("media_type", JSON.stringify(type))
+  navigate("/tvinfo")
+}
   //fetch Tv series
   const getTvSeries = async ()=>{
     try {
@@ -58,12 +68,14 @@ const Home:React.FC = () => {
     }
   }
 
+  
 
    //fetch Latest movies
  const getMovies = async ()=>{
   try {
    const response = await axios.get(MoviesURL,options)
    setMovies(response.data.results)
+   console.log(response.data.results[0])
   } catch (error) {
     console.log(error)
   }
@@ -108,12 +120,12 @@ useEffect(()=>{
           <h4>Popular</h4>
         </section>
         <Cards_Wrapper>
-            {PopularMovies.map((p )=>(
-                <Card key={p.id} onClick={()=>StoreMovieId(p.id)}>
+            {PopularMovies.map((c )=>(
+                <Card key={c.id}>
                 <div>
-                  <img src={`https://image.tmdb.org/t/p/w500${p.poster_path}`} alt="picture" />
+                  <img src={`https://image.tmdb.org/t/p/w500${c.poster_path}`} alt="picture" />
                 </div>
-                <p>{p.title}</p>
+                <p>{c.title}</p>
               </Card>
             ))}
         </Cards_Wrapper>
@@ -124,12 +136,12 @@ useEffect(()=>{
 
       <Catergories>
         <section>
-          <h4>Trending Movies</h4>
+          <h4>Movies</h4>
           <Link to ="/moviespage"><span>View all</span></Link>
         </section>
         <Cards_Wrapper>
         {Movies.map((p )=>(
-                <Card key={p.id}  onClick={()=>StoreMovieId(p.id)}>
+                <Card key={p.id}  onClick={()=>StoreMovieId(p.id, p.media_type)}>
                   <div>
                     <img src={`https://image.tmdb.org/t/p/w500${p.poster_path}`}alt="picture" />
                   </div>
@@ -143,12 +155,12 @@ useEffect(()=>{
 
       <Catergories>
         <section>
-          <h4>Trending TV Series</h4>
+          <h4>TV Series</h4>
           <Link to ="/tvSeriespage"><span>View all</span></Link>
         </section>
         <Cards_Wrapper>
           {TV.map((m )=>(
-            <Card key={m.id}  onClick={()=>StoreMovieId(m.id)}>
+            <Card key={m.id}  onClick={()=>StoreTVId(m.id, m.media_type)}>
               <div>
                 <img src={`https://image.tmdb.org/t/p/w500${m.poster_path}`} alt="picture" />
               </div>

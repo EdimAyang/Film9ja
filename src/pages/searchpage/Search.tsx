@@ -7,6 +7,8 @@ import { MultiSearch } from "../../interface"
 import Loader from "../../components/loader/Loader"
 import { useInView } from "react-intersection-observer";
 
+
+
 const Search = () => {
 const navigate = useNavigate()
 const [SearchValue, setSearchValue] = useState<string>("")
@@ -19,6 +21,13 @@ const [ref, inView] = useInView();
 
 const handleNav = ()=>{
         navigate("/homepage")
+}
+
+//local storage to store movie id and media type function
+const StoreMovieId = (id:number , type:string) =>{
+  localStorage.setItem("ID", JSON.stringify(id))
+  localStorage.setItem("media_type", JSON.stringify(type))
+  navigate("/videoplayer")
 }
 
 const handleSearch  = async ( page:number )=>{
@@ -88,7 +97,7 @@ useEffect(()=>{
 
       <Movie_container>
         {SearchRes.map((m ,i)=>(
-            <Cards1 key={i}>
+            <Cards1 key={i} onClick={()=>StoreMovieId(m.id, m.media_type)}>
             <Movie_pics>
                 <img src={`https://image.tmdb.org/t/p/w500${m.poster_path}`} alt="" />
             </Movie_pics>

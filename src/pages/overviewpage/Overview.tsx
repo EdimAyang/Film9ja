@@ -6,7 +6,7 @@ import { IMovieTv } from "../../interface"
 
 const Overview = () => {
     //get movies id
-    const ID = JSON.parse(localStorage.getItem("movieID") as string)
+    const ID = JSON.parse(localStorage.getItem("ID") as string)
     const[overView, setOV] = useState<IMovieTv>()
 
             //fetch Latest movies

@@ -8,7 +8,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useInView } from "react-intersection-observer";
 import Loader from "../../components/loader/Loader";
-
+import { useNavigate } from "react-router-dom";
 
 
 const Movies = () => { 
@@ -17,6 +17,7 @@ const Movies = () => {
       const[totalPage, setTotalPage] = useState<number>(1)
       let[page, setPage] = useState<number>(1)
       const[hasMore, sethasMore] = useState<boolean>(false)
+        const navigate = useNavigate()
     
 
   //fetch Latest movies
@@ -53,6 +54,13 @@ useEffect(()=>{
   }else{sethasMore(false)}
 },[inView])
 
+
+//local storage to store movie id and media type function
+const StoreMovieId = (id:number , type:string) =>{
+  localStorage.setItem("ID", JSON.stringify(id))
+  localStorage.setItem("media_type", JSON.stringify(type))
+  navigate("/movieInfo")
+}
   return (
     <>
      <Movie_styled>
@@ -62,8 +70,8 @@ useEffect(()=>{
             <img src="/icon/bars-staggered-solid (1).svg" alt="Photos" onClick={active?.toggler}/>
         </Movie_header>
         <Movie_Container>
-           {Movies.map((m)=>(
-             <Movie_Card1>
+           {Movies.map((m,i )=>(
+             <Movie_Card1 key={i} onClick={()=>StoreMovieId(m.id, m.media_type)}>
                  <img src={`https://image.tmdb.org/t/p/w500${m.poster_path}`}alt="picture" />
              </Movie_Card1>
            ))}

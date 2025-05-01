@@ -16,6 +16,8 @@ import Overview from "./pages/overviewpage/Overview";
 import Similar from "./pages/similarpage/Similar";
 import Company from "./pages/company/Company";
 import Vplayer from "./pages/videoplayer/Vplayer";
+import TvInfo from "./pages/tvinfo/TvInfo";
+
 
 
 function App() {
@@ -36,6 +38,11 @@ const toggler = ()=>{
     <Route path="/videoplayer" element= {<Vplayer />} />
     <Route path="/movieInfo" element={<Info />}>
       <Route path="overviewpage" element={<Overview />}/> 
+      <Route path="similarpage" element={<Similar />}/> 
+      <Route path="company" element={<Company />} />
+    </Route>
+    <Route path="/tvinfo" element={<TvInfo/>}>
+      <Route path="overviewpage" element={<Overview />}/>
       <Route path="similarpage" element={<Similar />}/> 
       <Route path="company" element={<Company />} />
     </Route>

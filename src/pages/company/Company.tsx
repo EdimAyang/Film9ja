@@ -6,7 +6,7 @@ import { Company_styles } from "./Styles"
 
 const Company = () => {
      //get movies id
-const ID = JSON.parse(localStorage.getItem("movieID") as string)
+const ID = JSON.parse(localStorage.getItem("ID") as string)
 const[Com, setCom] = useState<ICom[]>([])
         //fetch Latest movies
         const getMoviesOV = async (id:number)=>{
