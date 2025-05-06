@@ -5,6 +5,7 @@ import axios from "axios"
 import { useEffect, useState } from "react"
 import { IMovieTv } from "../../interface";
 import { Link,  Outlet } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 //Trailer Endpoint
@@ -13,6 +14,11 @@ import { Link,  Outlet } from "react-router-dom";
 //https://api.themoviedb.org/3/movie/343611
 const Info = () => {
     const [movie, setMovie] = useState<IMovieTv>()
+    const navigate = useNavigate()
+
+    const handleNav = ()=>{
+      navigate("/videoplayer")
+    }
     
 
     //get movies id
@@ -49,9 +55,9 @@ console.log(movie)
       <Trailer_Wrapper>
         <div>
           <h4>Trailer</h4>
-          <Link to="/videoplayer">
-            <img src="/icon/youtube-brands.svg" alt="" />
-          </Link>
+          {/* <Link to="/videoplayer"> */}
+            <img src="/icon/youtube-brands.svg" alt="" onClick={handleNav}/>
+          {/* </Link> */}
         </div>
         <div>
           <h4>Rating</h4>
