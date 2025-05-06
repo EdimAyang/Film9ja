@@ -10,6 +10,11 @@ export const Hero = styled.header`
     width:100%;
     height:300px;
     position: relative;
+    //tablet view
+    @media screen and (min-width:600px){
+        height:350px;
+    }
+
    img{
     width:100%;
     height:100%;
@@ -23,7 +28,7 @@ export const Hero = styled.header`
         left:10px;
         img{
             background:transparent; 
-            width:25px;
+            width:20px;
             cursor: pointer;
         }
     }
@@ -38,6 +43,13 @@ export const Poster_img = styled.div`
      left:30px;
      border-radius:10px;
      border:none;
+     //tablet view
+    @media screen and (min-width:600px){
+        height:200px;
+        width:180px;
+        top:60%;
+    }
+
      img{
         width:100%;
         height:100%;
@@ -52,6 +64,12 @@ export const Trailer_Wrapper = styled.section`
     display:flex;
     gap:10px;
     top:8%;
+    //tablet view
+    @media screen and (min-width:600px){
+        top:15%;
+        
+    }
+
     div{
         width:20%;
         height:100%;
@@ -61,12 +79,19 @@ export const Trailer_Wrapper = styled.section`
         justify-content:space-between;
         align-items:center;
         color:#50C878;
+
+        //tablet view
+        @media screen and (min-width:600px){font-size:1.3em}
+
         span{
             color:#ffff;
+            font-size:.8em;
+        //tablet view
+        @media screen and (min-width:600px){font-size:1.1em}
         }
 
         img{
-            width:30px;
+            width:25px;
             cursor: pointer;
         }
     }
@@ -74,12 +99,18 @@ export const Trailer_Wrapper = styled.section`
 
 export const Info_Wrapper = styled.section`
     width:100%;
-    height:350px;
+    height:480px;
     position: relative;
     display:flex;
     flex-direction:column;
     top:9%;
     padding:10px;
+    //tablet view
+@media screen and (min-width:600px){
+    top:20%;
+    padding:20px;
+    
+}
 `
 
 export const Info_Nav = styled.div`
@@ -89,9 +120,12 @@ export const Info_Nav = styled.div`
     justify-content:space-between;
     align-items:center;
     padding:10px;
+    margin-bottom:20px;
     a{
         text-decoration:none;
         color:#50C878;
+        //tablet view
+        @media screen and (min-width:600px){font-size:1.1em}
     }
 `
 
