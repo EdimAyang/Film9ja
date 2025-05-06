@@ -16,7 +16,6 @@ const active = useContext(BooleanContext)
         <Link to="/homepage" onClick={active?.toggler}>Home</Link>
         <Link to="/moviespage" onClick={active?.toggler}>Movies</Link>
         <Link to="/tvSeriespage" onClick={active?.toggler}>TV Series</Link>
-        <Link to="">Profile</Link>
       </Navigations>
     </Side_bar>
   )

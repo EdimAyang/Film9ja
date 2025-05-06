@@ -4,15 +4,28 @@ import { useEffect, useState } from "react"
 import axios from "axios"
 import { options } from "../homepage/Home"
 import { Ivideo } from "../../interface"
-import { Link } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 const Vplayer = () => {
+  const navigate = useNavigate()
+
      //get movies id
 const ID = JSON.parse(localStorage.getItem("ID") as string)
 
 const T = JSON.parse(localStorage.getItem("media_type") as string)
 console.log(T)
 
+
+
+const handleNavigation = (T:string)=>{
+  if(T === "tv"){
+    navigate("/tvSeriespage")
+  }else if(T === "movie"){
+    navigate("/moviespage")
+  }else{
+    navigate("/homepage")
+  }
+}
 //fetch TV details
 const[Video_url, setVideo_url] = useState<Ivideo[]>([])
 let[Res] = useState<Ivideo[]>([])
@@ -58,9 +71,7 @@ const R = getFirstTrailer(Res)
 
   return (
     <Video_player>
-      <Link to="/homepage">
-        <img src="/icon/arrow-left-solid.svg" alt="" />
-      </Link>
+        <img src="/icon/arrow-left-solid.svg" alt="" onClick={()=>handleNavigation(T)}/>
       <div>
         <ReactPlayer 
             width="100%"

@@ -23,17 +23,25 @@ export const Input_container = styled.div`
     div{
         width:75%; 
         position:relative;
+         //tablet view
+        @media screen and (min-width:600px){
+            width:60%;
+        }
         .imgAnimate{
             position:absolute;
             left:90%;
             top:8px;
             animation:move 1s ease-in-out infinite;
-            transition:all 4s ease-in-out;
+            transition:all 1s ease-in-out;
+             //tablet view
+            @media screen and (min-width:600px){
+                top:11px;
+            }
         }
 
         @keyframes move {
-            0%{transform:scale(.6)}
-            50%{transform:scale(.8)}
+            0%{transform:scale(.9)}
+            /* 50%{transform:scale(.8)} */
             100%{transform:scale(1)}
         }
     }
@@ -49,6 +57,10 @@ export const Input_container = styled.div`
         border-radius:10px;
         border:none;
         outline:none;
+         //tablet view
+        @media screen and (min-width:600px){
+            padding:15px;
+        }
     }
 `
 
@@ -72,6 +84,10 @@ export const Cards1 = styled.div`
 export const Movie_pics = styled.div`
     width:140px;
     height:100%;
+     //tablet view
+    @media screen and (min-width:600px){
+        width:150px;
+    }
     img{
         width:100%;
         height:100%;

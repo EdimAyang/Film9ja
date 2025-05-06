@@ -7,8 +7,8 @@ export const Home_Styles=styled.div`
     height:100vh;
     
 `
+// mobile view
 export const Hero_section = styled.header`
-@media screen and (max-width:650px){
     max-width:1200px;
     width:100%;
     height:420px;
@@ -17,7 +17,7 @@ export const Hero_section = styled.header`
     margin-top:10px;
 
     
-}
+
 `
 export const Slider_Container = styled.div`
      width:100%;
@@ -49,6 +49,7 @@ export const Card_Hero = styled.div`
 `
 
 export const Slider_Text = styled.div`
+//mobile view
     width:100%;
     height:80px;
     position:absolute;
@@ -63,12 +64,14 @@ export const Slider_Text = styled.div`
     h4{
         color:#ffff;
         background:transparent;
+         //tablet view
+         @media screen and (min-width:600px){font-size:1.4em}
     }
    
 `
 
 export const Catergories = styled.div`
- @media screen and (max-width:600px){
+ //mobile view
     width:100%;
     height:280px;
     padding:10px;
@@ -78,6 +81,7 @@ export const Catergories = styled.div`
     margin-top:40px;
     position: relative;
     top:5%;
+
     section{
         width:100%;
         display:flex;
@@ -85,10 +89,15 @@ export const Catergories = styled.div`
         
         h4{
             color:#ffff;
+            //tablet view
+            @media screen and (min-width:600px){font-size:1.4em}
         }
         span{
             color:#50C878;
             cursor: pointer;
+             //tablet view
+            @media screen and (min-width:600px){font-size:1.1em}
+            
         }
 
         a{
@@ -101,7 +110,13 @@ export const Catergories = styled.div`
             color:#ffff;
         }
     }
-}
+
+    //tablet view
+    @media screen and (min-width:600px){
+    top:10%;
+    height:295px;
+    }
+
 `
 
 export const Cards_Wrapper = styled.div`
@@ -109,15 +124,25 @@ export const Cards_Wrapper = styled.div`
     display:flex;
     overflow-x:scroll;
     gap:15px;
+
+     //tablet view
+ @media screen and (min-width:600px){
+    max-height:250px;
+ }
 `
 export const Card = styled.div`
     min-width:130px;
     height:190px;
-    
     display:flex;
     flex-direction:column;
     justify-content:space-between;
     gap:10px;
+
+//tablet view
+@media screen and (min-width:600px){
+   height:230px;
+   min-width:150px;
+}
     &>div{
         height:100%;
         width:100%;
@@ -130,6 +155,10 @@ export const Card = styled.div`
     }
     p{
         color:#ffff;
-        font-size:.6em;
+        font-size:.7em;
+    //tablet view
+    @media screen and (min-width:600px){
+        font-size:.9em;
+    }
     }
 `

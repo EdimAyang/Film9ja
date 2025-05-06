@@ -23,6 +23,11 @@ export const Side_bar = styled.nav<Iprops>`
         top:10px;
         left:5%;
     }
+
+     //tablet view
+ @media screen and (min-width:450px){
+    left:${({active})=>active? `${"100%"}` : "77%"};
+ }
 `
 export const Navigations = styled.div`
     width:100%;

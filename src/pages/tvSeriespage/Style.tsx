@@ -26,7 +26,9 @@ export const TV_header = styled.header`
 
     h3{
         color:#ffff;
-    }
+         //tablet view
+        @media screen and (min-width:600px){font-size:1.4em}
+        }
 
     img{
         width:20px;
@@ -44,12 +46,22 @@ export const TV_Container = styled.div`
     padding:10px;
     margin-top:20%;
     flex:1;
+        //tablet view
+        @media screen and (min-width:600px){
+           margin-top:10%;
+           gap:15px;
+        }
 `
 
 export const TV_Card1 = styled.div`
     height:160px;
     width:110px;
     flex-grow:1;
+        //tablet view
+        @media screen and (min-width:600px){
+           height:170px;
+           width:120px;
+        }
     img{
         width:100%;
         height:100%;
