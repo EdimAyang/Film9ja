@@ -9,47 +9,25 @@ export const Home_Styles=styled.div`
 `
 // mobile view
 export const Hero_section = styled.header`
-    max-width:1200px;
     width:100%;
-    height:420px;
+    width:100%;
+    height:250px;
     position: relative;
     top:4%;
     margin-top:10px;
+     //tablet view
+ @media screen and (min-width:600px){height:400px;}
 
+    .mySwiper{
+        height:100%;
+        width:100%;
+        img{
+            width:100%;
+            height:100%;
+        }
+    }
     
 
-`
-export const Slider_Container = styled.div`
-     width:100%;
-     height:100%;
-     background-color:rgba(0,0,0, 0.1);
-     position: relative;
-     overflow:auto;
-
-    /* .SlideC::-webkit-scrollbar{ */
-        /* overflow:hidden; */
-    /* } */
-
-     &>div{
-        display:flex;
-        height:100%;
-        
-        img{
-        width:100%;
-        height:100%;
-        object-fit:cover;
-        opacity:.9;
-        display:block
-        }
-     }
-   
-     
-`
-export const Card_Hero = styled.div`
-    min-width:100%;
-    height:100%;
-
-     
 `
 
 export const Slider_Text = styled.div`
@@ -57,7 +35,7 @@ export const Slider_Text = styled.div`
     width:100%;
     height:80px;
     position:absolute;
-    top:78%;
+    top:60%;
     background:transparent;
     display:flex;
     justify-content:flex-end;
@@ -65,6 +43,10 @@ export const Slider_Text = styled.div`
     flex-direction:column;
     gap:5px;
     padding:10px;
+        //tablet view
+@media screen and (min-width:600px){
+    top:68%;
+}
     h4{
         color:#ffff;
         background:transparent;

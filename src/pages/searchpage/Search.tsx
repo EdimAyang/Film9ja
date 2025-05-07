@@ -46,7 +46,7 @@ const handleSearch  = async ( page:number )=>{
         console.log(error)
     }
 }
-console.log(page, totalPage)
+
 
 //logic for hasMore if page is < totalpage when there is movies 
 
@@ -91,7 +91,7 @@ useEffect(()=>{
         <img src="/icon/arrow-left-solid.svg" alt="" onClick={handleNav}/>
         <div>
         <input type="text" placeholder="Search Movie" value={SearchValue} onChange={e=>setSearchValue(e.target.value.toLowerCase())} />
-        <img src="/icon/magnifying-glass-solid (4).svg" alt="" className="imgAnimate" onClick={()=>Search(page)}/>
+        <img src="/icon/magnifying-glass-solid (4).svg" alt="moviePicture" className="imgAnimate" onClick={()=>Search(page)}/>
         </div>
       </Input_container>
 

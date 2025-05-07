@@ -1,13 +1,15 @@
 
 import axios from "axios";
 import Nav from "../../components/navbar/Nav"
-import { Card, Card_Hero, Cards_Wrapper, Catergories, Hero_section, Home_Styles, Slider_Container, Slider_Text,  } from "./Style"
+import { Card, Cards_Wrapper, Catergories, Hero_section, Home_Styles,  Slider_Text,  } from "./Style"
 import { useEffect, useState } from "react";
 import { ICategories } from "../../interface";
 import SideBar from "../../components/sideBar/SideBar";
 import { Link, useNavigate } from "react-router-dom";
 import AOS from 'aos';
-
+import { Swiper,  SwiperSlide } from "swiper/react";
+import { Autoplay} from 'swiper/modules';
+import Loader2 from "../../components/loader2/Loader2";
 
 
 //options
@@ -32,15 +34,16 @@ const Home:React.FC = () => {
   const[TV, setTV] = useState<ICategories[]>([])
   const[Movies, setMovies] = useState<ICategories[]>([])
   const navigate = useNavigate()
+  const[isLoading, setIsLoading] = useState<boolean>(true)
+
+
   
-
-
   //fetch popular movies
   const getPopularMovies = async ()=>{
     try {
      const response = await axios.get(PopularURL,options)
      setPopularMovies(response.data.results)
-     console.log(response.data.results[0])
+     response.data.results ? setIsLoading(false) :  setIsLoading(true)
     } catch (error) {
       console.log(error)
     }
@@ -77,7 +80,7 @@ const StoreTVId = (id:number, type:string) =>{
   try {
    const response = await axios.get(MoviesURL,options)
    setMovies(response.data.results)
-   console.log(response.data.results[0])
+   
   } catch (error) {
     
   }
@@ -101,25 +104,36 @@ AOS.init({
 
   return (
     <Home_Styles>
+      {isLoading && <Loader2 />}
       <SideBar/>
         <Nav/>
  {/* Hero */}
         <Hero_section>
-          <Slider_Container>
-            <div>
+          <Swiper
+          spaceBetween={30}
+          centeredSlides={true}
+          autoplay={{
+            delay: 2500,
+            disableOnInteraction: false,
+          }}
+          // pagination={{
+            // clickable: true,
+          // }}
+          navigation={false}
+          modules={[Autoplay]}
+          className="mySwiper"
+          >
             {PopularMovies.map((m, i)=>(
-              <Card_Hero key={m.id}>
+              <SwiperSlide key={m.id} className="Slide">
                 <img src={`https://image.tmdb.org/t/p/w500${PopularMovies[i].backdrop_path}`} alt="photo" 
                 
                 />
                 <Slider_Text>
                   <h4>{PopularMovies[i].name || PopularMovies[i].original_name || PopularMovies[i].original_title || PopularMovies[i].title}</h4>
                 </Slider_Text>
-              </Card_Hero>
-            
+              </SwiperSlide>
             ))}
-            </div>
-            </Slider_Container>
+            </Swiper>
         </Hero_section>
 
 {/* Popular */}
