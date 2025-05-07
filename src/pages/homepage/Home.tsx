@@ -6,6 +6,8 @@ import { useEffect, useState } from "react";
 import { ICategories } from "../../interface";
 import SideBar from "../../components/sideBar/SideBar";
 import { Link, useNavigate } from "react-router-dom";
+import AOS from 'aos';
+
 
 
 //options
@@ -77,7 +79,7 @@ const StoreTVId = (id:number, type:string) =>{
    setMovies(response.data.results)
    console.log(response.data.results[0])
   } catch (error) {
-    console.log(error)
+    
   }
 }
 
@@ -86,8 +88,15 @@ useEffect(()=>{
   getMovies()
   getTvSeries()
   getPopularMovies()
-},[])
 
+  //scroll animation
+AOS.init({
+  offset: 50,
+  duration: 600,
+  easing: 'ease-in-sine',
+  delay: 100,
+});
+},[])
 
 
   return (
@@ -119,9 +128,9 @@ useEffect(()=>{
         <section>
           <h4>Popular</h4>
         </section>
-        <Cards_Wrapper>
+        <Cards_Wrapper data-Aos = 'fade-up'>
             {PopularMovies.map((c )=>(
-                <Card key={c.id}>
+                <Card key={c.id} >
                 <div>
                   <img src={`https://image.tmdb.org/t/p/w500${c.poster_path}`} alt="picture" />
                 </div>
@@ -139,7 +148,7 @@ useEffect(()=>{
           <h4>Movies</h4>
           <Link to ="/moviespage"><span>View all</span></Link>
         </section>
-        <Cards_Wrapper>
+        <Cards_Wrapper data-Aos = 'fade-up'>
         {Movies.map((p )=>(
                 <Card key={p.id}  onClick={()=>StoreMovieId(p.id, p.media_type)}>
                   <div>
@@ -158,7 +167,7 @@ useEffect(()=>{
           <h4>TV Series</h4>
           <Link to ="/tvSeriespage"><span>View all</span></Link>
         </section>
-        <Cards_Wrapper>
+        <Cards_Wrapper data-Aos = 'fade-up'>
           {TV.map((m )=>(
             <Card key={m.id}  onClick={()=>StoreTVId(m.id, m.media_type)}>
               <div>

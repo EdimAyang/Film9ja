@@ -24,7 +24,11 @@ export const Slider_Container = styled.div`
      height:100%;
      background-color:rgba(0,0,0, 0.1);
      position: relative;
-     overflow-x:scroll;
+     overflow:auto;
+
+    /* .SlideC::-webkit-scrollbar{ */
+        /* overflow:hidden; */
+    /* } */
 
      &>div{
         display:flex;
