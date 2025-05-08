@@ -13,17 +13,17 @@ const Vplayer = () => {
 const ID = JSON.parse(localStorage.getItem("ID") as string)
 
 const T = JSON.parse(localStorage.getItem("media_type") as string)
-console.log(T)
+
 
 
 
 const handleNavigation = (T:string)=>{
+  
   if(T === "tv"){
     navigate("/tvSeriespage")
   }else if(T === "movie"){
     navigate("/moviespage")
   }else{
-    navigate("/homepage")
   }
 }
 //fetch TV details
