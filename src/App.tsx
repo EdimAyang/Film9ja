@@ -17,6 +17,7 @@ import Similar from "./pages/similarpage/Similar";
 import Company from "./pages/company/Company";
 import Vplayer from "./pages/videoplayer/Vplayer";
 import TvInfo from "./pages/tvinfo/TvInfo";
+import NotFound from "./pages/404page/NotFound";
 
 
 
@@ -27,6 +28,8 @@ const toggler = ()=>{
   setBar(!Bar)
 }
 
+
+
  //Router
  const Router = createBrowserRouter(createRoutesFromElements(
   <Route>
@@ -36,6 +39,7 @@ const toggler = ()=>{
     <Route path="/moviespage" element= {<Movies />} />
     <Route path="/tvSeriespage" element= {<TV />} />
     <Route path="/videoplayer" element= {<Vplayer />} />
+    <Route path="/*" element= {<NotFound />} />
     <Route path="/movieInfo" element={<Info />}>
       <Route path="overviewpage" element={<Overview />}/> 
       <Route path="similarpage" element={<Similar />}/> 

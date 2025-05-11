@@ -16,7 +16,12 @@ export const Hero_section = styled.header`
     top:4%;
     margin-top:10px;
      //tablet view
- @media screen and (min-width:600px){height:400px;}
+ @media screen and (min-width:600px){height:350px;}
+ 
+     //laptop view
+@media screen and (min-width:900px){
+    height:550px;
+}
 
     .mySwiper{
         height:100%;
@@ -67,7 +72,11 @@ export const Catergories = styled.div`
     margin-top:40px;
     position: relative;
     top:5%;
-
+    .Scroll{
+    ::-webkit-scrollbar{
+        display:none;
+    }
+}
     section{
         width:100%;
         display:flex;
@@ -103,6 +112,11 @@ export const Catergories = styled.div`
     height:295px;
     }
 
+     //laptop view
+@media screen and (min-width:900px){
+    height:400px
+}
+
 `
 
 export const Cards_Wrapper = styled.div`
@@ -110,11 +124,16 @@ export const Cards_Wrapper = styled.div`
     display:flex;
     overflow-x:scroll;
     gap:15px;
-
      //tablet view
  @media screen and (min-width:600px){
     max-height:250px;
  }
+      //laptop view
+@media screen and (min-width:900px){
+    max-height:320px;
+    overflow-x:scroll;
+}
+
 `
 export const Card = styled.div`
     min-width:130px;
@@ -127,7 +146,17 @@ export const Card = styled.div`
 //tablet view
 @media screen and (min-width:600px){
    height:230px;
-   min-width:150px;
+   min-width:160px;
+}
+
+     //laptop view
+     @media screen and (min-width:900px){
+    height:300px;
+    min-width:250px;
+   .SB{ ::-webkit-scrollbar{
+        display:none;
+        }
+}
 }
     &>div{
         height:100%;

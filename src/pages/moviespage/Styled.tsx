@@ -18,6 +18,11 @@ export const Movie_header = styled.header`
     left:0;
     z-index:1;
 
+
+          //laptop view
+        @media screen and (min-width:900px){
+            display:none;
+        }
     h3{
         color:#ffff;
          //tablet view

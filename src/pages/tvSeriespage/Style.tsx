@@ -23,7 +23,7 @@ export const TV_header = styled.header`
     top:0;
     left:0;
     z-index:1;
-
+    
     h3{
         color:#ffff;
          //tablet view
@@ -33,6 +33,10 @@ export const TV_header = styled.header`
     img{
         width:20px;
     }
+      //laptop view
+@media screen and (min-width:900px){
+    display:none;
+}
 `
 
 export const TV_Container = styled.div`

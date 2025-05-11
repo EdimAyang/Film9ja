@@ -4,10 +4,15 @@ import axios from "axios"
 import { useEffect, useState } from "react"
 import { IMovieTv } from "../../interface";
 import { Link,  Outlet } from "react-router-dom";
+import Loader2 from "../../components/loader2/Loader2";
+import { useNavigate } from "react-router-dom";
 
 
 const TvInfo = () => {
     const [TV, setTV] = useState<IMovieTv>()
+    let[ErrMsg, setErrMsg] = useState("")
+    const[isLoading, setIsLoading] = useState<boolean>(true)
+    const navigate = useNavigate()
     
 
     //get TV id and type
@@ -17,8 +22,9 @@ const getMoviesByID = async (id:number)=>{
     try {
      const response = await axios.get(`https://api.themoviedb.org/3/tv/${id}`,options)
      setTV(response.data)
-    } catch (error) {
-      console.log(error)
+     response.data.results ? setIsLoading(true) :  setIsLoading(false)
+    } catch (error:any) {
+      setErrMsg(error.message)
     }
   }
 
@@ -26,11 +32,14 @@ const getMoviesByID = async (id:number)=>{
     getMoviesByID(ID)
   },[])
 
-console.log(TV)
+  const handleNav = ()=>{
+    navigate("/videoplayer")
+  }
 
 
   return (
     <TV_Info>
+      {isLoading && <Loader2 children={`${ErrMsg ? `${ErrMsg}` : "Loading..."}`}/>}
       <Hero>
         <Link to="/homepage">
           <img src="icon/arrow-left-solid.svg" alt="picture" />
@@ -43,9 +52,7 @@ console.log(TV)
       <Trailer_Wrapper>
         <div>
           <h4>Trailer</h4>
-          <Link to="/videoplayer">
-            <img src="/icon/youtube-brands.svg" alt="" />
-          </Link>
+            <img src="/icon/youtube-brands.svg" alt="youtube logo" onClick={handleNav}/>
         </div>
         <div>
           <h4>Rating</h4>

@@ -62,6 +62,7 @@ export const Input_container = styled.div`
             padding:15px;
         }
     }
+    .active{display:none}
 `
 
 export const Movie_container = styled.section`

@@ -1,5 +1,5 @@
 
-import axios from "axios";
+import axios  from "axios";
 import Nav from "../../components/navbar/Nav"
 import { Card, Cards_Wrapper, Catergories, Hero_section, Home_Styles,  Slider_Text,  } from "./Style"
 import { useEffect, useState } from "react";
@@ -10,6 +10,7 @@ import AOS from 'aos';
 import { Swiper,  SwiperSlide } from "swiper/react";
 import { Autoplay} from 'swiper/modules';
 import Loader2 from "../../components/loader2/Loader2";
+
 
 
 //options
@@ -35,6 +36,7 @@ const Home:React.FC = () => {
   const[Movies, setMovies] = useState<ICategories[]>([])
   const navigate = useNavigate()
   const[isLoading, setIsLoading] = useState<boolean>(true)
+  let[ErrMsg, setErrMsg] = useState("")
 
 
   
@@ -44,10 +46,12 @@ const Home:React.FC = () => {
      const response = await axios.get(PopularURL,options)
      setPopularMovies(response.data.results)
      response.data.results ? setIsLoading(false) :  setIsLoading(true)
-    } catch (error) {
-      console.log(error)
+    } catch (error:any) {
+      setErrMsg(error.message)
     }
   }
+
+
 
   //local storage to store movie id and media type function
   const StoreMovieId = (id:number , type:string) =>{
@@ -68,8 +72,8 @@ const StoreTVId = (id:number, type:string) =>{
     try {
      const response = await axios.get(TVSeriesURL,options)
      setTV(response.data.results)
-    } catch (error) {
-      console.log(error)
+    } catch (error:any) {
+      setErrMsg(error.message)
     }
   }
 
@@ -81,8 +85,8 @@ const StoreTVId = (id:number, type:string) =>{
    const response = await axios.get(MoviesURL,options)
    setMovies(response.data.results)
    
-  } catch (error) {
-    
+  } catch (error:any) {
+    setErrMsg(error.message)
   }
 }
 
@@ -95,8 +99,8 @@ useEffect(()=>{
   //scroll animation
 AOS.init({
   offset: 50,
-  duration: 600,
-  easing: 'ease-in-sine',
+  duration: 700,
+  easing: 'ease-in',
   delay: 100,
 });
 },[])
@@ -104,7 +108,7 @@ AOS.init({
 
   return (
     <Home_Styles>
-      {isLoading && <Loader2 />}
+      {isLoading && <Loader2 children={`${ErrMsg ? `${ErrMsg}` : "Loading..."}`}/>}
       <SideBar/>
         <Nav/>
  {/* Hero */}
@@ -142,7 +146,7 @@ AOS.init({
         <section>
           <h4>Popular</h4>
         </section>
-        <Cards_Wrapper data-Aos = 'fade-up'>
+        <Cards_Wrapper data-Aos = 'fade-up' className="Scroll">
             {PopularMovies.map((c )=>(
                 <Card key={c.id} >
                 <div>
@@ -162,7 +166,7 @@ AOS.init({
           <h4>Movies</h4>
           <Link to ="/moviespage"><span>View all</span></Link>
         </section>
-        <Cards_Wrapper data-Aos = 'fade-up'>
+        <Cards_Wrapper data-Aos = 'fade-up' className="SB">
         {Movies.map((p )=>(
                 <Card key={p.id}  onClick={()=>StoreMovieId(p.id, p.media_type)}>
                   <div>
@@ -181,7 +185,7 @@ AOS.init({
           <h4>TV Series</h4>
           <Link to ="/tvSeriespage"><span>View all</span></Link>
         </section>
-        <Cards_Wrapper data-Aos = 'fade-up'>
+        <Cards_Wrapper data-Aos = 'fade-up' className="Scroll">
           {TV.map((m )=>(
             <Card key={m.id}  onClick={()=>StoreTVId(m.id, m.media_type)}>
               <div>

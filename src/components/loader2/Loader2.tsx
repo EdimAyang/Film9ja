@@ -1,10 +1,10 @@
 
 import { Loader2_Styles } from './Style'
-
-const Loader2 = () => {
+import { ILoader } from '../../interface'
+const Loader2:React.FC<ILoader> = ({children}) => {
   return (
     <Loader2_Styles>
-      loading ...
+      {children}
     </Loader2_Styles>
   )
 }

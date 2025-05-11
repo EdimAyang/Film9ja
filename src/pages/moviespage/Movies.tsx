@@ -9,6 +9,8 @@ import axios from "axios";
 import { useInView } from "react-intersection-observer";
 import Loader from "../../components/loader/Loader";
 import { useNavigate } from "react-router-dom";
+import Nav from "../../components/navbar/Nav";
+import Loader2 from "../../components/loader2/Loader2";
 
 
 const Movies = () => { 
@@ -17,7 +19,9 @@ const Movies = () => {
       const[totalPage, setTotalPage] = useState<number>(1)
       let[page, setPage] = useState<number>(1)
       const[hasMore, sethasMore] = useState<boolean>(false)
-        const navigate = useNavigate()
+      const navigate = useNavigate()
+      let[ErrMsg, setErrMsg] = useState("")
+      const[isLoading, setIsLoading] = useState<boolean>(true)
     
 
   //fetch Latest movies
@@ -25,10 +29,10 @@ const Movies = () => {
     try {
      const response = await axios.get(`https://api.themoviedb.org/3/trending/movie/week?language=en-US&page=${page}`,options)
      setMovies((prev) =>([...prev,...response.data.results]))
+     response.data.results ? setIsLoading(false) :  setIsLoading(true)
      setTotalPage(response.data.total_pages)
-     console.log(response.data)
-    } catch (error) {
-      console.log(error)
+    } catch (error:any) {
+      setErrMsg(error.message)
     }
   }
 
@@ -64,6 +68,8 @@ const StoreMovieId = (id:number , type:string) =>{
   return (
     <>
      <Movie_styled>
+     {isLoading && <Loader2 children={`${ErrMsg ? `${ErrMsg}` : "Loading..."}`}/>}
+      <Nav />
         <SideBar />
         <Movie_header>
             <h3>Movies</h3>
