@@ -9,6 +9,8 @@ import axios from "axios";
 import Loader from "../../components/loader/Loader";
 import { useInView } from "react-intersection-observer";
 import { useNavigate } from "react-router-dom";
+import Nav from "../../components/navbar/Nav";
+import Loader2 from "../../components/loader2/Loader2";
 
 
 const TV = () => {
@@ -16,18 +18,22 @@ const TV = () => {
      const[TV, setTV] = useState<ICategories[]>([])
      const[totalPage, setTotalPage] = useState<number>(1)
     let[page, setPage] = useState<number>(1)
-   const[hasMore, sethasMore] = useState<boolean>(false)
+    const[hasMore, sethasMore] = useState<boolean>(false)
      const navigate = useNavigate()
+     let[ErrMsg, setErrMsg] = useState("")
+     const[isLoading, setIsLoading] = useState<boolean>(true)
+
+
 
         //fetch Latest movies
     const getMovies = async (page:number)=>{
         try {
              const response = await axios.get(`https://api.themoviedb.org/3/trending/tv/week?language=en-US&page=${page}`,options)
              setTV((prev) =>([...prev,...response.data.results]))
+             response.data.results ? setIsLoading(false) :  setIsLoading(true)
              setTotalPage(response.data.total_pages)
-            console.log(response.data)
-            } catch (error) {
-              console.log(error)
+            } catch (error:any) {
+              setErrMsg(error.message)
             }
         }
 
@@ -39,7 +45,7 @@ useEffect(()=>{
   }else{sethasMore(true)}
 },[TV.length === 0])
 
-console.log(TV)
+
 //Infinit Scrolling
 const [ref, inView] = useInView();
 useEffect(()=>{
@@ -64,6 +70,8 @@ const StoreMovieId = (id:number , type:string) =>{
   return (
     <>
      <TV_styled>
+     {isLoading && <Loader2 children={`${ErrMsg ? `${ErrMsg}` : "Loading..."}`}/>}
+      <Nav />
         <SideBar />
         <TV_header>
             <h3>TV Series</h3>

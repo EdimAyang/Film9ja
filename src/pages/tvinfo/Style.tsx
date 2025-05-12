@@ -8,8 +8,10 @@ export const TV_Info = styled.div`
 
 export const Hero = styled.header`
     width:100%;
-    height:300px;
+    height:250px;
     position: relative;
+        //tablet view
+@media screen and (min-width:600px){height:350px;}
    img{
     width:100%;
     height:100%;
@@ -33,16 +35,22 @@ export const Hero = styled.header`
 export const Poster_img = styled.div`
      position:absolute;
      height:180px;
-     width:140px;
-     top:50%;
-     left:30px;
+    width:140px;
+    top:50%;
+    left:30px;
      border-radius:10px;
      border:none;
+         //tablet view
+@media screen and (min-width:600px){
+    top:60%;
+    height:200px;
+    width:180px;
      img{
         width:100%;
         height:100%;
         border-radius:10px;
      }
+    }
 `
 
 export const Trailer_Wrapper = styled.section`
@@ -51,7 +59,13 @@ export const Trailer_Wrapper = styled.section`
     position: relative;
     display:flex;
     gap:10px;
-    top:8%;
+    top:13%;
+
+    //tablet view
+    @media screen and (min-width:600px){
+        top:15%;
+
+    }
     div{
         width:20%;
         height:100%;
@@ -65,8 +79,16 @@ export const Trailer_Wrapper = styled.section`
             color:#ffff;
         }
 
+        //tablet view
+        @media screen and (min-width:600px){font-size:1.3em}
+        span{
+            color:#ffff;
+            font-size:.8em;
+        //tablet view
+        @media screen and (min-width:600px){font-size:1.1em}
+        }
         img{
-            width:30px;
+            width:25px;
             cursor: pointer;
         }
     }
@@ -78,8 +100,14 @@ export const Info_Wrapper = styled.section`
     position: relative;
     display:flex;
     flex-direction:column;
-    top:9%;
+    top:15%;
     padding:10px;
+        //tablet view
+@media screen and (min-width:600px){
+    top:20%;
+    padding:20px;
+    
+}
 `
 
 export const Info_Nav = styled.div`
@@ -92,6 +120,8 @@ export const Info_Nav = styled.div`
     a{
         text-decoration:none;
         color:#50C878;
+         //tablet view
+ @media screen and (min-width:600px){font-size:1.1em}
     }
 `
 

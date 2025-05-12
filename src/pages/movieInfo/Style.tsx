@@ -8,7 +8,7 @@ export const Movies_Info = styled.div`
 
 export const Hero = styled.header`
     width:100%;
-    height:300px;
+    height:250px;
     position: relative;
     //tablet view
     @media screen and (min-width:600px){
@@ -63,7 +63,7 @@ export const Trailer_Wrapper = styled.section`
     position: relative;
     display:flex;
     gap:10px;
-    top:8%;
+    top:13%;
     //tablet view
     @media screen and (min-width:600px){
         top:15%;
@@ -93,6 +93,7 @@ export const Trailer_Wrapper = styled.section`
         img{
             width:25px;
             cursor: pointer;
+            
         }
     }
 `
@@ -103,7 +104,7 @@ export const Info_Wrapper = styled.section`
     position: relative;
     display:flex;
     flex-direction:column;
-    top:9%;
+    top:15%;
     padding:10px;
     //tablet view
 @media screen and (min-width:600px){

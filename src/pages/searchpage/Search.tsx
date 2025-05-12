@@ -6,6 +6,7 @@ import { options } from "../homepage/Home"
 import { MultiSearch } from "../../interface"
 import Loader from "../../components/loader/Loader"
 import { useInView } from "react-intersection-observer";
+import Loader2 from "../../components/loader2/Loader2"
 
 
 
@@ -17,6 +18,8 @@ let[page, setPage] = useState<number>(1)
 const[hasMore, sethasMore] = useState<boolean>(false)
 const[totalPage, setTotalPage] = useState<number>(1)
 const [ref, inView] = useInView();
+let[ErrMsg, setErrMsg] = useState("")
+const[isLoading, setIsLoading] = useState<boolean>(false)
 
 
 const handleNav = ()=>{
@@ -31,19 +34,22 @@ const StoreMovieId = (id:number , type:string) =>{
 }
 
 const handleSearch  = async ( page:number )=>{
+  
     try {
         const response = await axios.get(
             `https://api.themoviedb.org/3/search/multi?query=${SearchValue}&include_adult=false&language=en-US&page=${page}` ,options
         )
-        console.log(response.data.results)
+        
       setSearchRes((prev) =>([...prev, ...response.data.results].filter((obj)=>{
         if(obj.media_type != "person" && obj.poster_path != null){
           return obj
         }
       })))
+      response.data.results ? setIsLoading(false) :  setIsLoading(true) ;
+      
         setTotalPage(response.data.total_pages)
-    } catch (error) {
-        console.log(error)
+    } catch (error:any) {
+      setErrMsg(error.message)
     }
 }
 
@@ -82,16 +88,23 @@ useEffect(()=>{
 
   // handle Search button
   const Search = (page: number)=>{
+    if(SearchValue === "")return
+    // if(SearchRes.length != 0)return
+    setIsLoading(true)
     handleSearch(page)
   }
 
   return (
     <Search_styles>
+      {isLoading && <Loader2 children={`${ErrMsg ? `${ErrMsg}` : "Loading..."}`}/>}
       <Input_container>
-        <img src="/icon/arrow-left-solid.svg" alt="" onClick={handleNav}/>
+        <img 
+        src="/icon/arrow-left-solid.svg" alt=""
+         onClick={handleNav}/>
+    
         <div>
         <input type="text" placeholder="Search Movie" value={SearchValue} onChange={e=>setSearchValue(e.target.value.toLowerCase())} />
-        <img src="/icon/magnifying-glass-solid (4).svg" alt="moviePicture" className="imgAnimate" onClick={()=>Search(page)}/>
+        <img src="/icon/magnifying-glass-solid (4).svg" alt="moviePicture" className={SearchRes.length != 0 ? "active" : "imgAnimate"} onClick={()=>Search(page)}/>
         </div>
       </Input_container>
 

@@ -1,8 +1,9 @@
 
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
 import { useContext } from "react"
 import { BooleanContext } from "../../App"
 import { Logo_2, Nav_bar, Navigation } from "./Styles"
+
 
 
 
@@ -22,8 +23,12 @@ const active = useContext(BooleanContext)
         <h3>Film<span>9ja</span></h3>
     </Logo_2>
     <Navigation>
-      <img src="/icon/magnifying-glass-solid (3).svg" alt="" onClick={handleNav}/>
+      <img src="/icon/magnifying-glass-solid (3).svg" alt="" onClick={handleNav} className="glass"/>
       <img src="/icon/bars-staggered-solid (1).svg" alt="" onClick={active?.toggler}/>
+      
+      <Link to="/homepage" className="active">Home</Link>
+      <Link to="/tvSeriespage">Tv Series</Link>
+      <Link to="/moviespage">Movies</Link>
     </Navigation>
     </Nav_bar>
   )
