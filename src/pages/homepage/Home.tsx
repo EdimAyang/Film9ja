@@ -13,6 +13,8 @@ import Loader2 from "../../components/loader2/Loader2";
 
 
 
+
+
 //options
 export  const options = {
   method: 'GET',
@@ -25,7 +27,7 @@ export  const options = {
 
 
 const Home:React.FC = () => {
-
+console.log()
   //Endpoints
   const PopularURL = "https://api.themoviedb.org/3/movie/popular"
   const MoviesURL = "https://api.themoviedb.org/3/trending/movie/week"
@@ -127,6 +129,7 @@ AOS.init({
           modules={[Autoplay]}
           className="mySwiper"
           >
+            <div className="overlay"></div>
             {PopularMovies.map((m, i)=>(
               <SwiperSlide key={m.id} className="Slide">
                 <img src={`https://image.tmdb.org/t/p/w500${PopularMovies[i].backdrop_path}`} alt="photo" 
@@ -146,7 +149,7 @@ AOS.init({
         <section>
           <h4>Popular</h4>
         </section>
-        <Cards_Wrapper data-Aos = 'fade-up' className="Scroll">
+        <Cards_Wrapper data-aos = 'fade-up' className="Scroll">
             {PopularMovies.map((c )=>(
                 <Card key={c.id} >
                 <div>
@@ -166,7 +169,7 @@ AOS.init({
           <h4>Movies</h4>
           <Link to ="/moviespage"><span>View all</span></Link>
         </section>
-        <Cards_Wrapper data-Aos = 'fade-up' className="SB">
+        <Cards_Wrapper data-aos = 'fade-up' className="SB">
         {Movies.map((p )=>(
                 <Card key={p.id}  onClick={()=>StoreMovieId(p.id, p.media_type)}>
                   <div>
@@ -185,7 +188,7 @@ AOS.init({
           <h4>TV Series</h4>
           <Link to ="/tvSeriespage"><span>View all</span></Link>
         </section>
-        <Cards_Wrapper data-Aos = 'fade-up' className="Scroll">
+        <Cards_Wrapper data-aos = 'fade-up' className="Scroll">
           {TV.map((m )=>(
             <Card key={m.id}  onClick={()=>StoreTVId(m.id, m.media_type)}>
               <div>

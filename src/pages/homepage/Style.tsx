@@ -21,6 +21,11 @@ export const Hero_section = styled.header`
      //laptop view
 @media screen and (min-width:900px){
     height:550px;
+    .overlay{
+    width:100%;
+    height:100%;
+    background-color:rgba(0,0,0, .8);
+}
 }
 
     .mySwiper{

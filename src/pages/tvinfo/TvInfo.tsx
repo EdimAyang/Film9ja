@@ -44,7 +44,7 @@ const getMoviesByID = async (id:number)=>{
         <Link to="/homepage">
           <img src="icon/arrow-left-solid.svg" alt="picture" />
         </Link>
-        <img src={`https://image.tmdb.org/t/p/w500${TV?.backdrop_path}`} alt="picture" />
+        <img src={`https://image.tmdb.org/t/p/w500${TV?.backdrop_path}`} alt="picture" className="bg"/>
         <Poster_img>
         <img src={`https://image.tmdb.org/t/p/w500${TV?.poster_path}`} alt="picture" />
         </Poster_img>

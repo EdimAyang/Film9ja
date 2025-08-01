@@ -27,6 +27,10 @@ export const Input_container = styled.div`
         @media screen and (min-width:600px){
             width:60%;
         }
+              //laptop view
+        @media screen and (min-width:900px){
+            width:40%;
+        }
         .imgAnimate{
             position:absolute;
             left:90%;
@@ -36,6 +40,10 @@ export const Input_container = styled.div`
              //tablet view
             @media screen and (min-width:600px){
                 top:11px;
+            }
+                  //laptop view
+            @media screen and (min-width:900px){
+
             }
         }
 
@@ -74,6 +82,10 @@ export const Movie_container = styled.section`
     position:relative;
     top:100px;
     padding:10px;
+       //laptop view
+        @media screen and (min-width:900px){
+           grid-auto-rows:330px;
+        }
 `
 
 export const Cards1 = styled.div`
@@ -94,6 +106,11 @@ export const Movie_pics = styled.div`
         height:100%;
         border-radius:10px;
     }
+          //laptop view
+        @media screen and (min-width:900px){
+            height:270px;
+            width:200px;
+        }
 
 `
 export const Info = styled.div`

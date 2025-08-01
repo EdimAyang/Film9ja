@@ -10,11 +10,13 @@ export const Hero = styled.header`
     width:100%;
     height:250px;
     position: relative;
+    background-color:rgba(0,0,0, .3);
         //tablet view
 @media screen and (min-width:600px){height:350px;}
-   img{
+   .bg{
     width:100%;
     height:100%;
+    background-color:rgba(0,0,0, .8);
    }
 
     a{
@@ -30,6 +32,11 @@ export const Hero = styled.header`
         }
     }
 
+    //laptop view
+    @media screen and (min-width:900px){
+       height:450px;
+       object-fit:contain;
+    }
 `
 
 export const Poster_img = styled.div`
@@ -41,16 +48,23 @@ export const Poster_img = styled.div`
      border-radius:10px;
      border:none;
          //tablet view
-@media screen and (min-width:600px){
+    @media screen and (min-width:600px){
+        top:60%;
+        height:200px;
+        width:180px;
+         img{
+            width:100%;
+            height:100%;
+            border-radius:10px;
+         }
+        }
+    
+     //laptop view
+ @media screen and (min-width:900px){
     top:60%;
-    height:200px;
-    width:180px;
-     img{
-        width:100%;
-        height:100%;
-        border-radius:10px;
-     }
-    }
+    height:300px;
+    width:220px;
+ }
 `
 
 export const Trailer_Wrapper = styled.section`
@@ -65,6 +79,11 @@ export const Trailer_Wrapper = styled.section`
     @media screen and (min-width:600px){
         top:15%;
 
+    }
+
+        //laptop view
+    @media screen and (min-width:900px){
+        top:30%;
     }
     div{
         width:20%;
@@ -90,6 +109,10 @@ export const Trailer_Wrapper = styled.section`
         img{
             width:25px;
             cursor: pointer;
+                //laptop view
+            @media screen and (min-width:900px){
+                width:35px;
+            }
         }
     }
 `
@@ -107,6 +130,10 @@ export const Info_Wrapper = styled.section`
     top:20%;
     padding:20px;
     
+}
+    //laptop view
+    @media screen and (min-width:900px){
+    top:35%;
 }
 `
 

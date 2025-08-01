@@ -55,6 +55,10 @@ export const TV_Container = styled.div`
            margin-top:10%;
            gap:15px;
         }
+              //laptop view
+        @media screen and (min-width:900px){
+            margin-top:6%;
+        }
 `
 
 export const TV_Card1 = styled.div`
@@ -71,4 +75,10 @@ export const TV_Card1 = styled.div`
         height:100%;
         border-radius:10px;
     }
+          //laptop view
+        @media screen and (min-width:900px){
+            height:270px;
+            width:200px;
+            flex-grow:1;
+        }
 `
