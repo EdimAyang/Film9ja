@@ -41,7 +41,7 @@ const getMoviesByID = async (id:number)=>{
     <TV_Info>
       {isLoading && <Loader2 children={`${ErrMsg ? `${ErrMsg}` : "Loading..."}`}/>}
       <Hero>
-        <Link to="/homepage">
+        <Link to="/">
           <img src="icon/arrow-left-solid.svg" alt="picture" />
         </Link>
         <img src={`https://image.tmdb.org/t/p/w500${TV?.backdrop_path}`} alt="picture" className="bg"/>

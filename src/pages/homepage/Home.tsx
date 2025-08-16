@@ -1,4 +1,3 @@
-import axios from "axios";
 import Nav from "../../components/navbar/Nav";
 import {
   Card,
@@ -12,46 +11,33 @@ import { useEffect, useState } from "react";
 import { ICategories } from "../../interface";
 import SideBar from "../../components/sideBar/SideBar";
 import { Link, useNavigate } from "react-router-dom";
-import AOS from "aos";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import Loader2 from "../../components/loader2/Loader2";
-// import InstallPrompt from "../../components/InstallPrompt";
+import {
+  useGetMovies,
+  useGetSeries,
+  useGetTrendingMovies,
+} from "../../components/network/services/GetFilmsHook";
 
-//options
-export const options = {
-  method: "GET",
-  headers: {
-    accept: "application/json",
-    Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2MWVkYzA1OTdiOGVkNjU5NGU3MDM0M2YwMmRiZDcwYyIsIm5iZiI6MTc0NDMxMTAzOS4zOTM5OTk4LCJzdWIiOiI2N2Y4MTJmZmQzYWI3ZDdhOGJhZDYyNWIiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.3D-u27IuH3HJXjvj-ovnjz_xN1G7BBo88_LvCtH2Dgk",
-  },
-};
+export const options = {};
 
 const Home: React.FC = () => {
-  console.log();
-  //Endpoints
-  const PopularURL = "https://api.themoviedb.org/3/movie/popular";
-  const MoviesURL = "https://api.themoviedb.org/3/trending/movie/week";
-  const TVSeriesURL = "https://api.themoviedb.org/3/trending/tv/week";
-
   const [PopularMovies, setPopularMovies] = useState<ICategories[]>([]);
   const [TV, setTV] = useState<ICategories[]>([]);
   const [Movies, setMovies] = useState<ICategories[]>([]);
   const navigate = useNavigate();
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-  let [ErrMsg, setErrMsg] = useState("");
 
-  //fetch popular movies
-  const getPopularMovies = async () => {
-    try {
-      const response = await axios.get(PopularURL, options);
-      setPopularMovies(response.data.results);
-      response.data.results ? setIsLoading(false) : setIsLoading(true);
-    } catch (error: any) {
-      setErrMsg(error.message);
-    }
-  };
+  //fetch popular, series, trending movies
+  const query1 = useGetMovies();
+  const query2 = useGetSeries();
+  const query3 = useGetTrendingMovies();
+
+  useEffect(() => {
+    if (query1.data) setPopularMovies(query1.data);
+    if (query2.data) setTV(query2.data);
+    if (query3.data) setMovies(query3.data);
+  }, [query1.data, query2.data, query3.data]);
 
   //local storage to store movie id and media type function
   const StoreMovieId = (id: number, type: string) => {
@@ -66,46 +52,10 @@ const Home: React.FC = () => {
     localStorage.setItem("media_type", JSON.stringify(type));
     navigate("/tvinfo");
   };
-  //fetch Tv series
-  const getTvSeries = async () => {
-    try {
-      const response = await axios.get(TVSeriesURL, options);
-      setTV(response.data.results);
-    } catch (error: any) {
-      setErrMsg(error.message);
-    }
-  };
-
-  //fetch Latest movies
-  const getMovies = async () => {
-    try {
-      const response = await axios.get(MoviesURL, options);
-      setMovies(response.data.results);
-    } catch (error: any) {
-      setErrMsg(error.message);
-    }
-  };
-
-  useEffect(() => {
-    getMovies();
-    getTvSeries();
-    getPopularMovies();
-
-    //scroll animation
-    AOS.init({
-      offset: 50,
-      duration: 700,
-      easing: "ease-in",
-      delay: 100,
-    });
-  }, []);
 
   return (
     <Home_Styles>
-      {/* <InstallPrompt /> */}
-      {isLoading && (
-        <Loader2 children={`${ErrMsg ? `${ErrMsg}` : "Loading..."}`} />
-      )}
+      {query1.isLoading || query2.isLoading || query3.isLoading?  <Loader2 children={"Loading..."} /> : ''}
       <SideBar />
       <Nav />
       {/* Hero */}
@@ -150,7 +100,7 @@ const Home: React.FC = () => {
         <section>
           <h4>Popular</h4>
         </section>
-        <Cards_Wrapper data-aos="fade-up" className="Scroll">
+        <Cards_Wrapper>
           {PopularMovies.map((c) => (
             <Card key={c.id}>
               <div>
@@ -174,7 +124,7 @@ const Home: React.FC = () => {
             <span>View all</span>
           </Link>
         </section>
-        <Cards_Wrapper data-aos="fade-up" className="SB">
+        <Cards_Wrapper>
           {Movies.map((p) => (
             <Card key={p.id} onClick={() => StoreMovieId(p.id, p.media_type)}>
               <div>
@@ -198,7 +148,7 @@ const Home: React.FC = () => {
             <span>View all</span>
           </Link>
         </section>
-        <Cards_Wrapper data-aos="fade-up" className="Scroll">
+        <Cards_Wrapper>
           {TV.map((m) => (
             <Card key={m.id} onClick={() => StoreTVId(m.id, m.media_type)}>
               <div>

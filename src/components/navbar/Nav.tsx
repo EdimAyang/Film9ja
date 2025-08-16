@@ -26,7 +26,7 @@ const active = useContext(BooleanContext)
       <img src="/icon/magnifying-glass-solid (3).svg" alt="" onClick={handleNav} className="glass"/>
       <img src="/icon/bars-staggered-solid (1).svg" alt="" onClick={active?.toggler}/>
       
-      <Link to="/homepage" className="active">Home</Link>
+      <Link to="/" className="active">Home</Link>
       <Link to="/tvSeriespage">Tv Series</Link>
       <Link to="/moviespage">Movies</Link>
     </Navigation>

@@ -6,7 +6,7 @@ const NotFound = () => {
   const navigate = useNavigate()
 
   const handleNav = ()=>{
-    navigate("/homepage")
+    navigate("/")
   }
   return (
     <Not_Found_Styles>

@@ -4,7 +4,7 @@ import { Iprops } from "../../interface";
 export const Side_bar = styled.nav<Iprops>`
     width:200px;
     height:100%;
-    background-color:#221E22;
+    background-color:#000;
     position:fixed;
     z-index:20;
     left:${({active})=>active? `${"100%"}` : "54%"};
