@@ -80,7 +80,7 @@ const TvInfo = () => {
         <Loader2 children={`${ErrMsg ? `${ErrMsg}` : "Loading..."}`} />
       )}
       <Hero>
-        <span onClick={()=> window.history.back()}>
+        <span onClick={()=>window.history? window.history.back(): navigate('/')}>
           <img src="icon/arrow-left-solid.svg" alt="picture" />
         </span>
         <img

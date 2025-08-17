@@ -4,7 +4,7 @@
   "short_name": "film9ja",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#ffffff",
+  "background_color": "#000",
   "theme_color": "#000",
   "orientation": "portrait",
   "lang": "en",

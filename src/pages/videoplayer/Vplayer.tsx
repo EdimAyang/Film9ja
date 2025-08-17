@@ -5,7 +5,7 @@ import { Ivideo } from "../../interface";
 import { axiosInstance } from "../../components/network/axios";
 import { useQuery } from "@tanstack/react-query";
 import { APIKEYS } from "../../components/network/reactQuery/ApiKeys";
-
+import { useNavigate } from 'react-router-dom'
 
 const Vplayer = () => {
   //get movies id
@@ -16,6 +16,7 @@ const Vplayer = () => {
   //fetch TV details
   const [Video_url, setVideo_url] = useState<Ivideo[]>([]);
   let [Res] = useState<Ivideo[]>([]);
+  const navigate = useNavigate()
 
   //fetch Latest movies
   const { data } = useQuery({
@@ -62,7 +63,7 @@ const Vplayer = () => {
         <img
           src="/icon/arrow-left-solid.svg"
           alt=""
-          onClick={() => window.history.back()}
+          onClick={() =>window.history? window.history.back() : navigate('/')}
         />
         <div>
           <ReactPlayer

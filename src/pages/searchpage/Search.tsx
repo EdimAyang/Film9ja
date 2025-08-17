@@ -107,7 +107,7 @@ const Search = () => {
           src="/icon/arrow-left-solid.svg"
           alt="aorrow"
           loading="lazy"
-          onClick={()=>window.history.back()}
+          onClick={()=>window.history?window.history.back():navigate('/')}
         />
 
         <div>
