@@ -1,34 +1,43 @@
-import { useState , useEffect} from "react"
-import { OverView_styles } from "./Styles"
-import axios from "axios"
-import { options } from "../homepage/Home"
-import { IMovieTv } from "../../interface"
+import { useState, useEffect } from "react";
+import { OverView_styles } from "./Styles";
+import { IMovieTv } from "../../interface";
+import { ApiResponse } from "../../components/network/ApiResponse";
+import { APIKEYS } from "../../components/network/reactQuery/ApiKeys";
+import { axiosInstance } from "../../components/network/axios";
+import { API_ROUTES } from "../../components/network/reactQuery/ApiRouts";
+import { useQuery } from "@tanstack/react-query";
+
 
 const Overview = () => {
-    //get movies id
-    const ID = JSON.parse(localStorage.getItem("ID") as string)
-    const[overView, setOV] = useState<IMovieTv>()
+  //get movies id
+  const ID = JSON.parse(localStorage.getItem("ID") as string);
+  const [overView, setOV] = useState<IMovieTv>();
 
-            //fetch Latest movies
-const getMoviesOV = async (id:number)=>{
+  //fetch Latest movies
+  const { data } = useQuery({
+    queryKey: [APIKEYS.overview, ID],
+    queryFn: () => getMoviesOV(ID),
+  });
+  const getMoviesOV = async (id: number) => {
     try {
-     const response = await axios.get(`https://api.themoviedb.org/3/movie/${id}`,options)
-     setOV(response.data)
+      const response = await axiosInstance.get<ApiResponse<IMovieTv>>(
+        `${API_ROUTES.movieInfo}${id}`
+      );
+      return response.data
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
-  useEffect(()=>{
-    getMoviesOV(ID)
-  },[])
-
+  useEffect(() => {
+    if(data)setOV(data)
+  }, [data]);
 
   return (
     <OverView_styles>
       <p>{overView?.overview}</p>
     </OverView_styles>
-  )
-}
+  );
+};
 
-export default Overview
+export default Overview;

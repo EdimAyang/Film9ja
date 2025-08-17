@@ -7,4 +7,8 @@ export const APIKEYS = {
     search:'search',
     tvinfo:'tvinfo',
     movieinfo:'movieinfo',
+    overview:'overview',
+    similar:'similar',
+    company:'company',
+    video:'video,'
 };

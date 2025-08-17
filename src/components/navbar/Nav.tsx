@@ -19,7 +19,7 @@ const active = useContext(BooleanContext)
 
   return (
     <Nav_bar>
-     <Logo_2 >
+     <Logo_2 onClick={()=>navigate('/')}>
         <h3>Film<span>9ja</span></h3>
     </Logo_2>
     <Navigation>

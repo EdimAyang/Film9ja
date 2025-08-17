@@ -1,87 +1,80 @@
-import { Video_player } from "./Styles"
-import ReactPlayer from 'react-player'
-import { useEffect, useState } from "react"
-import axios from "axios"
-import { options } from "../homepage/Home"
-import { Ivideo } from "../../interface"
-import { useNavigate } from "react-router-dom"
+import { Video_player } from "./Styles";
+import ReactPlayer from "react-player";
+import { useEffect, useState } from "react";
+import { Ivideo } from "../../interface";
+import { axiosInstance } from "../../components/network/axios";
+import { useQuery } from "@tanstack/react-query";
+import { APIKEYS } from "../../components/network/reactQuery/ApiKeys";
+import Loader2 from "../../components/loader2/Loader2";
 
 const Vplayer = () => {
-  const navigate = useNavigate()
+  //get movies id
+  const ID = JSON.parse(localStorage.getItem("ID") as string);
 
-     //get movies id
-const ID = JSON.parse(localStorage.getItem("ID") as string)
+  const T = JSON.parse(localStorage.getItem("media_type") as string);
 
-const T = JSON.parse(localStorage.getItem("media_type") as string)
-
-
-
-
-const handleNavigation = (T:string)=>{
-  
-  if(T === "tv"){
-    navigate("/tvSeriespage")
-  }else if(T === "movie"){
-    navigate("/moviespage")
-  }else{
-  }
-}
-//fetch TV details
-const[Video_url, setVideo_url] = useState<Ivideo[]>([])
-let[Res] = useState<Ivideo[]>([])
-
+  //fetch TV details
+  const [Video_url, setVideo_url] = useState<Ivideo[]>([]);
+  let [Res] = useState<Ivideo[]>([]);
 
   //fetch Latest movies
-  const getVideo = async (id:number, type:string)=>{
+  const { data } = useQuery({
+    queryKey: [APIKEYS.video],
+    queryFn: () => getVideo(ID, T),
+  });
+  const getVideo = async (id: number, type: string) => {
     try {
-        const response = await axios.get(`${type? `https://api.themoviedb.org/3/${type}/${id}/videos` : null}`,options)
-        setVideo_url(response.data.results)
+      const response = await axiosInstance.get(
+        `${type ? `${type}/${id}/videos` : null}`
+      );
+      return response.data.results;
     } catch (error) {
-      console.log(error)
+      return error;
     }
-  }
+  };
 
+  const getKey = (V: Ivideo[]) => {
+    const Data = V.filter((v) => {
+      if (v.site === "YouTube" && v.type === "Trailer") {
+        return v;
+      }
+    });
+    Res = Data;
+  };
 
-  const getKey = (V:Ivideo[])=>{
-  const Data =  V.filter((v)=>{
-        if(v.site === "YouTube" && v.type === "Trailer") {
-           return v
-        }
-    })
-    Res = Data
-  }
+  getKey(Video_url);
 
-  useEffect(()=>{
-    getVideo(ID ,T)
-  },[])
+  const getFirstTrailer = (Res: Ivideo[]) => {
+    for (let i = 0; i < Res.length; i++) {
+      let Fkey = Res[0].key;
+      return Fkey;
+    }
+  };
 
-
-  getKey(Video_url)
- 
- const getFirstTrailer = (Res:Ivideo[])=>{
- for(let i = 0; i < Res.length; i++){
-  let Fkey = Res[0].key
-  return Fkey
- }
- 
- } 
-
-const R = getFirstTrailer(Res)
-
+  const R = getFirstTrailer(Res);
+  useEffect(() => {
+    if (data) setVideo_url(data);
+  }, [data]);
 
   return (
-    <Video_player>
-        <img src="/icon/arrow-left-solid.svg" alt="" onClick={()=>handleNavigation(T)}/>
-      <div>
-        <ReactPlayer 
+    <>
+      <Video_player>
+        <img
+          src="/icon/arrow-left-solid.svg"
+          alt=""
+          onClick={() => window.history.back()}
+        />
+        <div>
+          <ReactPlayer
             width="100%"
             height="100%"
             controls
             url={`https://www.youtube.com/watch?v=${R}`}
-        />
-      </div>
-    </Video_player>
-  )
-}
+          />
+        </div>
+      </Video_player>
+    </>
+  );
+};
 
-export default Vplayer
+export default Vplayer;

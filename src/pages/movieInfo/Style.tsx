@@ -22,24 +22,23 @@ export const Hero = styled.header`
   width: 100%;
   height: 250px;
   position: relative;
-  top:4%;
+  top: 4%;
   //tablet view
   @media screen and (min-width: 600px) {
     height: 350px;
   }
-   //laptop view
- @media screen and (min-width: 900px) {
-   margin-bottom:30px;
- }
+  //laptop view
+  @media screen and (min-width: 900px) {
+    margin-bottom: 30px;
+  }
 
   img {
     width: 100%;
     height: 100%;
-    border-radius:10px;
+    border-radius: 10px;
   }
 
-  a {
-    text-decoration: none;
+  span{
     background-color: transparent;
     position: absolute;
     top: 10px;
@@ -141,7 +140,7 @@ export const Info_Nav = styled.div`
   align-items: center;
   padding: 10px;
   margin-bottom: 20px;
-  a {
+  h4 {
     text-decoration: none;
     color: #50c878;
     //tablet view
@@ -155,5 +154,7 @@ export const Outlet_wrapper = styled.section`
   width: 100%;
   height: 100%;
   flex: 1;
-  overflow-x: scroll;
+   ::-webkit-scrollbar{
+      display:none;
+ }
 `;

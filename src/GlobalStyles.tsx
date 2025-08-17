@@ -9,6 +9,6 @@ export const Global_Css = createGlobalStyle`
         font-family: "Varela Round", sans-serif;
         // ::-webkit-scrollbar{
             // display:none;
-// }
+        // }
 }
 `;

@@ -100,3 +100,7 @@ export interface Ivideo {
     site:string
     media_type:string
 }[]
+
+export interface IKEY {
+  key:string;
+}

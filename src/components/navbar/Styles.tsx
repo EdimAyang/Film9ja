@@ -40,6 +40,7 @@ export const Logo_2 = styled.div`
   height: auto;
   text-align: start;
   background: transparent;
+  cursor: pointer;
 
   h3 {
     color: #fff;

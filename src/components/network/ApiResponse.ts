@@ -1,3 +1,4 @@
+
 export interface ApiResponse<T extends any = any> {
   backdrop_path: string;
   id: number;
@@ -13,10 +14,15 @@ export interface ApiResponse<T extends any = any> {
   vote_average: number;
   release_date: string;
   production_companies: [];
-  media_type: string;
+
   message: string;
   status: number;
   results: T;
   total_pages: number;
   success: boolean;
+
+  type: string;
+  key: string;
+  site: string;
+  media_type: string;
 }

@@ -9,20 +9,26 @@ import {
 } from "./Style";
 import { useEffect, useState } from "react";
 import { IMovieTv } from "../../interface";
-import { Link, Outlet } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import Loader2 from "../../components/loader2/Loader2";
 import { axiosInstance } from "../../components/network/axios";
 import { API_ROUTES } from "../../components/network/reactQuery/ApiRouts";
 import { ApiResponse } from "../../components/network/ApiResponse";
 import { useQuery } from "@tanstack/react-query";
+
+//pages
+import Overview from "../overviewpage/Overview";
+import Similar from "../similarpage/Similar";
+import Company from "../company/Company";
 import { APIKEYS } from "../../components/network/reactQuery/ApiKeys";
 
+type Pagetype = "OverView" | "Similar" | "Company";
 const Info = () => {
   const [movie, setMovie] = useState<IMovieTv>();
   const navigate = useNavigate();
   let [ErrMsg, setErrMsg] = useState("");
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [activeSubPage, setActiveSubPage] = useState<Pagetype>("OverView");
 
   const handleNav = () => {
     navigate("/videoplayer");
@@ -55,15 +61,25 @@ const Info = () => {
     }
   }, [data]);
 
+  const handleSubPageRender = () => {
+    if (activeSubPage === "OverView") {
+      return <Overview />;
+    } else if (activeSubPage === "Similar") {
+      return <Similar />;
+    } else {
+      return <Company />;
+    }
+  };
+
   return (
     <Movies_Info>
       {isLoading && (
         <Loader2 children={`${ErrMsg ? `${ErrMsg}` : "Loading..."}`} />
       )}
       <Hero>
-        <Link to="/">
+        <span onClick={() => window.history.back()}>
           <img src="icon/arrow-left-solid.svg" alt="picture" />
-        </Link>
+        </span>
         <img
           src={`https://image.tmdb.org/t/p/w500${movie?.backdrop_path}`}
           alt="picture"
@@ -98,19 +114,13 @@ const Info = () => {
       </Trailer_Wrapper>
       <Info_Wrapper>
         <Info_Nav>
-          <h4>
-            <Link to="overviewpage">Overview</Link>
-          </h4>
-          <h4>
-            <Link to="similarpage">Similar</Link>
-          </h4>
-          <h4>
-            <Link to="company">Company</Link>
-          </h4>
+          <h4 onClick={() => setActiveSubPage("OverView")}>Overview</h4>
+
+          <h4 onClick={() => setActiveSubPage("Similar")}>Similar</h4>
+
+          <h4 onClick={() => setActiveSubPage("Company")}>Company</h4>
         </Info_Nav>
-        <Outlet_wrapper>
-          <Outlet />
-        </Outlet_wrapper>
+        <Outlet_wrapper>{handleSubPageRender()}</Outlet_wrapper>
       </Info_Wrapper>
     </Movies_Info>
   );

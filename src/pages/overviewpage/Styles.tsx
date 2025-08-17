@@ -6,4 +6,5 @@ export const OverView_styles = styled.div`
     color:#ffff;
     line-height:1.4em;
     padding:10px;
+    
 `
