@@ -28,9 +28,9 @@ const Search = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [ErrorMsg, setErrorMsg] = useState<string>("");
 
-  const handleNav = () => {
-    navigate("/");
-  };
+
+
+
 
   //local storage to store movie id and media type function
   const StoreMovieId = (id: number, type: string) => {
@@ -107,7 +107,7 @@ const Search = () => {
           src="/icon/arrow-left-solid.svg"
           alt="aorrow"
           loading="lazy"
-          onClick={handleNav}
+          onClick={()=>window.history.back()}
         />
 
         <div>

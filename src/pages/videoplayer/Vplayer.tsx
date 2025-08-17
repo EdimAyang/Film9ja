@@ -5,7 +5,7 @@ import { Ivideo } from "../../interface";
 import { axiosInstance } from "../../components/network/axios";
 import { useQuery } from "@tanstack/react-query";
 import { APIKEYS } from "../../components/network/reactQuery/ApiKeys";
-import Loader2 from "../../components/loader2/Loader2";
+
 
 const Vplayer = () => {
   //get movies id

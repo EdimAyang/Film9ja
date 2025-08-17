@@ -9,7 +9,6 @@ import {
 } from "./Style";
 import { useEffect, useState } from "react";
 import { IMovieTv } from "../../interface";
-import { Link } from "react-router-dom";
 import Loader2 from "../../components/loader2/Loader2";
 import { useNavigate } from "react-router-dom";
 import { axiosInstance } from "../../components/network/axios";
