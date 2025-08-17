@@ -25,4 +25,4 @@ dist-ssr
 .qodo
 
 #environmental variable
-.env
+*.env
