@@ -49,6 +49,7 @@ export const Input_container = styled.div`
       top: 8px;
       animation: move 1s ease-in-out infinite;
       transition: all 1s ease-in-out;
+      cursor: none;
       //tablet view
       @media screen and (min-width: 600px) {
         top: 11px;
@@ -71,6 +72,7 @@ export const Input_container = styled.div`
   img {
     width: 20px;
     background: transparent;
+    cursor: pointer;
   }
   input {
     padding: 10px;
@@ -134,6 +136,7 @@ export const Movie_pics = styled.div`
     width: 100%;
     height: 100%;
     border-radius: 10px;
+    cursor: pointer;
   }
   //laptop view
   @media screen and (min-width: 900px) {

@@ -6,6 +6,7 @@ export interface Ibtn {
     size?:string,
     color?:string,
     color2?:string
+    disable?:boolean
 }
 
 //Login interface
@@ -66,6 +67,7 @@ export interface MultiSearch {
 export interface ILoader {
     children?:ReactNode
     ref?:  (node?: Element | null) => void
+    isLoad?:boolean
 }
 
 export interface IMovieTv {

@@ -15,7 +15,7 @@ import Loader2 from "../../components/loader2/Loader2";
 import { axiosInstance } from "../../components/network/axios";
 import { API_ROUTES } from "../../components/network/reactQuery/ApiRouts";
 import { ApiResponse } from "../../components/network/ApiResponse";
-
+// import toast from "react-hot-toast";
 
 const Search = () => {
   const navigate = useNavigate();
@@ -28,10 +28,12 @@ const Search = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [ErrorMsg, setErrorMsg] = useState<string>("");
 
+  //save previous search results in local storage
+  const PreviousSearch: MultiSearch[] = JSON.parse(
+    localStorage.getItem("searchResults") as string
+  );
 
-
-
-
+  console.log(PreviousSearch);
   //local storage to store movie id and media type function
   const StoreMovieId = (id: number, type: string) => {
     localStorage.setItem("ID", JSON.stringify(id));
@@ -52,9 +54,15 @@ const Search = () => {
             item.backdrop_path != null && item.poster_path != null
         )
       );
+      localStorage.setItem(
+        "searchResults",
+        JSON.stringify([...response.data.results])
+      );
       setTotalPage(response.data.total_pages);
     } catch (error: any) {
-      setErrorMsg(`${error.message}`);
+      // toast.error(`${error.message}`)
+      setErrorMsg(error.message);
+      localStorage.removeItem("searchResults");
       sethasMore(false);
     } finally {
       setIsLoading(false);
@@ -87,6 +95,7 @@ const Search = () => {
     setPage(1);
     if (!SearchValue) sethasMore(false);
     const handler = setTimeout(() => {
+      setSearchRes(PreviousSearch ? PreviousSearch : []);
       if (SearchValue && SearchValue != "") {
         setSearchRes([]);
         handleSearch(page);
@@ -99,56 +108,60 @@ const Search = () => {
   }, [SearchValue]);
 
   return (
-    <Search_styles>
-      {isLoading && <Loader2 children="Loading..." />}
-      {ErrorMsg && <Loader2 children={`${ErrorMsg}`} />}
-      <Input_container>
-        <img
-          src="/icon/arrow-left-solid.svg"
-          alt="aorrow"
-          loading="lazy"
-          onClick={()=>window.history?window.history.back():navigate('/')}
-        />
-
-        <div>
-          <input
-            type="text"
-            placeholder="Search Movie"
-            value={SearchValue}
-            onChange={(e) => setSearchValue(e.target.value.toLowerCase())}
-          />
+    <>
+      {ErrorMsg && <Loader2 children={`${ErrorMsg}`} isLoad={isLoading} />}
+      {isLoading && <Loader2 children="Loading..." isLoad={isLoading} />}
+      <Search_styles>
+        <Input_container>
           <img
-            src="/icon/magnifying-glass-solid (4).svg"
-            alt="moviePicture"
-            className={SearchRes.length != 0 ? "active" : "imgAnimate"}
+            src="/icon/arrow-left-solid.svg"
+            alt="aorrow"
             loading="lazy"
+            onClick={() =>
+              window.history ? window.history.back() : navigate("/")
+            }
           />
-        </div>
-      </Input_container>
 
-      <Movie_container>
-        {SearchRes.map((m, i) => (
-          <Cards1 key={i} onClick={() => StoreMovieId(m.id, m.media_type)}>
-            <Movie_pics>
-              <img
-                src={`https://image.tmdb.org/t/p/w500${m.poster_path}`}
-                alt="movie image"
-                loading="lazy"
-              />
-            </Movie_pics>
-            <Info>
-              <h4>
-                {m.name || m.original_name || m.original_title || m.title}
-              </h4>
-              <p>
-                {m.media_type} . {m.first_air_date}
-              </p>
-            </Info>
-          </Cards1>
-        ))}
-        {hasMore && <Loader children="" ref={ref} />}
-      </Movie_container>
-    </Search_styles>
+          <div>
+            <input
+              type="text"
+              placeholder="Search Movie"
+              value={SearchValue}
+              onChange={(e) => setSearchValue(e.target.value.toLowerCase())}
+            />
+            <img
+              src="/icon/magnifying-glass-solid (4).svg"
+              alt="moviePicture"
+              className={SearchRes.length != 0 ? "active" : "imgAnimate"}
+              loading="lazy"
+            />
+          </div>
+        </Input_container>
+
+        <Movie_container>
+          {SearchRes.map((m, i) => (
+            <Cards1 key={i} onClick={() => StoreMovieId(m.id, m.media_type)}>
+              <Movie_pics>
+                <img
+                  src={`https://image.tmdb.org/t/p/w500${m.poster_path}`}
+                  alt="movie image"
+                  loading="lazy"
+                />
+              </Movie_pics>
+              <Info>
+                <h4>
+                  {m.name || m.original_name || m.original_title || m.title}
+                </h4>
+                <p>
+                  {m.media_type} . {m.first_air_date}
+                </p>
+              </Info>
+            </Cards1>
+          ))}
+          {hasMore && <Loader children="" ref={ref} />}
+        </Movie_container>
+      </Search_styles>
+    </>
   );
 };
 

@@ -51,7 +51,10 @@ function App() {
       <BooleanContext.Provider value={{ Bar, toggler }}>
         <RouterProvider router={Router} />
       </BooleanContext.Provider>
-      {/* <Toaster position="top-right"/> */}
+      {/* <Toaster */}
+      {/* // containerStyle={{backgroundSize:0}} */}
+      {/* // toastOptions={{duration:10000000}} */}
+      {/* // /> */}
     </div>
   );
 }

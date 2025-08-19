@@ -91,9 +91,6 @@ export const Catergories = styled.div`
   position: relative;
   top: 5%;
 
-  &>::-webkit-scrollbar {
-    display:none;
-  }
   section {
     width: 100%;
     display: flex;
@@ -107,7 +104,7 @@ export const Catergories = styled.div`
       }
     }
     span {
-      color: #50c878;
+      color: green;
       cursor: pointer;
       //tablet view
       @media screen and (min-width: 600px) {
@@ -129,7 +126,7 @@ export const Catergories = styled.div`
   //tablet view
   @media screen and (min-width: 600px) {
     top: 10%;
-    height: 295px;
+    height: 395px;
   }
 
   //laptop view
@@ -146,11 +143,11 @@ export const Cards_Wrapper = styled.div`
   //tablet view
   @media screen and (min-width: 600px) {
     max-height: 250px;
+     overflow-x: scroll;
   }
   //laptop view
   @media screen and (min-width: 900px) {
     max-height: 320px;
-    overflow-x: scroll;
   }
 `;
 export const Card = styled.div`
@@ -171,11 +168,6 @@ export const Card = styled.div`
   @media screen and (min-width: 900px) {
     height: 300px;
     min-width: 250px;
-    .SB {
-      ::-webkit-scrollbar {
-        display: none;
-      }
-    }
   }
   & > div {
     height: 100%;
@@ -190,9 +182,11 @@ export const Card = styled.div`
   p {
     color: #ffff;
     font-size: 0.7em;
+    margin-bottom:10px;
     //tablet view
     @media screen and (min-width: 600px) {
       font-size: 0.9em;
     }
   }
 `;
+

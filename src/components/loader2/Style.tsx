@@ -10,6 +10,10 @@ export const Loader2_Styles = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction:column;
+  div{
+    margin-bottom:5%;
+  }
   //tablet view
   @media screen and (min-width: 600px) {
     width: 100%;

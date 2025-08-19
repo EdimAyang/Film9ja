@@ -14,6 +14,7 @@ export const Nav_bar = styled.nav`
   top: 0;
   .glass {
     display: block;
+    cursor: pointer;
   }
   img {
     width: 20px;
@@ -30,8 +31,8 @@ export const Nav_bar = styled.nav`
 
   //laptop view
   @media screen and (min-width: 900px) {
-  max-width: 800px;
-}
+    max-width: 800px;
+  }
 `;
 
 export const Logo_2 = styled.div`
@@ -47,7 +48,7 @@ export const Logo_2 = styled.div`
     background: transparent;
   }
   span {
-    color: #50c878;
+    color: green;
     background: transparent;
   }
 `;
@@ -78,7 +79,7 @@ export const Navigation = styled.div`
     }
 
     a:hover {
-      color: #50c878;
+      color: green;
     }
   }
 `;

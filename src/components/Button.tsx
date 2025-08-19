@@ -10,6 +10,6 @@ export const ButtonS = styled.button<Ibtn>`
     border:none;
     font-size:1em;
     font-weight:500;
-    color:${({color2})=>color2? `${color2}` : "#1F1F1F"};
-    z-index:10;
+    color:${({color2})=>color2? `${color2}` : "#000"};
+    /* z-index:10; */
 `
