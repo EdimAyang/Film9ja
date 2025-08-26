@@ -38,7 +38,7 @@ const Movies = () => {
   });
 
   const getMovies = async (page: number) => {
-    setIsLoading(true)
+    setIsLoading(true);
     try {
       const response = await axiosInstance.get<ApiResponse>(
         `${API_ROUTES.moviePage}${page}`
@@ -49,28 +49,31 @@ const Movies = () => {
       return response.data.results;
     } catch (error: any) {
       setErrorMsg(error.message);
-    }finally{
-      setIsLoading(false)
+    } finally {
+      setIsLoading(false);
     }
   };
 
   //Infinit Scrolling
   useEffect(() => {
-    if (Movies.length === 0) {
+
+    if (Movies.length === 0 || Movies.length === totalPage) {
       sethasMore(false);
     } else {
       sethasMore(true);
     }
 
-    if (Movies.length < totalPage) {
-      if (Movies && page <= totalPage - 1) {
-        setPage((page = page + 1));
-        refetch();
+    if (inView) {
+      if (Movies.length < totalPage) {
+        if (Movies && page <= totalPage - 1) {
+          setPage((page = page + 1));
+          refetch();
+        }
+      } else {
+        sethasMore(false);
       }
-    } else {
-      sethasMore(false);
     }
-  }, [inView, Movies.length === 0]);
+  }, [inView, Movies.length === 0, Movies.length === totalPage]);
 
   //local storage to store movie id and media type function
   const StoreMovieId = (id: number, type: string) => {
@@ -81,8 +84,8 @@ const Movies = () => {
 
   return (
     <>
-      {ErrorMsg ? <Loader2 children={`${ErrorMsg}`} isLoad={false} />:null}
-      {isLoading ? <Loader2 children="Loading..." isLoad={true} />:null}
+      {ErrorMsg ? <Loader2 children={`${ErrorMsg}`} isLoad={false} /> : null}
+      {isLoading ? <Loader2 children="Loading..." isLoad={true} /> : null}
       <Movie_styled>
         <Nav />
         <SideBar />

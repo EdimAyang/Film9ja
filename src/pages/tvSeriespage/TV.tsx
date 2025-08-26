@@ -44,28 +44,30 @@ const TV = () => {
       return response.data.results;
     } catch (error: any) {
       setErrorMsg(error.message);
-    }finally{
-      setIsLoading(false)
+    } finally {
+      setIsLoading(false);
     }
   };
 
   //Infinit Scrolling
   useEffect(() => {
-    if (TV.length === 0) {
+    if (TV.length === 0 || TV.length === totalPage) {
       sethasMore(false);
     } else {
       sethasMore(true);
     }
 
-    if (TV.length < totalPage) {
-      if (TV && page <= totalPage - 1) {
-        setPage((page = page + 1));
-        refetch();
+    if (inView) {
+      if (TV.length < totalPage) {
+        if (TV && page <= totalPage - 1) {
+          setPage((page = page + 1));
+          refetch();
+        }
+      } else {
+        sethasMore(false);
       }
-    } else {
-      sethasMore(false);
     }
-  }, [inView, TV.length === 0]);
+  }, [inView, TV.length === 0, TV.length === totalPage]);
 
   //local storage to store movie id and media type function
   const StoreMovieId = (id: number, type: string) => {
