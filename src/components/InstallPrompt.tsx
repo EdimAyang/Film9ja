@@ -25,8 +25,8 @@ export default function InstallPrompt() {
 
     deferredPrompt.prompt(); // show install prompt
 
-    const { outcome } = await deferredPrompt.userChoice;
-    console.log(`User response: ${outcome}`);
+    // const { outcome } = await deferredPrompt.userChoice;
+    // console.log(`User response: ${outcome}`);
 
     setDeferredPrompt(null);
     setShowButton(false);
