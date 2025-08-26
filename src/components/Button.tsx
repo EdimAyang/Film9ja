@@ -12,4 +12,11 @@ export const ButtonS = styled.button<Ibtn>`
     font-weight:500;
     color:${({color2})=>color2? `${color2}` : "#000"};
     /* z-index:10; */
+    &>:hover{
+        background-color:green;
+        color:#fff;
+    }
+    cursor: pointer;
+
+    
 `

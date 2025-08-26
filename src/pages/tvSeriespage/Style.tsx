@@ -91,6 +91,7 @@ export const TV_Card1 = styled.div`
     width: 100%;
     height: 100%;
     border-radius: 10px;
+    cursor:pointer;
   }
   //laptop view
   @media screen and (min-width: 900px) {

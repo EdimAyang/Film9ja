@@ -26,8 +26,8 @@ type Pagetype = "OverView" | "Similar" | "Company";
 const Info = () => {
   const [movie, setMovie] = useState<IMovieTv>();
   const navigate = useNavigate();
-  let [ErrMsg, setErrMsg] = useState("");
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  let [ErrorMsg, setErrorMsg] = useState("");
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [activeSubPage, setActiveSubPage] = useState<Pagetype>("OverView");
 
   const handleNav = () => {
@@ -44,6 +44,7 @@ const Info = () => {
   });
 
   const getMoviesByID = async (id: number) => {
+    setIsLoading(true);
     try {
       const response = await axiosInstance.get<ApiResponse<IMovieTv>>(
         `${API_ROUTES.movieInfo}${id}`
@@ -51,7 +52,9 @@ const Info = () => {
       response.data.results ? setIsLoading(true) : setIsLoading(false);
       return response.data;
     } catch (error: any) {
-      setErrMsg(error.message);
+      setErrorMsg(error.message);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -72,57 +75,62 @@ const Info = () => {
   };
 
   return (
-    <Movies_Info>
-      {isLoading && (
-        <Loader2 children={`${ErrMsg ? `${ErrMsg}` : "Loading..."}`} />
-      )}
-      <Hero>
-        <span onClick={() =>window.history? window.history.back():navigate('/')}>
-          <img src="icon/arrow-left-solid.svg" alt="picture" />
-        </span>
-        <img
-          src={`https://image.tmdb.org/t/p/w500${movie?.backdrop_path}`}
-          alt="picture"
-        />
-        <Poster_img>
+    <>
+      {ErrorMsg && <Loader2 children={`${ErrorMsg}`} isLoad={false} />}
+      {isLoading && <Loader2 children="Loading..." isLoad={true} />}
+      <Movies_Info>
+        <Hero>
+          <span
+            onClick={() =>
+              window.history ? window.history.back() : navigate("/")
+            }
+          >
+            <img src="icon/arrow-left-solid.svg" alt="picture" />
+          </span>
           <img
-            src={`https://image.tmdb.org/t/p/w500${movie?.poster_path}`}
+            src={`https://image.tmdb.org/t/p/w500${movie?.backdrop_path}`}
             alt="picture"
           />
-        </Poster_img>
-      </Hero>
-      <Trailer_Wrapper>
-        <div>
-          <h4>Trailer</h4>
-          {/* <Link to="/videoplayer"> */}
-          <img
-            src="/icon/youtube-brands.svg"
-            alt="youtube logo"
-            onClick={handleNav}
-          />
-          {/* </Link> */}
-        </div>
-        <div>
-          <h4>Rating</h4>
-          <span>{movie?.vote_average}</span>
-        </div>
+          <Poster_img>
+            <img
+              src={`https://image.tmdb.org/t/p/w500${movie?.poster_path}`}
+              alt="picture"
+            />
+          </Poster_img>
+        </Hero>
+        <Trailer_Wrapper>
+          <div>
+            <h4>Trailer</h4>
+            {/* <Link to="/videoplayer"> */}
+            <img
+              src="/icon/youtube-brands.svg"
+              alt="youtube logo"
+              onClick={handleNav}
+            />
+            {/* </Link> */}
+          </div>
+          <div>
+            <h4>Rating</h4>
+            <span>{movie?.vote_average}</span>
+          </div>
 
-        <div>
-          <h4>Date</h4>
-          <span>{movie?.release_date}</span>
-        </div>
-      </Trailer_Wrapper>
-      <Info_Wrapper>
-        <Info_Nav>
-          <h4 onClick={() => setActiveSubPage("OverView")}>Overview</h4>
+          <div>
+            <h4>Date</h4>
+            <span>{movie?.release_date}</span>
+          </div>
+        </Trailer_Wrapper>
+        <Info_Wrapper>
+          <Info_Nav>
+            <h4 onClick={() => setActiveSubPage("OverView")}>Overview</h4>
 
-          <h4 onClick={() => setActiveSubPage("Similar")}>Similar</h4>
+            <h4 onClick={() => setActiveSubPage("Similar")}>Similar</h4>
 
-          <h4 onClick={() => setActiveSubPage("Company")}>Company</h4>
-        </Info_Nav>
-        <Outlet_wrapper>{handleSubPageRender()}</Outlet_wrapper>
-      </Info_Wrapper>
-    </Movies_Info>
+            <h4 onClick={() => setActiveSubPage("Company")}>Company</h4>
+          </Info_Nav>
+          <Outlet_wrapper>{handleSubPageRender()}</Outlet_wrapper>
+        </Info_Wrapper>
+      </Movies_Info>
+    </>
   );
 };
 

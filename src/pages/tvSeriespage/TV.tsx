@@ -22,7 +22,7 @@ const TV = () => {
   let [page, setPage] = useState<number>(1);
   const [hasMore, sethasMore] = useState<boolean>(false);
   const navigate = useNavigate();
-  let [ErrMsg, setErrMsg] = useState("");
+  let [ErrorMsg, setErrorMsg] = useState("");
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [ref, inView] = useInView();
 
@@ -33,6 +33,7 @@ const TV = () => {
   });
 
   const getMovies = async (page: number) => {
+    setIsLoading(true);
     try {
       const response = await axiosInstance.get<ApiResponse>(
         `${API_ROUTES.tvPage}${page}`
@@ -42,7 +43,9 @@ const TV = () => {
       setTotalPage(response.data.total_pages);
       return response.data.results;
     } catch (error: any) {
-      setErrMsg(error.message);
+      setErrorMsg(error.message);
+    }finally{
+      setIsLoading(false)
     }
   };
 
@@ -73,10 +76,9 @@ const TV = () => {
 
   return (
     <>
+      {ErrorMsg && <Loader2 children={`${ErrorMsg}`} isLoad={isLoading} />}
+      {isLoading && <Loader2 children="Loading..." isLoad={isLoading} />}
       <TV_styled>
-        {isLoading && (
-          <Loader2 children={`${ErrMsg ? `${ErrMsg}` : "Loading..."}`} />
-        )}
         <Nav />
         <SideBar />
         <TV_header>

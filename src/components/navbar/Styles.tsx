@@ -11,6 +11,10 @@ export const Nav_bar = styled.nav`
   background-color: #000;
   z-index: 5;
   position: fixed;
+  margin-bottom: 0rem;
+  button {
+    display: none;
+  }
   top: 0;
   .glass {
     display: block;
@@ -19,6 +23,7 @@ export const Nav_bar = styled.nav`
   img {
     width: 20px;
     background: transparent;
+    cursor: pointer;
     //laptop view
     @media screen and (min-width: 900px) {
       display: none;
@@ -32,6 +37,9 @@ export const Nav_bar = styled.nav`
   //laptop view
   @media screen and (min-width: 900px) {
     max-width: 800px;
+    button {
+      display: block;
+    }
   }
 `;
 

@@ -27,8 +27,8 @@ const Movies = () => {
   let [page, setPage] = useState<number>(1);
   const [hasMore, sethasMore] = useState<boolean>(false);
   const navigate = useNavigate();
-  let [ErrMsg, setErrMsg] = useState("");
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  let [ErrorMsg, setErrorMsg] = useState("");
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [ref, inView] = useInView();
 
   //fetch Latest movies
@@ -38,6 +38,7 @@ const Movies = () => {
   });
 
   const getMovies = async (page: number) => {
+    setIsLoading(true)
     try {
       const response = await axiosInstance.get<ApiResponse>(
         `${API_ROUTES.moviePage}${page}`
@@ -47,7 +48,9 @@ const Movies = () => {
       setTotalPage(response.data.total_pages);
       return response.data.results;
     } catch (error: any) {
-      setErrMsg(error.message);
+      setErrorMsg(error.message);
+    }finally{
+      setIsLoading(false)
     }
   };
 
@@ -58,7 +61,7 @@ const Movies = () => {
     } else {
       sethasMore(true);
     }
-    
+
     if (Movies.length < totalPage) {
       if (Movies && page <= totalPage - 1) {
         setPage((page = page + 1));
@@ -78,10 +81,9 @@ const Movies = () => {
 
   return (
     <>
+      {ErrorMsg ? <Loader2 children={`${ErrorMsg}`} isLoad={false} />:null}
+      {isLoading ? <Loader2 children="Loading..." isLoad={true} />:null}
       <Movie_styled>
-        {isLoading && (
-          <Loader2 children={`${ErrMsg ? `${ErrMsg}` : "Loading..."}`} />
-        )}
         <Nav />
         <SideBar />
         <Movie_header>

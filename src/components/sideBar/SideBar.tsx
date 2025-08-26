@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { Navigations, Side_bar } from './Style'
 import { useContext } from 'react';
 import { BooleanContext } from "../../App"
+import InstallPrompt from '../InstallPrompt';
 
 
 const SideBar:React.FC = () => {
@@ -16,6 +17,7 @@ const active = useContext(BooleanContext)
         <Link to="/" onClick={active?.toggler}>Home</Link>
         <Link to="/moviespage" onClick={active?.toggler}>Movies</Link>
         <Link to="/tvSeriespage" onClick={active?.toggler}>TV Series</Link>
+        <InstallPrompt />
       </Navigations>
     </Side_bar>
   )

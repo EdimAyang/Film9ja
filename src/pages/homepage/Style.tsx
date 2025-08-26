@@ -22,7 +22,7 @@ export const Hero_section = styled.header`
   max-width: 100%;
   height: 250px;
   position: relative;
-  top: 9%;
+  top: 7%;
   margin-bottom: 40px;
   //tablet view
   @media screen and (min-width: 600px) {
@@ -32,7 +32,7 @@ export const Hero_section = styled.header`
   //laptop view
   @media screen and (min-width: 900px) {
     height: 550px;
-    top: 9%;
+    top: 10%;
     .overlay {
       width: 100%;
       height: 100%;

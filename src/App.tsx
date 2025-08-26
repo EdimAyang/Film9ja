@@ -8,8 +8,8 @@ import { Global_Css } from "./GlobalStyles";
 import { createContext } from "react";
 import { Ibars } from "./interface";
 import { useState } from "react";
-// import { Toaster } from "react-hot-toast";
 export const BooleanContext = createContext<Ibars | null>(null);
+import { useScrollToTop } from "./hooks/ScrollToTop";
 
 //pages
 import Home from "./pages/homepage/Home";
@@ -23,6 +23,7 @@ import NotFound from "./pages/404page/NotFound";
 
 function App() {
   const [Bar, setBar] = useState<boolean>(true);
+  useScrollToTop()
 
   const toggler = () => {
     setBar(!Bar);
@@ -51,10 +52,6 @@ function App() {
       <BooleanContext.Provider value={{ Bar, toggler }}>
         <RouterProvider router={Router} />
       </BooleanContext.Provider>
-      {/* <Toaster */}
-      {/* // containerStyle={{backgroundSize:0}} */}
-      {/* // toastOptions={{duration:10000000}} */}
-      {/* // /> */}
     </div>
   );
 }

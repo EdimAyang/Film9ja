@@ -25,8 +25,8 @@ import Company from "../company/Company";
 type Pagetype = "OverView" | "Similar" | "Company";
 const TvInfo = () => {
   const [TV, setTV] = useState<IMovieTv>();
-  let [ErrMsg, setErrMsg] = useState("");
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  let [ErrorMsg, setErrorMsg] = useState("");
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const navigate = useNavigate();
   const [activeSubPage, setActiveSubPage] = useState<Pagetype>("OverView");
 
@@ -40,6 +40,7 @@ const TvInfo = () => {
   });
 
   const getMoviesByID = async (id: number) => {
+    setIsLoading(true)
     try {
       const response = await axiosInstance.get<ApiResponse<IMovieTv>>(
         `${API_ROUTES.tvInfo}${id}`
@@ -48,7 +49,9 @@ const TvInfo = () => {
       response.data.results ? setIsLoading(true) : setIsLoading(false);
       return response.data;
     } catch (error: any) {
-      setErrMsg(error.message);
+      setErrorMsg(error.message);
+    }finally{
+      setIsLoading(false)
     }
   };
 
@@ -70,15 +73,12 @@ const TvInfo = () => {
     }
   };
 
-  // useEffect(()=>{
-  // handleSubPageRender()
-  // },[data])
 
   return (
+    <>
+     {ErrorMsg ? <Loader2 children={`${ErrorMsg}`} isLoad={false} />:null}
+     {isLoading ? <Loader2 children="Loading..." isLoad={true} />:null}
     <TV_Info>
-      {isLoading && (
-        <Loader2 children={`${ErrMsg ? `${ErrMsg}` : "Loading..."}`} />
-      )}
       <Hero>
         <span onClick={()=>window.history? window.history.back(): navigate('/')}>
           <img src="icon/arrow-left-solid.svg" alt="picture" />
@@ -125,6 +125,7 @@ const TvInfo = () => {
         <Outlet_wrapper>{handleSubPageRender()}</Outlet_wrapper>
       </Info_Wrapper>
     </TV_Info>
+    </>
   );
 };
 

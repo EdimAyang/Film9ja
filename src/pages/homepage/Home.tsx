@@ -54,115 +54,126 @@ const Home: React.FC = () => {
   };
 
   return (
-    <Home_Styles>
-      {query1.isLoading || query2.isLoading || query3.isLoading?  <Loader2 children={"Loading..."} /> : ''}
-      <SideBar />
-      <Nav />
-      {/* Hero */}
-      <Hero_section>
-        <Swiper
-          spaceBetween={30}
-          centeredSlides={true}
-          autoplay={{
-            delay: 2500,
-            disableOnInteraction: false,
-          }}
-          // pagination={{
-          // clickable: true,
-          // }}
-          navigation={false}
-          modules={[Autoplay]}
-          className="mySwiper"
-        >
-          <div className="overlay"></div>
-          {PopularMovies.map((m, i) => (
-            <SwiperSlide key={m.id} className="Slide">
-              <img
-                src={`https://image.tmdb.org/t/p/w500${PopularMovies[i].backdrop_path}`}
-                alt="photo"
-              />
-              <Slider_Text>
-                <h4>
-                  {PopularMovies[i].name ||
-                    PopularMovies[i].original_name ||
-                    PopularMovies[i].original_title ||
-                    PopularMovies[i].title}
-                </h4>
-              </Slider_Text>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </Hero_section>
+    <>
+      {query1.isPending||
+        query2.isPending ||
+        query3.isPending ? 
+        <Loader2 children={"Loading..."} isLoad={true} /> : ''}
 
-      {/* Popular */}
-
-      <Catergories>
-        <section>
-          <h4>Popular</h4>
-        </section>
-        <Cards_Wrapper>
-          {PopularMovies.map((c) => (
-            <Card key={c.id}>
-              <div>
+      {query1.error  ||
+        query2.error ||
+        query3.error ?
+        <Loader2 children={"Something went wrong!"} isLoad={false} />:''}
+        
+      <Home_Styles>
+        <SideBar />
+        <Nav />
+        {/* Hero */}
+        <Hero_section>
+          <Swiper
+            spaceBetween={30}
+            centeredSlides={true}
+            autoplay={{
+              delay: 2500,
+              disableOnInteraction: false,
+            }}
+            // pagination={{
+            // clickable: true,
+            // }}
+            navigation={false}
+            modules={[Autoplay]}
+            className="mySwiper"
+          >
+            <div className="overlay"></div>
+            {PopularMovies.map((m, i) => (
+              <SwiperSlide key={m.id} className="Slide">
                 <img
-                  src={`https://image.tmdb.org/t/p/w500${c.poster_path}`}
-                  alt="picture"
+                  src={`https://image.tmdb.org/t/p/w500${PopularMovies[i].backdrop_path}`}
+                  alt="photo"
                 />
-              </div>
-              <p>{c.title}</p>
-            </Card>
-          ))}
-        </Cards_Wrapper>
-      </Catergories>
+                <Slider_Text>
+                  <h4>
+                    {PopularMovies[i].name ||
+                      PopularMovies[i].original_name ||
+                      PopularMovies[i].original_title ||
+                      PopularMovies[i].title}
+                  </h4>
+                </Slider_Text>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </Hero_section>
 
-      {/* movies */}
+        {/* Popular */}
 
-      <Catergories>
-        <section>
-          <h4>Movies</h4>
-          <Link to="/moviespage">
-            <span>View all</span>
-          </Link>
-        </section>
-        <Cards_Wrapper>
-          {Movies.map((p) => (
-            <Card key={p.id} onClick={() => StoreMovieId(p.id, p.media_type)}>
-              <div>
-                <img
-                  src={`https://image.tmdb.org/t/p/w500${p.poster_path}`}
-                  alt="picture"
-                />
-              </div>
-              <p>{p.title}</p>
-            </Card>
-          ))}
-        </Cards_Wrapper>
-      </Catergories>
+        <Catergories>
+          <section>
+            <h4>Popular</h4>
+          </section>
+          <Cards_Wrapper>
+            {PopularMovies.map((c) => (
+              <Card key={c.id}>
+                <div>
+                  <img
+                    src={`https://image.tmdb.org/t/p/w500${c.poster_path}`}
+                    alt="picture"
+                  />
+                </div>
+                <p>{c.title}</p>
+              </Card>
+            ))}
+          </Cards_Wrapper>
+        </Catergories>
 
-      {/* Series */}
+        {/* movies */}
 
-      <Catergories>
-        <section>
-          <h4>TV Series</h4>
-          <Link to="/tvSeriespage">
-            <span>View all</span>
-          </Link>
-        </section>
-        <Cards_Wrapper>
-          {TV.map((m) => (
-            <Card key={m.id} onClick={() => StoreTVId(m.id, m.media_type)}>
-              <div>
-                <img
-                  src={`https://image.tmdb.org/t/p/w500${m.poster_path}`}
-                  alt="picture"
-                />
-              </div>
-              <p>{m.name}</p>
-            </Card>
-          ))}
-        </Cards_Wrapper>
-      </Catergories>
-    </Home_Styles>
+        <Catergories>
+          <section>
+            <h4>Movies</h4>
+            <Link to="/moviespage">
+              <span>View all</span>
+            </Link>
+          </section>
+          <Cards_Wrapper>
+            {Movies.map((p) => (
+              <Card key={p.id} onClick={() => StoreMovieId(p.id, p.media_type)}>
+                <div>
+                  <img
+                    src={`https://image.tmdb.org/t/p/w500${p.poster_path}`}
+                    alt="picture"
+                  />
+                </div>
+                <p>{p.title}</p>
+              </Card>
+            ))}
+          </Cards_Wrapper>
+        </Catergories>
+
+        {/* Series */}
+
+        <Catergories>
+          <section>
+            <h4>TV Series</h4>
+            <Link to="/tvSeriespage">
+              <span>View all</span>
+            </Link>
+          </section>
+          <Cards_Wrapper>
+            {TV.map((m) => (
+              <Card key={m.id} onClick={() => StoreTVId(m.id, m.media_type)}>
+                <div>
+                  <img
+                    src={`https://image.tmdb.org/t/p/w500${m.poster_path}`}
+                    alt="picture"
+                  />
+                </div>
+                <p>{m.name}</p>
+              </Card>
+            ))}
+          </Cards_Wrapper>
+        </Catergories>
+      </Home_Styles>
+    </>
   );
 };
 

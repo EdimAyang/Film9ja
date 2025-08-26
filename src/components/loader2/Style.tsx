@@ -17,13 +17,13 @@ export const Loader2_Styles = styled.div`
   //tablet view
   @media screen and (min-width: 600px) {
     width: 100%;
-    max-width: 600px;
-    margin: auto;
+    // max-width: 600px;
+    // margin: auto;
   }
   //laptop
   @media screen and (min-width: 900px) {
     width: 100%;
-    max-width: 800px;
-    margin: auto;
+    // max-width: 800px;
+    // margin: auto;
   }
 `;

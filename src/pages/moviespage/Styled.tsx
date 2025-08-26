@@ -93,6 +93,7 @@ export const Movie_Card1 = styled.div`
     height: 100%;
     display: block;
     border-radius: 10px;
+    cursor:pointer;
   }
   //laptop view
   @media screen and (min-width: 900px) {

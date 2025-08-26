@@ -14,7 +14,10 @@ export const Side_bar = styled.nav<Iprops>`
     flex-direction:column;
     align-items:end;
     gap:40px;
-    /* display:${({active})=>active? `${"block"}` : "none"}; */
+    
+    span{
+        display:block;
+    }
     transition: 1s ease-out;
     img{
         width:20px;
@@ -46,7 +49,7 @@ export const Navigations = styled.div`
     a{
         text-decoration:none;
         color:#ffff;
-        font-size:1.5em;
+        font-size:1.3em;
         background:transparent;
     }
 `
