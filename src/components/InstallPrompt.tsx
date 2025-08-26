@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useEffect, useState } from "react";
 import { BeforeInstallPromptEvent } from "../interface";
-import { ButtonS } from "./Button";
+
 
 export default function InstallPrompt() {
   const [deferredPrompt, setDeferredPrompt] =
