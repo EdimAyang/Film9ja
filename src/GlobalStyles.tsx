@@ -9,13 +9,17 @@ export const Global_Css = createGlobalStyle`
         font-family: "Convergence", sans-serif;
         ::-webkit-scrollbar{
            background-color:transparent;
-           scrollbar-color:green;
+           scrollbar-color:#555;
            scrollbar-width:thin;
         }
         ::-webkit-scrollbar-thumb {
-   background-color:green;
+   background-color:#555;
    border-radius:100px;
    cursor: pointer;
+    @media screen and (max-width: 850px) {
+    display:none;
+    appearance:none;
+ }
 }
     }
     .App{
