@@ -1,4 +1,4 @@
-import Nav from "../../components/navbar/Nav";
+import { useSuspenseQuery } from "@tanstack/react-query";
 import {
   Card,
   Cards_Wrapper,
@@ -7,74 +7,45 @@ import {
   Home_Styles,
   Slider_Text,
 } from "./Style";
-import { useEffect, useState } from "react";
-import { ICategories } from "../../interface";
-import SideBar from "../../components/sideBar/SideBar";
 import { Link, useNavigate } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
-import Loader2 from "../../components/loader2/Loader2";
-import {
-  useGetMovies,
-  useGetSeries,
-  useGetTrendingMovies,
-} from "../../components/network/services/GetFilmsHook";
+import { HomePageQueries } from "../../components/network/services/GetFilmsHook";
+import { useIdAndMediaStore } from "../../store/movieIDStore";
 
-export const options = {};
-
-const Home: React.FC = () => {
-  const [PopularMovies, setPopularMovies] = useState<ICategories[]>([]);
-  const [TV, setTV] = useState<ICategories[]>([]);
-  const [Movies, setMovies] = useState<ICategories[]>([]);
+const Home = () => {
   const navigate = useNavigate();
+  const { setId, setMediaType } = useIdAndMediaStore();
 
   //fetch popular, series, trending movies
-  const query1 = useGetMovies();
-  const query2 = useGetSeries();
-  const query3 = useGetTrendingMovies();
-
-  useEffect(() => {
-    if (query1.data) setPopularMovies(query1.data);
-    if (query2.data) setTV(query2.data);
-    if (query3.data) setMovies(query3.data);
-  }, [query1.data, query2.data, query3.data]);
+  const query2 = useSuspenseQuery(HomePageQueries.movies());
+  const query3 = useSuspenseQuery(HomePageQueries.series());
+  const query1 = useSuspenseQuery(HomePageQueries.trending());
 
   //local storage to store movie id and media type function
-  const StoreMovieId = (id: number, type: string) => {
-    localStorage.setItem("ID", JSON.stringify(id));
-    localStorage.setItem("media_type", JSON.stringify(type));
-    navigate("/movieInfo");
+  const StoreMovieId = (id: any) => {
+    setId(id);
+    setMediaType("movie");
+    navigate(`/movieInfo/${id}`);
   };
 
   //local storage to store TV id function
-  const StoreTVId = (id: number, type: string) => {
-    localStorage.setItem("ID", JSON.stringify(id));
-    localStorage.setItem("media_type", JSON.stringify(type));
-    navigate("/tvinfo");
+  const StoreTVId = (id: any) => {
+    setId(id);
+    setMediaType("tv");
+    navigate(`/tvinfo/${id}`);
   };
 
   return (
     <>
-      {query1.isPending||
-        query2.isPending ||
-        query3.isPending ? 
-        <Loader2 children={"Loading..."} isLoad={true} /> : ''}
-
-      {query1.error  ||
-        query2.error ||
-        query3.error ?
-        <Loader2 children={"Something went wrong!"} isLoad={false} />:''}
-        
       <Home_Styles>
-        <SideBar />
-        <Nav />
         {/* Hero */}
         <Hero_section>
           <Swiper
             spaceBetween={30}
             centeredSlides={true}
             autoplay={{
-              delay: 2500,
+              delay: 3000,
               disableOnInteraction: false,
             }}
             // pagination={{
@@ -85,18 +56,18 @@ const Home: React.FC = () => {
             className="mySwiper"
           >
             <div className="overlay"></div>
-            {PopularMovies.map((m, i) => (
+            {query1.data.map((m, i) => (
               <SwiperSlide key={m.id} className="Slide">
                 <img
-                  src={`https://image.tmdb.org/t/p/w500${PopularMovies[i].backdrop_path}`}
+                  src={`https://image.tmdb.org/t/p/w500${query1.data[i].backdrop_path}`}
                   alt="photo"
                 />
                 <Slider_Text>
                   <h4>
-                    {PopularMovies[i].name ||
-                      PopularMovies[i].original_name ||
-                      PopularMovies[i].original_title ||
-                      PopularMovies[i].title}
+                    {query1.data[i].name ||
+                      query1.data[i].original_name ||
+                      query1.data[i].original_title ||
+                      query1.data[i].title}
                   </h4>
                 </Slider_Text>
               </SwiperSlide>
@@ -108,10 +79,10 @@ const Home: React.FC = () => {
 
         <Catergories>
           <section>
-            <h4>Popular</h4>
+            <h4>Trending</h4>
           </section>
           <Cards_Wrapper>
-            {PopularMovies.map((c) => (
+            {query1.data.map((c) => (
               <Card key={c.id}>
                 <div>
                   <img
@@ -135,8 +106,8 @@ const Home: React.FC = () => {
             </Link>
           </section>
           <Cards_Wrapper>
-            {Movies.map((p) => (
-              <Card key={p.id} onClick={() => StoreMovieId(p.id, p.media_type)}>
+            {query2.data.map((p) => (
+              <Card key={p.id} onClick={() => StoreMovieId(p.id)}>
                 <div>
                   <img
                     src={`https://image.tmdb.org/t/p/w500${p.poster_path}`}
@@ -159,8 +130,8 @@ const Home: React.FC = () => {
             </Link>
           </section>
           <Cards_Wrapper>
-            {TV.map((m) => (
-              <Card key={m.id} onClick={() => StoreTVId(m.id, m.media_type)}>
+            {query3.data.map((m) => (
+              <Card key={m.id} onClick={() => StoreTVId(m.id)}>
                 <div>
                   <img
                     src={`https://image.tmdb.org/t/p/w500${m.poster_path}`}

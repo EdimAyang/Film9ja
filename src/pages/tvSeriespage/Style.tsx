@@ -1,8 +1,6 @@
 import styled from "styled-components";
 
 export const TV_styled = styled.div`
-  width: 100%;
-  height: 100vh;
   display: flex;
   flex-direction: column;
 
@@ -10,51 +8,39 @@ export const TV_styled = styled.div`
     padding: 10px;
   }
   
-  //tablet view
-  @media screen and (min-width: 600px) {
-    width: 100%;
-    max-width: 600px;
-    margin: auto;
-  }
-  //laptop
-  @media screen and (min-width: 900px) {
-    width: 100%;
-    max-width: 800px;
-    margin: auto;
-  }
 `;
-export const TV_header = styled.header`
-  width: 100%;
-  height: 60px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 1;
-
-  h3 {
-    color: #ffff;
-    //tablet view
-    @media screen and (min-width: 600px) {
-      font-size: 1.4em;
-    }
-  }
-
-  img {
-    width: 20px;
-  }
-  //tablet view
-  @media screen and (min-width: 600px) {
-    display: none;
-  }
-  //laptop view
-  @media screen and (min-width: 900px) {
-    display: none;
-  }
-`;
+// export const TV_header = styled.header`
+  /* width: 100%; */
+  /* height: 60px; */
+  /* display: flex; */
+  /* justify-content: space-between; */
+  /* align-items: center; */
+  /* padding: 10px; */
+  /* position: fixed; */
+  /* top: 0; */
+  /* left: 0; */
+  /* z-index: 1; */
+/*  */
+  /* h3 { */
+    /* color: #ffff; */
+    /* //tablet view */
+    /* @media screen and (min-width: 600px) { */
+      /* font-size: 1.4em; */
+    /* } */
+  /* } */
+/*  */
+  /* img { */
+    /* width: 20px; */
+  /* } */
+  /* //tablet view */
+  /* @media screen and (min-width: 600px) { */
+    /* display: none; */
+  /* } */
+  /* //laptop view */
+  /* @media screen and (min-width: 900px) { */
+    /* display: none; */
+  /* } */
+// `;
 
 export const TV_Container = styled.div`
   width: 100%;
@@ -65,16 +51,10 @@ export const TV_Container = styled.div`
   gap: 10px;
   /* overflow-y: scroll; */
   padding: 10px;
-  margin-top: 20%;
   flex: 1;
   //tablet view
   @media screen and (min-width: 600px) {
-    margin-top: 10%;
     gap: 15px;
-  }
-  //laptop view
-  @media screen and (min-width: 900px) {
-    margin-top: 6%;
   }
 `;
 

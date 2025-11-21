@@ -22,13 +22,20 @@ export const Search_styles = styled.div`
   }
 `;
 export const Input_container = styled.div`
+ backdrop-filter: blur(5px) saturate(150%); //Frosted glass effect
+ border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle border */
+ border-radius: 5px; /* Rounded corners */
+ box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); /* Outer shadow for depth */
+ box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.3);
+ -webkit-backdrop-filter: blur(5px);
+ padding: 0.8rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px;
   width: 100%;
   height: auto;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   position: fixed;
   top: 0;
   z-index: 10;
@@ -111,7 +118,7 @@ export const Movie_container = styled.section`
   grid-auto-rows: 200px;
   gap: 30px;
   position: relative;
-  top: 100px;
+  top: 10px;
   padding: 10px;
   //laptop view
   @media screen and (min-width: 900px) {

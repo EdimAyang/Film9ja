@@ -95,10 +95,11 @@ export const Trailer_Wrapper = styled.section`
     justify-content: space-between;
     align-items: center;
     color: #50c878;
+    font-size: 0.8rem;
 
     //tablet view
     @media screen and (min-width: 600px) {
-      font-size: 1.3em;
+      font-size: 1rem;
     }
 
     span {
@@ -113,8 +114,23 @@ export const Trailer_Wrapper = styled.section`
     img {
       width: 25px;
       cursor: pointer;
+      animation: pulse 1.5s infinite;
     }
   }
+  @keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
 `;
 
 export const Info_Wrapper = styled.section`
@@ -140,12 +156,14 @@ export const Info_Nav = styled.div`
   align-items: center;
   padding: 10px;
   margin-bottom: 20px;
+  font-size: 0.8rem;
   h4 {
     text-decoration: none;
     color: #50c878;
+    cursor: pointer;
     //tablet view
     @media screen and (min-width: 600px) {
-      font-size: 1.1em;
+      font-size: 1rem;
     }
   }
 `;

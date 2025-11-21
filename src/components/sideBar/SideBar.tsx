@@ -1,30 +1,38 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { Navigations, Side_bar } from "./Style";
-import { useContext } from "react";
-import { BooleanContext } from "../../App";
 import InstallPrompt from "../InstallPrompt";
+import { useSidebarStore } from "../../store/sidebarStore";
+import { XIcon } from "lucide-react";
 
 const SideBar: React.FC = () => {
-  const active = useContext(BooleanContext);
+  const { toggle, isOpen } = useSidebarStore();
 
   return (
-    <Side_bar active={active?.Bar}>
-      <img
-        src="/icon/xmark-solid (1).svg"
-        alt="Photos"
-        onClick={active?.toggler}
-      />
+    <Side_bar active={isOpen.toString()}>
+      <XIcon className="close-icon" onClick={() => toggle()} />
       <Navigations>
-        <Link to="/" onClick={active?.toggler}>
+        <NavLink
+          to="/"
+          onClick={() => toggle()}
+          className={({ isActive }) => (isActive ? "active-link" : "")}
+        >
           Home
-        </Link>
-        <Link to="/moviespage" onClick={active?.toggler}>
+        </NavLink>
+        <NavLink
+          to="/moviespage"
+          onClick={() => toggle()}
+          className={({ isActive }) => (isActive ? "active-link" : "")}
+        >
           Movies
-        </Link>
-        <Link to="/tvSeriespage" onClick={active?.toggler}>
+        </NavLink>
+        <NavLink
+          to="/tvSeriespage"
+          onClick={() => toggle()}
+          className={({ isActive }) => (isActive ? "active-link" : "")}
+        >
           TV Series
-        </Link>
-        <span onClick={active?.toggler}>
+        </NavLink>
+        <span onClick={() => toggle()}>
           <InstallPrompt />
         </span>
       </Navigations>

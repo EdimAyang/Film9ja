@@ -15,6 +15,12 @@ export interface ILogIn {
   state2?: string;
 }
 
+export interface MoviesResponse {
+  page:number;
+  results:ICategories[];
+  total_pages:number;
+  total_results:number;
+}
 //popular Movies
 
 export interface ICategories {
@@ -42,7 +48,7 @@ export interface Ibars {
 
 //sideBar
 export interface Iprops {
-  active?: boolean | null;
+  active?: string | null;
 }
 
 //Search
@@ -74,6 +80,7 @@ export interface ILoader {
 export interface IMovieTv {
   backdrop_path: string;
   id: number;
+  first_air_date:string;
   overview: string;
   poster_path: string;
   releaseDate: string;

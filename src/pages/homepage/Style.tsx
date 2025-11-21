@@ -2,20 +2,9 @@ import styled from "styled-components";
 
 export const Home_Styles = styled.div`
   width: 100%;
-  height: 100vh;
-  //tablet view
-  @media screen and (min-width: 600px) {
-    width: 100%;
-    max-width: 600px;
-    margin: auto;
-  }
-  //laptop
-  @media screen and (min-width: 900px) {
-    width: 100%;
-    max-width: 800px;
-    margin: auto;
-  }
+  height: 100%;
 `;
+
 // mobile view
 export const Hero_section = styled.header`
   width: 100%;
@@ -41,10 +30,10 @@ export const Hero_section = styled.header`
   }
 
   .mySwiper {
-    border-radius: 10px;
     height: 100%;
     width: 100%;
     img {
+      border-radius: 5px;
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -52,13 +41,19 @@ export const Hero_section = styled.header`
   }
 `;
 
-export const Slider_Text = styled.div`
+export const Slider_Text = styled.span`
   //mobile view
-  width: 100%;
-  height: 80px;
   position: absolute;
-  top: 60%;
-  background: transparent;
+  top: 70%;
+  margin-left: 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px) saturate(150%); //Frosted glass effect
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle border */
+  border-radius: 5px; /* Rounded corners */
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); /* Outer shadow for depth */
+  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.3);
+  -webkit-backdrop-filter: blur(5px);
+  padding: 1rem;
   display: flex;
   justify-content: flex-end;
   align-items: flex-start;
@@ -67,11 +62,10 @@ export const Slider_Text = styled.div`
   padding: 10px;
   //tablet view
   @media screen and (min-width: 600px) {
-    top: 68%;
+    top: 80%;
   }
   h4 {
     color: #ffff;
-    background: transparent;
     //tablet view
     @media screen and (min-width: 600px) {
       font-size: 1.4em;
@@ -104,7 +98,7 @@ export const Catergories = styled.div`
       }
     }
     span {
-      color: green;
+      color: #ffff;
       cursor: pointer;
       //tablet view
       @media screen and (min-width: 600px) {
@@ -143,7 +137,7 @@ export const Cards_Wrapper = styled.div`
   //tablet view
   @media screen and (min-width: 600px) {
     max-height: 250px;
-     overflow-x: scroll;
+    overflow-x: scroll;
   }
   //laptop view
   @media screen and (min-width: 900px) {
@@ -158,6 +152,7 @@ export const Card = styled.div`
   justify-content: space-between;
   gap: 10px;
   cursor: pointer;
+
   //tablet view
   @media screen and (min-width: 600px) {
     height: 230px;
@@ -173,20 +168,20 @@ export const Card = styled.div`
     height: 100%;
     width: 100%;
     overflow: hidden;
-    border-radius: 10px;
+    border-radius: 5px;
     img {
       width: 100%;
       height: 100%;
+      border-radius: 5px;
     }
   }
   p {
     color: #ffff;
     font-size: 0.7em;
-    margin-bottom:10px;
+    margin-bottom: 10px;
     //tablet view
     @media screen and (min-width: 600px) {
       font-size: 0.9em;
     }
   }
 `;
-

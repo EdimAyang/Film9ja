@@ -1,98 +1,43 @@
-import { TV_Card1, TV_Container, TV_header, TV_styled } from "./Style";
-import { useContext, useEffect } from "react";
-import { BooleanContext } from "../../App";
-import SideBar from "../../components/sideBar/SideBar";
-import { ICategories } from "../../interface";
-import { useState } from "react";
-import Loader from "../../components/loader/Loader";
+import { TV_Card1, TV_Container, TV_styled } from "./Style";
+import { useEffect, useMemo } from "react";
 import { useInView } from "react-intersection-observer";
 import { useNavigate } from "react-router-dom";
-import Nav from "../../components/navbar/Nav";
-import Loader2 from "../../components/loader2/Loader2";
-import { axiosInstance } from "../../components/network/axios";
-import { APIKEYS } from "../../components/network/reactQuery/ApiKeys";
-import { API_ROUTES } from "../../components/network/reactQuery/ApiRouts";
-import { ApiResponse } from "../../components/network/ApiResponse";
-import { useQuery } from "@tanstack/react-query";
+import { FilmQueries } from "../../components/network/services/useGetMovies";
+import { useSuspenseInfiniteQuery } from "@tanstack/react-query";
+import { useIdAndMediaStore } from "../../store/movieIDStore";
 
 const TV = () => {
-  const active = useContext(BooleanContext);
-  const [TV, setTV] = useState<ICategories[]>([]);
-  const [totalPage, setTotalPage] = useState<number>(1);
-  let [page, setPage] = useState<number>(1);
-  const [hasMore, sethasMore] = useState<boolean>(false);
   const navigate = useNavigate();
-  let [ErrorMsg, setErrorMsg] = useState("");
-  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [ref, inView] = useInView();
+  const {setId, setMediaType} = useIdAndMediaStore()
 
-  //fetch Latest movies
-  const { refetch } = useQuery({
-    queryKey: [APIKEYS.seriesPages],
-    queryFn: () => getMovies(page),
-  });
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
+    useSuspenseInfiniteQuery(FilmQueries.seriesPage());
 
-  const getMovies = async (page: number) => {
-    setIsLoading(true);
-    try {
-      const response = await axiosInstance.get<ApiResponse>(
-        `${API_ROUTES.tvPage}${page}`
-      );
-      setTV((prev) => [...prev, ...response.data.results]);
-      response.data.results ? setIsLoading(false) : setIsLoading(true);
-      setTotalPage(response.data.total_pages);
-      return response.data.results;
-    } catch (error: any) {
-      setErrorMsg(error.message);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  const Series = useMemo(
+    () => data?.pages.flatMap((page) => page.results) ?? [],
+    [data?.pages]
+  );
 
   //Infinit Scrolling
   useEffect(() => {
-    if (TV.length === 0 || TV.length === totalPage) {
-      sethasMore(false);
-    } else {
-      sethasMore(true);
+    if (inView && hasNextPage) {
+      fetchNextPage();
     }
-
-    if (inView) {
-      if (TV.length < totalPage) {
-        if (TV && page <= totalPage - 1) {
-          setPage((page = page + 1));
-          refetch();
-        }
-      } else {
-        sethasMore(false);
-      }
-    }
-  }, [inView, TV.length === 0, TV.length === totalPage]);
+  }, [inView, hasNextPage, fetchNextPage]);
 
   //local storage to store movie id and media type function
-  const StoreMovieId = (id: number, type: string) => {
-    localStorage.setItem("ID", JSON.stringify(id));
-    localStorage.setItem("media_type", JSON.stringify(type));
-    navigate("/tvinfo");
+  const StoreMovieId = (id: any, type: string) => {
+    setId(id);
+    setMediaType(type);
+     navigate(`/tvinfo/${id}`);
   };
 
   return (
     <>
-      {ErrorMsg && <Loader2 children={`${ErrorMsg}`} isLoad={isLoading} />}
-      {isLoading && <Loader2 children="Loading..." isLoad={isLoading} />}
       <TV_styled>
-        <Nav />
-        <SideBar />
-        <TV_header>
-          <h3>TV Series</h3>
-          <img
-            src="/icon/bars-staggered-solid (1).svg"
-            alt="Photos"
-            onClick={active?.toggler}
-          />
-        </TV_header>
         <TV_Container>
-          {TV.map((m, i) => (
+          {Series.map((m, i) => (
             <TV_Card1 key={i} onClick={() => StoreMovieId(m.id, m.media_type)}>
               <img
                 src={`https://image.tmdb.org/t/p/w500${m.poster_path}`}
@@ -100,7 +45,9 @@ const TV = () => {
               />
             </TV_Card1>
           ))}
-          {hasMore && <Loader children="Loading more ...." ref={ref} />}
+          <div ref={ref} style={{ color: "#fff" }}>
+            {isFetchingNextPage ? "Loading more..." : "Scroll for more"}
+          </div>
         </TV_Container>
       </TV_styled>
     </>

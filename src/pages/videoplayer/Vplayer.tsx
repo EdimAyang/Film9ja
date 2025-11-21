@@ -6,39 +6,32 @@ import { axiosInstance } from "../../components/network/axios";
 import { useQuery } from "@tanstack/react-query";
 import { APIKEYS } from "../../components/network/reactQuery/ApiKeys";
 import { useNavigate } from "react-router-dom";
-import Loader2 from "../../components/loader2/Loader2";
+import toast from "react-hot-toast";
+import Loader from "../../router/loader";
+import { ArrowLeftIcon } from "lucide-react";
 
 const Vplayer = () => {
-  //get movies id
-  const ID = JSON.parse(localStorage.getItem("ID") as string);
-
-  const T = JSON.parse(localStorage.getItem("media_type") as string);
+  const persistedData = JSON.parse(localStorage.getItem("id-media-storage")!);
+  const { id, mediaType } = persistedData.state;
 
   //fetch TV details
   const [Video_url, setVideo_url] = useState<Ivideo[]>([]);
   let [Res, setRes] = useState<Ivideo[]>([]);
   const navigate = useNavigate();
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [ErrorMsg, setErrorMsg] = useState<string>("");
 
   //fetch Latest movies
-  const { data } = useQuery({
-    queryKey: [APIKEYS.video],
-    queryFn: () => getVideo(ID, T),
+  const { data, isPending, isError, error } = useQuery({
+    queryKey: [APIKEYS.video, id, mediaType],
+    queryFn: () => getVideo(id, mediaType),
+    enabled: !!id && !!mediaType,
   });
+
+  
   const getVideo = async (id: number, type: string) => {
-    setIsLoading(true);
-    try {
-      const response = await axiosInstance.get(
-        `${type ? `${type}/${id}/videos` : null}`
-      );
-      return response.data.results;
-    } catch (error: any) {
-      setErrorMsg(error.message);
-      setRes([]);
-    } finally {
-      setIsLoading(false);
-    }
+    const { data } = await axiosInstance.get(
+      `${type ? `${type}/${id}/videos` : null}`
+    );
+    return data.results;
   };
 
   //get video key
@@ -69,24 +62,30 @@ const Vplayer = () => {
     if (data) setVideo_url(data);
   }, [data]);
 
+  const handleError = () => {
+    setRes([]);
+    toast.error("Video not available") || toast.error((error as Error).message);
+    navigate(-1);
+  };
+
   return (
     <>
-      {ErrorMsg && <Loader2 children={`${ErrorMsg}`} isLoad={isLoading} />}
-      {isLoading && <Loader2 children="Loading..." isLoad={isLoading} />}
+      {isError && handleError()}
+      {isPending && <Loader />}
       <Video_player>
-        <img
-          src="/icon/arrow-left-solid.svg"
-          alt=""
+        <ArrowLeftIcon
+          style={{color:'#fff'}}
           onClick={() =>
-            window.history ? window.history.back() : navigate("/")
+            window.history ? navigate(-1) : navigate("/")
           }
         />
         <div>
           <ReactPlayer
             width="100%"
             height="100%"
-            controls
-            url={`https://www.youtube.com/watch?v=${R}`}
+            controls={true}
+            url={`https://www.youtube.com/embed/${R}`}
+            light={false}
           />
         </div>
       </Video_player>
