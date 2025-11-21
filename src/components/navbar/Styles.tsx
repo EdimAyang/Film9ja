@@ -8,10 +8,16 @@ export const Nav_bar = styled.nav`
   justify-content: space-between;
   align-items: center;
   padding: 10px;
-  background-color: #000;
   z-index: 5;
   position: fixed;
   margin-bottom: 0rem;
+  backdrop-filter: blur(5px) saturate(150%); //Frosted glass effect
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle border */
+  border-radius: 5px; /* Rounded corners */
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); /* Outer shadow for depth */
+  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.3);
+  -webkit-backdrop-filter: blur(5px);
+  padding: 0.8rem;
   button {
     display: none;
   }
@@ -43,6 +49,12 @@ export const Nav_bar = styled.nav`
   }
 `;
 
+export const NavWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 export const Logo_2 = styled.div`
   width: 20%;
   z-index: 20;
@@ -88,6 +100,9 @@ export const Navigation = styled.div`
 
     a:hover {
       color: green;
+    }
+    .active-link {
+      color:green;
     }
   }
 `;

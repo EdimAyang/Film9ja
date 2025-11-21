@@ -1,3 +1,4 @@
+
 import { createGlobalStyle } from "styled-components";
 
 export const Global_Css = createGlobalStyle`
@@ -5,8 +6,7 @@ export const Global_Css = createGlobalStyle`
         padding:0;
         margin:0;
         box-sizing:border-box;
-        background-color:#000;
-        font-family: "Varela Round", sans-serif;
+        font-family: "Convergence", sans-serif;
         ::-webkit-scrollbar{
            background-color:transparent;
            scrollbar-color:green;
@@ -17,22 +17,11 @@ export const Global_Css = createGlobalStyle`
    border-radius:100px;
    cursor: pointer;
 }
-/* toaster settings */
-#_rht_toaster{
-   background:none !important ;
-   background-color:none;
-   z-index:-1;
-   inset:0px;
-   pointer-events:none;
-   }
-   .go3958317564 {
- background:none;
- background-color:#fff;
- 
-}
-.go1579819456 {
-background:none;
-   background-color:#fff;
-}
-}
+    }
+    .App{
+        height:100vh;
+        width:100%;
+        background-color:#000;
+        overflow:scroll;
+    }
 `;

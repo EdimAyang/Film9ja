@@ -9,12 +9,13 @@ import {
   Search_styles,
 } from "./Styles";
 import { MultiSearch } from "../../interface";
-import Loader from "../../components/loader/Loader";
 import { useInView } from "react-intersection-observer";
-import Loader2 from "../../components/loader2/Loader2";
+import Loader from "../../router/loader";
 import { axiosInstance } from "../../components/network/axios";
 import { API_ROUTES } from "../../components/network/reactQuery/ApiRouts";
 import { ApiResponse } from "../../components/network/ApiResponse";
+import { useIdAndMediaStore } from "../../store/movieIDStore";
+import { ArrowLeftIcon } from "lucide-react";
 // import toast from "react-hot-toast";
 
 const Search = () => {
@@ -27,6 +28,7 @@ const Search = () => {
   const [ref, inView] = useInView();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [ErrorMsg, setErrorMsg] = useState<string>("");
+  const {setId, setMediaType} = useIdAndMediaStore()
 
   //save previous search results in local storage
   const PreviousSearch: MultiSearch[] = JSON.parse(
@@ -36,8 +38,8 @@ const Search = () => {
   console.log(PreviousSearch);
   //local storage to store movie id and media type function
   const StoreMovieId = (id: number, type: string) => {
-    localStorage.setItem("ID", JSON.stringify(id));
-    localStorage.setItem("media_type", JSON.stringify(type));
+    setId(id);
+    setMediaType(type);
     navigate("/videoplayer");
   };
 
@@ -109,16 +111,14 @@ const Search = () => {
 
   return (
     <>
-      {ErrorMsg && <Loader2 children={`${ErrorMsg}`} isLoad={isLoading} />}
-      {isLoading && <Loader2 children="Loading..." isLoad={isLoading} />}
+      {ErrorMsg && <p>Error</p>}
+      {isLoading && <Loader />}
       <Search_styles>
         <Input_container>
-          <img
-            src="/icon/arrow-left-solid.svg"
-            alt="aorrow"
-            loading="lazy"
+          <ArrowLeftIcon
+            style={{color:'#fff'}}
             onClick={() =>
-              window.history ? window.history.back() : navigate("/")
+              window.history ? navigate(-1) : navigate("/")
             }
           />
 
@@ -158,7 +158,7 @@ const Search = () => {
               </Info>
             </Cards1>
           ))}
-          {hasMore && <Loader children="" ref={ref} />}
+          {hasMore && <p ref={ref}>Loading...</p>}
         </Movie_container>
       </Search_styles>
     </>

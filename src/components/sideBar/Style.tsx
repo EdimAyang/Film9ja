@@ -7,7 +7,7 @@ export const Side_bar = styled.nav<Iprops>`
     background-color:#000;
     position:fixed;
     z-index:20;
-    left:${({active})=>active? `${"100%"}` : "54%"};
+    left:${({active})=>active == 'false'? `${"100%"}` : "54%"};
     top:0;
     padding:10px;
     display:flex;
@@ -19,9 +19,8 @@ export const Side_bar = styled.nav<Iprops>`
         display:block;
     }
     transition: 1s ease-out;
-    img{
-        width:20px;
-        background:transparent;
+    .close-icon{
+        color:#fff;
         position:absolute;
         top:10px;
         left:5%;
@@ -51,5 +50,8 @@ export const Navigations = styled.div`
         color:#ffff;
         font-size:1.3em;
         background:transparent;
+    }
+    .active-link{
+        color:green;
     }
 `

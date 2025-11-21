@@ -34,7 +34,7 @@ export const Hero = styled.header`
   img {
     width: 100%;
     height: 100%;
-    border-radius:10px;
+    border-radius: 10px;
   }
 
   span {
@@ -110,13 +110,14 @@ export const Trailer_Wrapper = styled.section`
     justify-content: space-between;
     align-items: center;
     color: #50c878;
+    font-size: 0.8rem;
     span {
       color: #ffff;
     }
 
     //tablet view
     @media screen and (min-width: 600px) {
-      font-size: 1.3em;
+      font-size: 1rem;
     }
     span {
       color: #ffff;
@@ -129,10 +130,25 @@ export const Trailer_Wrapper = styled.section`
     img {
       width: 25px;
       cursor: pointer;
+      animation: pulse 1.5s infinite;
       //laptop view
       @media screen and (min-width: 900px) {
         width: 35px;
       }
+    }
+  }
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.2);
+      opacity: 0.6;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
     }
   }
 `;
@@ -164,12 +180,13 @@ export const Info_Nav = styled.div`
   align-items: center;
   padding: 10px;
   h4 {
+    font-size: 0.8rem;
     text-decoration: none;
     color: #50c878;
     cursor: pointer;
     //tablet view
     @media screen and (min-width: 600px) {
-      font-size: 1.1em;
+      font-size: 1rem;
     }
   }
 `;
@@ -178,7 +195,7 @@ export const Outlet_wrapper = styled.section`
   width: 100%;
   height: 100%;
   flex: 1;
-  ::-webkit-scrollbar{
-    display:none;
-}
+  ::-webkit-scrollbar {
+    display: none;
+  }
 `;

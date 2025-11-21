@@ -1,22 +1,8 @@
 import styled from "styled-components";
 
 export const Movie_styled = styled.div`
-  width: 100%;
-  height: 100vh;
   display: flex;
   flex-direction: column;
-  //tablet view
-  @media screen and (min-width: 600px) {
-    width: 100%;
-    max-width: 600px;
-    margin: auto;
-  }
-  //laptop
-  @media screen and (min-width: 900px) {
-    width: 100%;
-    max-width: 800px;
-    margin: auto;
-  }
 `;
 export const Movie_header = styled.header`
   width: 100%;
@@ -65,17 +51,11 @@ export const Movie_Container = styled.div`
   gap: 10px;
   /* overflow-x: scroll; */
   padding: 10px;
-  margin-top: 20%;
   flex: 1;
   
   //tablet view
   @media screen and (min-width: 600px) {
-    margin-top: 10%;
     gap: 15px;
-  }
-  //laptop view
-  @media screen and (min-width: 900px) {
-    margin-top: 6%;
   }
 `;
 
