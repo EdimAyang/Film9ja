@@ -1,7 +1,9 @@
-
 import { createGlobalStyle } from "styled-components";
 
 export const Global_Css = createGlobalStyle`
+body{
+    background-color:#000;
+}
     * {
         padding:0;
         margin:0;
@@ -11,21 +13,15 @@ export const Global_Css = createGlobalStyle`
            background-color:transparent;
            scrollbar-color:#555;
            scrollbar-width:thin;
+            @media screen and (max-width: 850px) {
+                display:none;
+            }
+
         }
-        ::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
    background-color:#555;
    border-radius:100px;
    cursor: pointer;
-    @media screen and (max-width: 850px) {
-    display:none;
-    appearance:none;
- }
 }
-    }
-    .App{
-        height:100vh;
-        width:100%;
-        background-color:#000;
-        overflow:scroll;
-    }
+} 
 `;
