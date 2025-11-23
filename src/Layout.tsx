@@ -42,19 +42,20 @@ export default Layout;
 
 const LayoutStyle = styled.div`
   background-color: #000;
-  height: 100vh;
-  overflow: auto;
-  width: 100%;
+  height: 100dvh;
+  width: 100dvw;
+  overflow:auto;
   .main {
     margin-top: 15%;
     width: 100%;
-    /* height: auto; */
+    height: auto;
     //tablet view
     @media screen and (min-width: 600px) {
       width: 100%;
       max-width: 600px;
       margin: auto;
       margin-top: 10%;
+      overflow:none;
     }
     //laptop
     @media screen and (min-width: 900px) {

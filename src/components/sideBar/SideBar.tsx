@@ -9,6 +9,7 @@ const SideBar: React.FC = () => {
 
   return (
     <Side_bar active={isOpen.toString()}>
+      <div className='overlay'onClick={() => toggle()}></div>
       <XIcon className="close-icon" onClick={() => toggle()} />
       <Navigations>
         <NavLink

@@ -22,7 +22,7 @@ export const Hero = styled.header`
   width: 100%;
   height: 250px;
   position: relative;
-  top: 4%;
+  top: 0;
   //tablet view
   @media screen and (min-width: 600px) {
     height: 350px;
