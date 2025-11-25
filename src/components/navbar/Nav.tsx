@@ -1,8 +1,8 @@
 import { useNavigate, NavLink } from "react-router-dom";
-import { Logo_2, Nav_bar, Navigation, NavWrapper } from "./Styles";
+import { Logo, Nav_bar, Navigation, NavWrapper } from "./Styles";
 import InstallPrompt from "../InstallPrompt";
 import { useSidebarStore } from "../../store/sidebarStore";
-
+import { SearchIcon, MenuIcon } from "lucide-react";
 
 const Nav: React.FC = () => {
   const navigate = useNavigate();
@@ -15,22 +15,19 @@ const Nav: React.FC = () => {
   return (
     <NavWrapper>
       <Nav_bar>
-        <Logo_2 onClick={() => navigate("/")}>
-          <h3>
-            Film<span>9ja</span>
-          </h3>
-        </Logo_2>
+        <Logo onClick={() => navigate("/")}>
+          Film<span>9ja</span>
+        </Logo>
         <Navigation>
           <InstallPrompt />
-            <img
-              src="/icon/magnifying-glass-solid (3).svg"
-              alt="magnifying-glass icon"
-              onClick={handleNav}
-              className="glass"
-            />
-          <img
-            src="/icon/bars-staggered-solid (1).svg"
-            alt="hamburger icon"
+          <SearchIcon
+            style={{ color: "#ffff" }}
+            onClick={handleNav}
+            className="glass"
+          />
+          <MenuIcon
+            className="menu"
+            style={{ color: "#fff" }}
             onClick={() => toggle()}
           />
 

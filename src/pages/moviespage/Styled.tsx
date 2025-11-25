@@ -3,43 +3,7 @@ import styled from "styled-components";
 export const Movie_styled = styled.div`
   display: flex;
   flex-direction: column;
-`;
-export const Movie_header = styled.header`
-  width: 100%;
-  height: 60px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 1;
-  
-  //tablet view
-  @media screen and (min-width: 600px) {
-    display: none;
-  }
-
-  //laptop view
-  @media screen and (min-width: 900px) {
-    display: none;
-  }
-  h3 {
-    color: #ffff;
-    //tablet view
-    @media screen and (min-width: 600px) {
-      font-size: 1.4em;
-    }
-  }
-
-  img {
-    width: 20px;
-  }
-  //laptop view
-  @media screen and (min-width: 900px) {
-    display: none;
-  }
+  z-index:80;
 `;
 
 export const Movie_Container = styled.div`

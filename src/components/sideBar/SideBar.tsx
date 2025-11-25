@@ -1,16 +1,24 @@
 import { NavLink } from "react-router-dom";
-import { Navigations, Side_bar } from "./Style";
+import { Navigations, Side_bar, Overlay } from "./Style";
 import InstallPrompt from "../InstallPrompt";
 import { useSidebarStore } from "../../store/sidebarStore";
 import { XIcon } from "lucide-react";
+import { Logo } from "../navbar/Styles";
+
 
 const SideBar: React.FC = () => {
   const { toggle, isOpen } = useSidebarStore();
 
   return (
+    <>
+    <Overlay active={isOpen.toString()} onClick={()=> toggle()} />
     <Side_bar active={isOpen.toString()}>
-      <div className='overlay'onClick={() => toggle()}></div>
-      <XIcon className="close-icon" onClick={() => toggle()} />
+      <div className="Xicon-container">
+        <Logo>
+          Film<span>9ja</span>
+        </Logo>
+       <XIcon className="close-icon" onClick={() => toggle()} />
+      </div>
       <Navigations>
         <NavLink
           to="/"
@@ -38,6 +46,7 @@ const SideBar: React.FC = () => {
         </span>
       </Navigations>
     </Side_bar>
+    </>
   );
 };
 

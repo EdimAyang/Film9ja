@@ -15,7 +15,7 @@ import { axiosInstance } from "../../components/network/axios";
 import { API_ROUTES } from "../../components/network/reactQuery/ApiRouts";
 import { ApiResponse } from "../../components/network/ApiResponse";
 import { useIdAndMediaStore } from "../../store/movieIDStore";
-import { ArrowLeftIcon } from "lucide-react";
+import { ArrowLeftIcon, SearchIcon } from "lucide-react";
 // import toast from "react-hot-toast";
 
 const Search = () => {
@@ -129,11 +129,9 @@ const Search = () => {
               value={SearchValue}
               onChange={(e) => setSearchValue(e.target.value.toLowerCase())}
             />
-            <img
-              src="/icon/magnifying-glass-solid (4).svg"
-              alt="moviePicture"
+            <SearchIcon
+              style={{color: '#000'}}
               className={SearchRes.length != 0 ? "active" : "imgAnimate"}
-              loading="lazy"
             />
           </div>
         </Input_container>

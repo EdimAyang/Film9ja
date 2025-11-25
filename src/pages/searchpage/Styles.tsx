@@ -24,7 +24,6 @@ export const Search_styles = styled.div`
 export const Input_container = styled.div`
  backdrop-filter: blur(5px) saturate(150%); //Frosted glass effect
  border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle border */
- border-radius: 5px; /* Rounded corners */
  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); /* Outer shadow for depth */
  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.3);
  -webkit-backdrop-filter: blur(5px);
