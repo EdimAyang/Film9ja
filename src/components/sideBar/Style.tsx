@@ -26,6 +26,7 @@ export const Side_bar = styled.nav<Iprops>`
     align-items: center;
     justify-content: space-between;
     padding: 10px;
+    cursor: pointer;
   .close-icon {
     color: #fff;
   }

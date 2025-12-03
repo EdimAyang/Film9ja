@@ -16,7 +16,7 @@ import { API_ROUTES } from "../../components/network/reactQuery/ApiRouts";
 import { ApiResponse } from "../../components/network/ApiResponse";
 import { useIdAndMediaStore } from "../../store/movieIDStore";
 import { ArrowLeftIcon, SearchIcon } from "lucide-react";
-// import toast from "react-hot-toast";
+
 
 const Search = () => {
   const navigate = useNavigate();
@@ -28,14 +28,14 @@ const Search = () => {
   const [ref, inView] = useInView();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [ErrorMsg, setErrorMsg] = useState<string>("");
-  const {setId, setMediaType} = useIdAndMediaStore()
+  const { setId, setMediaType } = useIdAndMediaStore();
 
   //save previous search results in local storage
   const PreviousSearch: MultiSearch[] = JSON.parse(
     localStorage.getItem("searchResults") as string
   );
 
-  console.log(PreviousSearch);
+ 
   //local storage to store movie id and media type function
   const StoreMovieId = (id: number, type: string) => {
     setId(id);
@@ -116,10 +116,8 @@ const Search = () => {
       <Search_styles>
         <Input_container>
           <ArrowLeftIcon
-            style={{color:'#fff'}}
-            onClick={() =>
-              window.history ? navigate(-1) : navigate("/")
-            }
+            style={{ color: "#fff" }}
+            onClick={() => (window.history ? navigate(-1) : navigate("/"))}
           />
 
           <div>
@@ -130,7 +128,7 @@ const Search = () => {
               onChange={(e) => setSearchValue(e.target.value.toLowerCase())}
             />
             <SearchIcon
-              style={{color: '#000'}}
+              style={{ color: "#000" }}
               className={SearchRes.length != 0 ? "active" : "imgAnimate"}
             />
           </div>
