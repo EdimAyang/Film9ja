@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useLocation } from "react-router-dom";
+import ScrollToTop from "./lib/utilis/scroll-to-top";
 
 const Layout = () => {
   const [isOnline, setIsOnline] = useState(navigator.onLine);
@@ -21,7 +22,7 @@ const Layout = () => {
     };
   }, []);
 
-useEffect(() => {
+  useEffect(() => {
     if (!isOnline) {
       toast.error("You are currently offline.");
     }
@@ -29,11 +30,13 @@ useEffect(() => {
 
   return (
     <LayoutStyle>
-    {location.pathname !== '/searchpage'  && <Nav />}
-      <SideBar />
-      <main className="main">
-        <Outlet />
-      </main>
+      <ScrollToTop>
+        {location.pathname !== "/searchpage" && <Nav />}
+        <SideBar />
+        <main className="main">
+          <Outlet />
+        </main>
+      </ScrollToTop>
     </LayoutStyle>
   );
 };
@@ -42,9 +45,8 @@ export default Layout;
 
 const LayoutStyle = styled.div`
   background-color: #000;
-  height: 100dvh;
-  width: 100dvw;
-  overflow:auto;
+  height: 100%;
+  width: 100%;
   .main {
     margin-top: 15%;
     width: 100%;
@@ -55,7 +57,7 @@ const LayoutStyle = styled.div`
       max-width: 600px;
       margin: auto;
       margin-top: 10%;
-      overflow:none;
+      overflow: none;
     }
     //laptop
     @media screen and (min-width: 900px) {

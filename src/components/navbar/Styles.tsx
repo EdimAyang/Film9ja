@@ -61,7 +61,7 @@ export const Logo = styled.h3`
   background: transparent;
   cursor: pointer;
     color: #fff;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     display: flex;
     span{
         color: green;
